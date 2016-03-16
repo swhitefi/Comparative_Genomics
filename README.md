@@ -15,7 +15,7 @@
 
 > *user = your umich unique name
 
-###Set up your .bashrc file so your environment is all set for genomic analysis!
+**Set up your .bashrc file so your environment is all set for genomic analysis!**
 
 >i. Make a backup copy of ~/.bashrc file in case something goes wrong 
 	
@@ -28,21 +28,37 @@
 >iii. Add entries in your .bashrc file to add genomics programs to your path variable
 
 `export PATH=$PATH: /scratch/micro612w16_fluxod/shared/bin/mauve_snapshot_2015-02-13/linux-x64/`
+
 `export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/mauve_snapshot_2015-02-13/linux-x64/`
+
 `export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/blast/bin/`
+
 `export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/vcftools_0.1.12b/perl/`
+
 `export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/tabix-0.2.6/`
+
 `export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/bwa-0.7.12/`
+
 `export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/Trimmomatic/`
+
 `export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/bcftools-1.2/`
+
 `export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/samtools-1.2/`
+
 `export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/sratoolkit/bin/`
+
 `export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/Spades/bin/`
+
 `export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/FastQC/`
+
 `export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/GenomeAnalysisTK-3.3-0/`
+
 `export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/picard-tools-1.130/`
+
 `export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/qualimap_v2.1/`
+
 `export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/vcftools_0.1.12b/bin/`
+
 `export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/sratoolkit/bin/`
 
 >iv. Execute commands in your .bashrc file
