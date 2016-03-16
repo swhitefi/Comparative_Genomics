@@ -1,14 +1,16 @@
-# Comparative_Genomics
+#Comparative_Genomics
 
-## Day 1 – Morning: Getting your data onto Flux and performing QC 
+#Day 1 – Morning:
 
-**1.	Log in to Flux**
+#Getting your data onto Flux and performing QC 
+
+**Log in to Flux**
 
 `ssh user@flux-login.engin.umich.edu`
 
 > *user = your umich unique name
 
-**2.	Set up your .bashrc file so your environment is all set for genomic analysis!**
+###Set up your .bashrc file so your environment is all set for genomic analysis!
 
 >i. Make a backup copy of ~/.bashrc file in case something goes wrong 
 	
@@ -42,7 +44,7 @@
 
 `source .bashrc`
 
-**3.	Checking the quality of your raw data with FastQC**
+##Checking the quality of your raw data with FastQC**
 
 >i. Create directory for analysis
 
@@ -75,7 +77,8 @@
 
 >x. Once your cluster job is finished, download reports to your home computer(Not necessary)
 
-**4.	Cleaning up raw reads with trimmomatic**
+##Cleaning up raw reads with trimmomatic**
+
 >i. Get an interactive cluster node to start running programs
 
 
