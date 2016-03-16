@@ -74,7 +74,7 @@
 
 `source .bashrc`
 
-## Quality Control using FastQC
+# Quality Control using FastQC
 
 >i. Create directory for analysis
 
