@@ -270,7 +270,7 @@ java -jar /scratch/micro612w16_fluxod/shared/bin/GenomeAnalysisTK-3.3-0/GenomeAn
 
 >**FQ, MQ, DP, QUAL
 
->ii. Remove indels and keep only variants that passed filter parameter from VCF file using vcftools:
+>ii. Remove indels and keep only variants that passed filter parameter from VCF file using [vcftools](http://vcftools.sourceforge.net/man_latest.html vcftools manual):
  
  
 ```
