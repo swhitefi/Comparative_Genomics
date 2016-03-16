@@ -64,7 +64,7 @@ export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/sratoolkit/bin/
 source .bashrc
 ```
 
-## Quality Control using FastQC
+## Quality Control using [FastQC](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/ "FastQC homepage")
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 
 >i. Create directory for analysis
@@ -106,7 +106,7 @@ fastqc -o Rush_KPC_264_FastQC_results/before_trimmomatic/ Rush_KPC_264_1_combine
 
 >x. Once your cluster job is finished, download reports to your home computer(Not necessary)
 
-## Quality Trimming using Trimmomatic
+## Quality Trimming using [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic "Trimmomatic Homepage")
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 
 >i. Get an interactive cluster node to start running programs
