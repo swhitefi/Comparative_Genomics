@@ -56,29 +56,39 @@ export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/sratoolkit/bin/
 
 >iv. Source your .bashrc file
 
-`source .bashrc`
+```
+source .bashrc
+```
 
 ## Quality Control using FastQC
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 
 >i. Create directory for analysis
 
-`mkdir Rush_KPC_264_FastQC_results`
-`mkdir Rush_KPC_264_FastQC_results/before_trimmomatic`
+```
+mkdir Rush_KPC_264_FastQC_results
+mkdir Rush_KPC_264_FastQC_results/before_trimmomatic
+```
 
 >ii. Verify that FastQC is in your path
 
-`fastqc -h`
+```
+fastqc -h
+```
 
 >iii. Copy example fastq files to your home directory
 
-`cp /scratch/micro612w16_fluxod/shared/example_sample_2008_data_for_QC/Rush_KPC_264_*.gz ./`
+```
+cp /scratch/micro612w16_fluxod/shared/example_sample_2008_data_for_QC/Rush_KPC_264_*.gz ./
+```
 
 >iv. Get an interactive cluster node to start running programs
 
 >v. Run FastQC to generate quality report on one of the example files
 
-`fastqc -o Rush_KPC_264_FastQC_results/before_trimmomatic/ Rush_KPC_264_1_combine.fastq.gz Rush_KPC_264_2_combine.fastq.gz –extract`
+```
+fastqc -o Rush_KPC_264_FastQC_results/before_trimmomatic/ Rush_KPC_264_1_combine.fastq.gz Rush_KPC_264_2_combine.fastq.gz –extract
+```
 
 >vi. Exit your cluster node so you don’t waste cluster resources and $$$!
 
