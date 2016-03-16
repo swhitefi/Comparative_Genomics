@@ -100,38 +100,49 @@ export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/sratoolkit/bin/
 
 >ii. Create output directories to save trimmomatic results
 
-`mkdir Rush_KPC_264_trimmomatic_results`
-`mkdir Rush_KPC_264_trimmomatic_results_with_headcrop/`
-`mkdir Rush_KPC_264_FastQC_results/after_trimmomatic`
-`mkdir Rush_KPC_264_FastQC_results/after_trimmomatic_headcrop/`
+```
+mkdir Rush_KPC_264_trimmomatic_results
+mkdir Rush_KPC_264_trimmomatic_results_with_headcrop/
+mkdir Rush_KPC_264_FastQC_results/after_trimmomatic
+mkdir Rush_KPC_264_FastQC_results/after_trimmomatic_headcrop/
+```
 
 >iii. Load latest version of java and try to run trimmomatic
 
-`module load lsa java/1.8.0`
+```
+module load lsa java/1.8.0
 
-`java -jar /scratch/micro612w16_fluxod/shared/bin/Trimmomatic/trimmomatic-0.33.jar –h`
+java -jar /scratch/micro612w16_fluxod/shared/bin/Trimmomatic/trimmomatic-0.33.jar –h
+```
 
 >-- explaining parameters and its default value. Adapter file. Changing only SLIDINGWINDOW parameter from default 4:15 to 4:20 for raw reads.
 
 >iv. Run trimmomatic on raw reads
 
-`time java -jar /scratch/micro612w16_fluxod/shared/bin/Trimmomatic/trimmomatic-0.33.jar PE Rush_KPC_264_1_combine.fastq.gz Rush_KPC_264_2_combine.fastq.gz Rush_KPC_264_trimmomatic_results/forward_paired.fq.gz Rush_KPC_264_trimmomatic_results/forward_unpaired.fq.gz Rush_KPC_264_trimmomatic_results/reverse_paired.fq.gz Rush_KPC_264_trimmomatic_results/reverse_unpaired.fq.gz ILLUMINACLIP:/scratch/micro612w16_fluxod/shared/bin/Trimmomatic/adapters/TruSeq3-PE.fa:2:30:10:8:true SLIDINGWINDOW:4:20 MINLEN:40 HEADCROP:0`
+```
+time java -jar /scratch/micro612w16_fluxod/shared/bin/Trimmomatic/trimmomatic-0.33.jar PE Rush_KPC_264_1_combine.fastq.gz Rush_KPC_264_2_combine.fastq.gz Rush_KPC_264_trimmomatic_results/forward_paired.fq.gz Rush_KPC_264_trimmomatic_results/forward_unpaired.fq.gz Rush_KPC_264_trimmomatic_results/reverse_paired.fq.gz Rush_KPC_264_trimmomatic_results/reverse_unpaired.fq.gz ILLUMINACLIP:/scratch/micro612w16_fluxod/shared/bin/Trimmomatic/adapters/TruSeq3-PE.fa:2:30:10:8:true SLIDINGWINDOW:4:20 MINLEN:40 HEADCROP:0
+```
 
 >v. Run FastQC on trimmomatic results and check report on your local computer
 
-`fastqc -o Rush_KPC_264_FastQC_results/after_trimmomatic/ --extract -f fastq Rush_KPC_264_trimmomatic_results/forward_paired.fq.gz Rush_KPC_264_trimmomatic_results/reverse_paired.fq.gz`
+```
+fastqc -o Rush_KPC_264_FastQC_results/after_trimmomatic/ --extract -f fastq Rush_KPC_264_trimmomatic_results/forward_paired.fq.gz Rush_KPC_264_trimmomatic_results/reverse_paired.fq.gz
+```
 	
 >-- explain fastqc results with screenshots. How head bases in per base sequence content graph are imbalanced? The cross signal sign for that graph? How you can fix it by using headcrop parameter in trimmomatic? Fastqc report.
 
 >vi. Run trimmomatic with headcrop 9
 
-`time java -jar /scratch/micro612w16_fluxod/shared/bin/Trimmomatic/trimmomatic-0.33.jar PE Rush_KPC_264_1_combine.fastq.gz Rush_KPC_264_2_combine.fastq.gz Rush_KPC_264_trimmomatic_results_with_headcrop/forward_paired.fq.gz Rush_KPC_264_trimmomatic_results_with_headcrop/forward_unpaired.fq.gz Rush_KPC_264_trimmomatic_results_with_headcrop/reverse_paired.fq.gz Rush_KPC_264_trimmomatic_results_with_headcrop/reverse_unpaired.fq.gz ILLUMINACLIP:/scratch/micro612w16_fluxod/shared/bin/Trimmomatic/adapters/TruSeq3-PE.fa:2:30:10:8:true SLIDINGWINDOW:4:20 MINLEN:40 HEADCROP:9`
+```
+time java -jar /scratch/micro612w16_fluxod/shared/bin/Trimmomatic/trimmomatic-0.33.jar PE Rush_KPC_264_1_combine.fastq.gz Rush_KPC_264_2_combine.fastq.gz Rush_KPC_264_trimmomatic_results_with_headcrop/forward_paired.fq.gz Rush_KPC_264_trimmomatic_results_with_headcrop/forward_unpaired.fq.gz Rush_KPC_264_trimmomatic_results_with_headcrop/reverse_paired.fq.gz Rush_KPC_264_trimmomatic_results_with_headcrop/reverse_unpaired.fq.gz ILLUMINACLIP:/scratch/micro612w16_fluxod/shared/bin/Trimmomatic/adapters/TruSeq3-PE.fa:2:30:10:8:true SLIDINGWINDOW:4:20 MINLEN:40 HEADCROP:9
+```
 		
 >-- explain per base sequence content changed to just warning from cross sign.
 
 >vii. Run FastQC on updated trimmomatic results and check report on your local computer
 
-`fastqc -o Rush_KPC_264_FastQC_results/after_trimmomatic_headcrop/ --extract -f fastq Rush_KPC_264_trimmomatic_results_with_headcrop/forward_paired.fq.gz Rush_KPC_264_trimmomatic_results_with_headcrop/reverse_paired.fq.gz`
-
+```
+fastqc -o Rush_KPC_264_FastQC_results/after_trimmomatic_headcrop/ --extract -f fastq Rush_KPC_264_trimmomatic_results_with_headcrop/forward_paired.fq.gz Rush_KPC_264_trimmomatic_results_with_headcrop/reverse_paired.fq.gz
+```
 
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
