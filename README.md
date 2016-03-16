@@ -22,7 +22,9 @@ ssh user@flux-login.engin.umich.edu
 
 >i. Make a backup copy of ~/.bashrc file in case something goes wrong 
 	
-```cp ~/.bashrc ./bashrc_backup```
+```
+cp ~/.bashrc ./bashrc_backup
+```
 	
 >ii. Add a line to your .bashrc file that points to required Perl library directories
 
