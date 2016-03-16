@@ -1,4 +1,4 @@
-#Comparative_Genomics
+# Comparative_Genomics
 
 - [Day 1 Morning](https://github.com/alipirani88/Comparative_Genomics##Day 1 Morning)
 	- [Getting your data onto Flux and setting up Environment variable](https://github.com/alipirani88/Comparative_Genomics##Getting your data onto Flux and setting up Environment variable)
@@ -30,7 +30,7 @@
 
 
 
-##Day 1 – Morning:
+# Day 1 Morning:
 
 ##Getting your data onto Flux and setting up Environment variable
 
