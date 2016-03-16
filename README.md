@@ -5,34 +5,9 @@
 	- [Quality Control using FastQC](https://github.com/alipirani88/Comparative_Genomics#quality-control-using-fastqc)
 	- [Quality Trimming using Trimmomatic](https://github.com/alipirani88/Comparative_Genomics#quality-trimming-using-trimmomatic)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # Day 1 Morning
 
-# Getting your data onto Flux and setting up Environment variable
+## Getting your data onto Flux and setting up Environment variable
 
 **Log in to Flux**
 
@@ -107,7 +82,7 @@
 
 >x. Once your cluster job is finished, download reports to your home computer(Not necessary)
 
-##Quality Trimming using Trimmomatic
+## Quality Trimming using Trimmomatic
 
 >i. Get an interactive cluster node to start running programs
 
