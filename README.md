@@ -270,6 +270,7 @@ java -jar /scratch/micro612w16_fluxod/shared/bin/GenomeAnalysisTK-3.3-0/GenomeAn
 
 >ii. Remove indels and keep only variants that passed filter parameter from VCF file using vcftools:
  
+ 
 ```
 vcftools --vcf Rush_KPC_264__filter_gatk.vcf --keep-filtered pass_filter --remove-indels --recode --recode-INFO-all --out
 Rush_KPC_264__filter_onlysnp
