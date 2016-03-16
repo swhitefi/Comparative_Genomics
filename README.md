@@ -5,6 +5,10 @@
 	- [Quality Control using FastQC](https://github.com/alipirani88/Comparative_Genomics#quality-control-using-fastqc)
 	- [Quality Trimming using Trimmomatic](https://github.com/alipirani88/Comparative_Genomics#quality-trimming-using-trimmomatic)
 
+- [Day 1 Afternoon](https://github.com/alipirani88/Comparative_Genomics#day-1-afternoon)
+	- [Read Mapping](https://github.com/alipirani88/Comparative_Genomics#read-mapping)
+	- [Variant Calling](https://github.com/alipirani88/Comparative_Genomics#variant-calling-and-filteration)
+
 # Day 1 Morning
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 
@@ -156,3 +160,136 @@ fastqc -o Rush_KPC_264_FastQC_results/after_trimmomatic_headcrop/ --extract -f f
 ```
 
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
+
+# Day 1 Afternoon
+
+## Read Mapping
+
+**1. Create a directory to save results and run trimmomatic**
+
+```
+ mkdir Rush_KPC_264_varcall_result
+```
+
+```
+ java -jar /scratch/micro612w16_fluxod/shared/bin/Trimmomatic/trimmomatic-0.33.jar PE Rush_KPC_264_1_combine.fastq.gz
+Rush_KPC_264_2_combine.fastq.gz Rush_KPC_264_varcall_result/forward_paired.fq.gz Rush_KPC_264_varcall_result/forward_unpaired.fq.gz Rush_KPC_264_varcall_result/reverse_paired.fq.gz Rush_KPC_264_varcall_result/reverse_unpaired.fq.gz ILLUMINACLIP:/scratch/micro612w16_fluxod/shared/bin/Trimmomatic/adapters/TruSeq3-PE.fa:2:30:10:8:true SLIDINGWINDOW:4:20 MINLEN:40
+HEADCROP:0
+```
+
+**2. Map your reads against a finished reference genome using bwa**
+
+>i. Create BWA index from Reference fasta file:
+
+```
+bwa index /scratch/micro612w16_fluxod/shared/bin/reference/KPNIH1/KPNIH1.fasta
+```
+
+>index file usage 
+
+>ii. Align reads to reference and output into SAM file
+
+```
+bwa mem -M -R "@RG\tID:96\tSM:Rush_KPC_264_1_combine.fastq.gz\tLB:1\tPL:Illumina" -t 8
+/scratch/micro612w16_fluxod/shared/bin/reference/KPNIH1/KPNIH1.fasta Rush_KPC_264_varcall_result/forward_paired.fq.gz Rush_KPC_264_varcall_result/reverse_paired.fq.gz > Rush_KPC_264_varcall_result/Rush_KPC_264__aln.sam
+```
+
+> -R readgroup parameter; what does it say?
+
+**3. SAM/BAM manipulation and variant calling using Samtools
+
+>i. Change directory to results folder:
+
+```
+cd Rush_KPC_264_varcall_result
+```
+
+>ii. Convert SAM to BAM using SAMTOOLS:
+
+```
+samtools view -Sb Rush_KPC_264__aln.sam > Rush_KPC_264__aln.bam
+```
+
+>iii. Sort BAM file using SAMTOOLS:
+
+```
+samtools sort Rush_KPC_264__aln.bam Rush_KPC_264__aln_sort
+```
+
+**4. Mark duplicates(PCR optical duplicates) and remove them using PICARD**
+
+>i. Create a dictionary for reference fasta file required by PICARD(If KPNIH1.dict doesn’t exist).
+ 
+```
+java -jar /scratch/micro612w16_fluxod/shared/bin/picard-tools-1.130/picard.jar CreateSequenceDictionary REFERENCE=/scratch/micro612w16_fluxod/shared/bin/reference/KPNIH1/KPNIH1.fasta OUTPUT=/scratch/micro612w16_fluxod/shared/bin/reference/KPNIH1/KPNIH1.dict
+```
+
+>ii. Run PICARD for removing duplicates.
+
+```
+java -jar /scratch/micro612w16_fluxod/shared/bin/picard-tools-1.130/picard.jar MarkDuplicates REMOVE_DUPLICATES=true INPUT=Rush_KPC_264__aln_sort.bam OUTPUT= Rush_KPC_264__aln_marked.bam METRICS_FILE=Rush_KPC_264__markduplicates_metrics
+CREATE_INDEX=true VALIDATION_STRINGENCY=LENIENT
+```
+
+>PCR optical duplicates; why remove that?
+
+>iii. Sort these marked BAM file again (for downstream compatibility)
+
+```
+samtools sort Rush_KPC_264__aln_marked.bam Rush_KPC_264__aln_sort
+```
+
+>iv. Index these marked bam file using SAMTOOLS
+
+```
+samtools index Rush_KPC_264__aln_sort.bam
+```
+
+## Variant Calling and Filteration
+
+**1. Call variants using SAMTOOLS mpileup and bcftools**
+
+```
+samtools mpileup -ug -f /scratch/micro612w16_fluxod/shared/bin/reference/KPNIH1/KPNIH1.fasta Rush_KPC_264__aln_sort.bam | bcftools call -O v -v -c -o Rush_KPC_264__aln_mpileup_raw.vcf
+```
+
+>**-g generate genotype likelihood in bcf format   
+>**mpileup format   
+>**-c samtools consensus caller
+
+**2. Variant filtering and processed file generation using GATK and vcftools**
+
+>i. Variant filtering using GATK:
+ 
+```
+java -jar /scratch/micro612w16_fluxod/shared/bin/GenomeAnalysisTK-3.3-0/GenomeAnalysisTK.jar -T VariantFiltration -R
+/home2/apirani/bin/reference/KPNIH1/KPNIH1.fasta -o Rush_KPC_264__filter_gatk.vcf --variant Rush_KPC_264__aln_mpileup_raw.vcf --filterExpression "FQ < 0.025 && MQ > 50 && QUAL > 100 && DP > 15" --filterName pass_filter
+```
+
+>**FQ, MQ, DP, QUAL
+
+>ii. Remove indels and keep only variants that passed filter parameter from VCF file using vcftools:
+ 
+```
+vcftools --vcf Rush_KPC_264__filter_gatk.vcf --keep-filtered pass_filter --remove-indels --recode --recode-INFO-all --out
+Rush_KPC_264__filter_onlysnp
+```
+
+>>**why remove indels  
+
+>iii. Generate Consensus fasta file from filtered variants using vcftools:
+
+```
+bgzip Rush_KPC_264__filter_onlysnp.recode.vcf
+tabix Rush_KPC_264__filter_onlysnp.recode.vcf.gz
+```
+
+
+
+
+
+
+
+
+
+
