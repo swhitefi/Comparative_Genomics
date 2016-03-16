@@ -1,4 +1,4 @@
-# Comparative_Genomics
+# Bacterial Comparative Genomics Workshop
 
 - [Day 1 Morning](https://github.com/alipirani88/Comparative_Genomics#day-1-morning)
 	- [Getting your data onto Flux and setting up Environment variable](https://github.com/alipirani88/Comparative_Genomics#getting-your-data-onto-glux-and-setting-up-environment-variable)
@@ -6,6 +6,7 @@
 	- [Quality Trimming using Trimmomatic](https://github.com/alipirani88/Comparative_Genomics#quality-trimming-using-trimmomatic)
 
 # Day 1 Morning
+[[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 
 ## Getting your data onto Flux and setting up Environment variable
 
@@ -61,7 +62,7 @@
 
 `export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/sratoolkit/bin/`
 
->iv. Execute commands in your .bashrc file
+>iv. Source your .bashrc file
 
 `source .bashrc`
 
