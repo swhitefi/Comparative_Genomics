@@ -1,6 +1,6 @@
 #Comparative_Genomics
 
-- [Day 1 - Morning](https://github.com/alipirani88/Comparative_Genomics##Day 1 - Morning)
+- [Day 1 Morning](https://github.com/alipirani88/Comparative_Genomics##Day 1 Morning)
 	- [Getting your data onto Flux and setting up Environment variable](https://github.com/alipirani88/Comparative_Genomics##Getting your data onto Flux and setting up Environment variable)
 	- [Quality Control using FastQC](https://github.com/alipirani88/Comparative_Genomics#Quality-Control-using-FastQC)
 	- [Quality Trimming using Trimmomatic](https://github.com/alipirani88/Comparative_Genomics##Quality Trimming using Trimmomatic)
@@ -147,4 +147,4 @@
 
 `fastqc -o Rush_KPC_264_FastQC_results/after_trimmomatic_headcrop/ --extract -f fastq Rush_KPC_264_trimmomatic_results_with_headcrop/forward_paired.fq.gz Rush_KPC_264_trimmomatic_results_with_headcrop/reverse_paired.fq.gz`
 
-[Day 1 - Morning](https://github.com/alipirani88/Comparative_Genomics##Day 1 - Morning)
+[Day 1 - Morning](https://github.com/alipirani88/Comparative_Genomics#Day-1-Morning)
