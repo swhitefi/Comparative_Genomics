@@ -1,9 +1,9 @@
 #Comparative_Genomics
 
-- Day 1 - Morning
+- [Day 1 - Morning](https://github.com/alipirani88/Comparative_Genomics##Day 1 - Morning)
 	- [Getting your data onto Flux and setting up Environment variable](https://github.com/alipirani88/Comparative_Genomics##Getting your data onto Flux and setting up Environment variable)
-	- Quality Control using FastQC
-	- Quality Trimming using Trimmomatic
+	- [Quality Control using FastQC](https://github.com/alipirani88/Comparative_Genomics##Quality Control using FastQC)
+	- [Quality Trimming using Trimmomatic](https://github.com/alipirani88/Comparative_Genomics##Quality Trimming using Trimmomatic)
 
 
 
@@ -74,7 +74,7 @@
 
 `source .bashrc`
 
-##Checking the quality of your raw data with FastQC**
+##Quality Control using FastQC
 
 >i. Create directory for analysis
 
@@ -107,7 +107,7 @@
 
 >x. Once your cluster job is finished, download reports to your home computer(Not necessary)
 
-##Cleaning up raw reads with trimmomatic**
+##Quality Trimming using Trimmomatic
 
 >i. Get an interactive cluster node to start running programs
 
