@@ -2,7 +2,7 @@
 
 - [Day 1 - Morning](https://github.com/alipirani88/Comparative_Genomics##Day 1 - Morning)
 	- [Getting your data onto Flux and setting up Environment variable](https://github.com/alipirani88/Comparative_Genomics##Getting your data onto Flux and setting up Environment variable)
-	- [Quality Control using FastQC](https://github.com/alipirani88/Comparative_Genomics##Quality Control using FastQC)
+	- [Quality Control using FastQC](https://github.com/alipirani88/Comparative_Genomics##Quality-Control-using-FastQC)
 	- [Quality Trimming using Trimmomatic](https://github.com/alipirani88/Comparative_Genomics##Quality Trimming using Trimmomatic)
 
 
