@@ -12,7 +12,9 @@
 
 **Log in to Flux**
 
-`ssh user@flux-login.engin.umich.edu`
+`
+ssh user@flux-login.engin.umich.edu
+`
 
 > *user = your umich unique name
 
