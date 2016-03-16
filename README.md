@@ -67,6 +67,7 @@
 `source .bashrc`
 
 ## Quality Control using FastQC
+[[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 
 >i. Create directory for analysis
 
@@ -100,6 +101,7 @@
 >x. Once your cluster job is finished, download reports to your home computer(Not necessary)
 
 ## Quality Trimming using Trimmomatic
+[[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 
 >i. Get an interactive cluster node to start running programs
 
@@ -140,4 +142,4 @@
 `fastqc -o Rush_KPC_264_FastQC_results/after_trimmomatic_headcrop/ --extract -f fastq Rush_KPC_264_trimmomatic_results_with_headcrop/forward_paired.fq.gz Rush_KPC_264_trimmomatic_results_with_headcrop/reverse_paired.fq.gz`
 
 
-[Day 1 Morning](https://github.com/alipirani88/Comparative_Genomics#day-1-morning)
+[[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
