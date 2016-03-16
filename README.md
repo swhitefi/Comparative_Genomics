@@ -1,8 +1,38 @@
 #Comparative_Genomics
 
-#Day 1 – Morning:
+- Day 1 - Morning
+	- [Getting your data onto Flux and setting up Environment variable](https://github.com/alipirani88/Comparative_Genomics/README.md##Getting your data onto Flux and setting up Environment variable)
+	- Quality Control using FastQC
+	- Quality Trimming using Trimmomatic
 
-#Getting your data onto Flux and performing QC 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+##Day 1 – Morning:
+
+##Getting your data onto Flux and setting up Environment variable
 
 **Log in to Flux**
 
