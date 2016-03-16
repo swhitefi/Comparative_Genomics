@@ -10,16 +10,17 @@
 
 **2.	Set up your .bashrc file so your environment is all set for genomic analysis!**
 
->i.	Make a backup copy of ~/.bashrc file in case something goes wrong 
-
->ii.	Add a line to your .bashrc file that points to required Perl library directories
-
+>i. Make a backup copy of ~/.bashrc file in case something goes wrong 
+	
+`cp ~/.bashrc ./bashrc_backup`
+	
+>ii. Add a line to your .bashrc file that points to required Perl library directories
 
 `export PERL5LIB=/scratch/micro612w16_fluxod/shared/bin/PAGIT/lib:/scratch/micro612w16_fluxod/shared/bin/vcftools_0.1.12b/perl:$PERL5LIB`
 
->iii.	Add entries in your .bashrc file to add genomics programs to your path variable
+>iii. Add entries in your .bashrc file to add genomics programs to your path variable
 
- export PATH=$PATH: /scratch/micro612w16_fluxod/shared/bin/mauve_snapshot_2015-02-13/linux-x64/
+`export PATH=$PATH: /scratch/micro612w16_fluxod/shared/bin/mauve_snapshot_2015-02-13/linux-x64/
 export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/mauve_snapshot_2015-02-13/linux-x64/
 export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/blast/bin
 export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/vcftools_0.1.12b/perl
@@ -35,7 +36,7 @@ export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/GenomeAnalysisTK-3.3-0
 export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/picard-tools-1.130
 export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/qualimap_v2.1
 export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/vcftools_0.1.12b/bin
-export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/sratoolkit/bin/
+export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/sratoolkit/bin/`
 
 iv.	Execute commands in your .bashrc file
 
