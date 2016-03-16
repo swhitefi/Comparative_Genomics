@@ -197,7 +197,7 @@ bwa mem -M -R "@RG\tID:96\tSM:Rush_KPC_264_1_combine.fastq.gz\tLB:1\tPL:Illumina
 
 > -R readgroup parameter; what does it say?
 
-**3. SAM/BAM manipulation and variant calling using Samtools
+**3. SAM/BAM manipulation and variant calling using [Samtools](http://www.htslib.org/doc/samtools.html "Samtools Manual")
 
 >i. Change directory to results folder:
 
@@ -217,7 +217,7 @@ samtools view -Sb Rush_KPC_264__aln.sam > Rush_KPC_264__aln.bam
 samtools sort Rush_KPC_264__aln.bam Rush_KPC_264__aln_sort
 ```
 
-**4. Mark duplicates(PCR optical duplicates) and remove them using PICARD**
+**4. Mark duplicates(PCR optical duplicates) and remove them using [PICARD](http://broadinstitute.github.io/picard/command-line-overview.html#MarkDuplicates "Picard MarkDuplicates")**
 
 >i. Create a dictionary for reference fasta file required by PICARD(If KPNIH1.dict doesn’t exist).
  
@@ -249,7 +249,7 @@ samtools index Rush_KPC_264__aln_sort.bam
 ## Variant Calling and Filteration
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 
-**1. Call variants using SAMTOOLS mpileup and bcftools**
+**1. Call variants using [samtools](http://www.htslib.org/doc/samtools.html "samtools manual") mpileup and [bcftools](https://samtools.github.io/bcftools/bcftools.html "bcftools")**
 
 ```
 samtools mpileup -ug -f /scratch/micro612w16_fluxod/shared/bin/reference/KPNIH1/KPNIH1.fasta Rush_KPC_264__aln_sort.bam | bcftools call -O v -v -c -o Rush_KPC_264__aln_mpileup_raw.vcf
@@ -261,7 +261,7 @@ samtools mpileup -ug -f /scratch/micro612w16_fluxod/shared/bin/reference/KPNIH1/
 
 **2. Variant filtering and processed file generation using GATK and vcftools**
 
->i. Variant filtering using GATK:
+>i. Variant filtering using [GATK](https://www.broadinstitute.org/gatk/guide/tooldocs/org_broadinstitute_gatk_tools_walkers_filters_VariantFiltration.php "GATK Variant Filteration"):
  
 ```
 java -jar /scratch/micro612w16_fluxod/shared/bin/GenomeAnalysisTK-3.3-0/GenomeAnalysisTK.jar -T VariantFiltration -R
