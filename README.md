@@ -164,6 +164,7 @@ fastqc -o Rush_KPC_264_FastQC_results/after_trimmomatic_headcrop/ --extract -f f
 # Day 1 Afternoon
 
 ## Read Mapping
+[[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 
 **1. Create a directory to save results and run trimmomatic**
 
@@ -246,6 +247,7 @@ samtools index Rush_KPC_264__aln_sort.bam
 ```
 
 ## Variant Calling and Filteration
+[[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 
 **1. Call variants using SAMTOOLS mpileup and bcftools**
 
