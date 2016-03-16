@@ -178,7 +178,7 @@ Rush_KPC_264_2_combine.fastq.gz Rush_KPC_264_varcall_result/forward_paired.fq.gz
 HEADCROP:0
 ```
 
-**2. Map your reads against a finished reference genome using bwa**
+**2. Map your reads against a finished reference genome using [BWA](http://bio-bwa.sourceforge.net/bwa.shtml "BWA manual")**
 
 >i. Create BWA index from Reference fasta file:
 
