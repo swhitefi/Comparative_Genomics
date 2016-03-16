@@ -32,7 +32,7 @@
 
 # Day 1 Morning
 
-##Getting your data onto Flux and setting up Environment variable
+## Getting your data onto Flux and setting up Environment variable
 
 **Log in to Flux**
 
