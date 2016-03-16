@@ -147,4 +147,4 @@
 
 `fastqc -o Rush_KPC_264_FastQC_results/after_trimmomatic_headcrop/ --extract -f fastq Rush_KPC_264_trimmomatic_results_with_headcrop/forward_paired.fq.gz Rush_KPC_264_trimmomatic_results_with_headcrop/reverse_paired.fq.gz`
 
-[Day 1 - Morning](https://github.com/alipirani88/Comparative_Genomics#test--rr)
+[Day 1 - Morning](https://github.com/alipirani88/Comparative_Genomics#test-rr)
