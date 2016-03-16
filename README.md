@@ -28,17 +28,18 @@ cp ~/.bashrc ./bashrc_backup
 	
 >ii. Add a line to your .bashrc file that points to required Perl library directories
 
-```export PERL5LIB=/scratch/micro612w16_fluxod/shared/bin/PAGIT/lib:/scratch/micro612w16_fluxod/shared/bin/vcftools_0.1.12b/perl:$PERL5LIB```
+```
+export PERL5LIB=/scratch/micro612w16_fluxod/shared/bin/PAGIT/lib:/scratch/micro612w16_fluxod/shared/bin/vcftools_0.1.12b/perl:$PERL5LIB
+```
 
 >iii. Add entries in your .bashrc file to add genomics programs to your path variable
 
-```export PATH=$PATH: /scratch/micro612w16_fluxod/shared/bin/mauve_snapshot_2015-02-13/linux-x64/```
-
-```export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/mauve_snapshot_2015-02-13/linux-x64/```
-
-`export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/blast/bin/`
-
-`export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/vcftools_0.1.12b/perl/`
+```
+export PATH=$PATH: /scratch/micro612w16_fluxod/shared/bin/mauve_snapshot_2015-02-13/linux-x64/
+export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/mauve_snapshot_2015-02-13/linux-x64/
+export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/blast/bin/
+export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/vcftools_0.1.12b/perl/
+```
 
 `export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/tabix-0.2.6/`
 
