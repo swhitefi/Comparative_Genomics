@@ -11,12 +11,12 @@
 	- [Visualize BAM/VCF files in IGV/ACT](https://github.com/alipirani88/Comparative_Genomics#visualize-bam-and-vcf-files-in-igv-or-act)
 
 - [Day 2 Morning](https://github.com/alipirani88/Comparative_Genomics#day-2-morning)
-	- [Genome Assembly using [Spades](http://bioinf.spbau.ru/spades "spades") assembler]
-	- [Assembly evaluation using [QUAST](http://bioinf.spbau.ru/quast "QUAST")]
-	- [Post-assembly genome improvement using [ABACAS](http://www.sanger.ac.uk/science/tools/pagit "sanger pagit homepage") and visualization using [ACT](http://www.sanger.ac.uk/science/tools/artemis-comparison-tool-act "ACT")]
-	- [Map reads to the final ordered assembly and load it into ACT]
-	- [Genome Annotation using [Prokka](http://www.vicbioinformatics.com/software.prokka.shtml "Prokka homepage")]
-	- [Compare Many assemblies using [BRIG](http://brig.sourceforge.net/ "BRIG sourceforge page")]
+	- [Genome Assembly](https://github.com/alipirani88/Comparative_Genomics#genome-assembly)
+	- [Assembly evaluation](https://github.com/alipirani88/Comparative_Genomics#assembly-evaluation)
+	- [Post-assembly genome improvement](https://github.com/alipirani88/Comparative_Genomics#post-assembly-genome-improvement)
+	- [Map reads to the final ordered assembly](https://github.com/alipirani88/Comparative_Genomics#map-reads-to-the-final-ordered-assembly)
+	- [Genome Annotation](https://github.com/alipirani88/Comparative_Genomics#genome-annotation)
+	- [Visualize multiple assemblies](https://github.com/alipirani88/Comparative_Genomics#visualize-multiple-assemblies)
 
 # Day 1 Morning
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
@@ -339,6 +339,18 @@ screenshots explanation here
 
 # Day 2 Morning
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
+
+## Genome Assembly
+
+## Assembly evaluation
+
+## Post-assembly genome improvement
+
+## Map reads to the final ordered assembly
+
+## Genome Annotation
+
+## Compare multiple assemblies
 
 
 
