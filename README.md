@@ -310,6 +310,8 @@ tabix Rush_KPC_264__filter_onlysnp.recode.vcf.gz
 ## Visualize BAM and VCF files in IGV or ACT
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 
+> Required Input files: KPNIH1 reference fasta and genbank file, Rush_KPC_264__aln_marked.bam and Rush_KPC_264__aln_marked.bai, Rush_KPC_264__aln_mpileup_raw.vcf and Rush_KPC_264__filter_onlysnp.recode.vcf
+
 
 
 
