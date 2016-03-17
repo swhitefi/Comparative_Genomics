@@ -89,6 +89,7 @@ mkdir Rush_KPC_264_FastQC_results/before_trimmomatic
 ```
 fastqc -h
 ```
+> FastQC can be run in two modes: "command line" or as a GUI (graphical user interface). We will analyse the data using command line version.
 
 >iv. Get an interactive cluster node to start running programs
 
@@ -98,11 +99,17 @@ fastqc -h
 fastqc -o Rush_KPC_264_FastQC_results/before_trimmomatic/ Rush_KPC_264_1_combine.fastq.gz Rush_KPC_264_2_combine.fastq.gz –extract
 ```
 
+> This will generate the results in html and other formats in output directory 
+> This will generate the results directory for forward and reverse fastq reads called Rush_KPC_264_1_combine_fastqc and Rush_KPC_264_2_combine_fastqc in out put folder provided with -o argument. The summary.txt file in these directories tells if the data passed different quality control tests. You can visualize and assess the quality of data by opening the html report in a browser.
+
+
 >vi. Exit your cluster node so you don’t waste cluster resources and $$$!
 
 >vii. Download FastQC report to your home computer to examine
 
 `Screenshots explanation.`
+
+> [A video FastQC walkthrough created by FastQC developers](https://www.youtube.com/watch?v=bz93ReOv87Y "FastQC video") 
 
 >viii. Write shell script to run FastQC on all files in ???? directory(Not necessary)
 
