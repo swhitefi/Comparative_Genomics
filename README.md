@@ -269,6 +269,7 @@ java -jar /scratch/micro612w16_fluxod/shared/bin/GenomeAnalysisTK-3.3-0/GenomeAn
 ```
 
 >**FQ, MQ, DP, QUAL
+> [More Info on VCF format specifications](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0ahUKEwjzkcSP4MfLAhUDyYMKHU3yDwMQFggjMAA&url=https%3A%2F%2Fsamtools.github.io%2Fhts-specs%2FVCFv4.2.pdf&usg=AFQjCNGFka33WgRmvOfOfp4nSaCzkV95HA&sig2=6Xb3XDaZfghadZfcnnPQxw&cad=rja "VCF format Specs.")
 
 >ii. Remove indels and keep only variants that passed filter parameter from VCF file using [vcftools](http://vcftools.sourceforge.net/man_latest.html vcftools manual):
  
