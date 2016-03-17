@@ -99,15 +99,17 @@ fastqc -h
 fastqc -o Rush_KPC_264_FastQC_results/before_trimmomatic/ Rush_KPC_264_1_combine.fastq.gz Rush_KPC_264_2_combine.fastq.gz –extract
 ```
 
-> This will generate the results in html and other formats in output directory 
-> This will generate the results directory for forward and reverse fastq reads called Rush_KPC_264_1_combine_fastqc and Rush_KPC_264_2_combine_fastqc in out put folder provided with -o argument. The summary.txt file in these directories tells if the data passed different quality control tests. You can visualize and assess the quality of data by opening the html report in a browser.
+> This will generate the results directory for forward and reverse fastq reads called Rush_KPC_264_1_combine_fastqc and Rush_KPC_264_2_combine_fastqc in out put folder provided with -o argument. The summary.txt file in these directories tells if the data passed different quality control tests. You can visualize and assess the quality of data by opening html report in a browser.
 
 
 >vi. Exit your cluster node so you don’t waste cluster resources and $$$!
 
 >vii. Download FastQC report to your home computer to examine
 
+> The analysis in FastQC is performed by a series of analysis modules. The left hand side of the main interactive display or the top of the HTML report show a summary of the modules which were run, and a quick evaluation of whether the results of the module seem entirely normal (green tick), slightly abnormal (orange triangle) or very unusual (red cross). 
+
 `Screenshots explanation.`
+`Explaining Summary results, Basic statistics, per base sequence quality, overrepresented sequences(adapters) from before trimmomatic report.`
 
 > [A video FastQC walkthrough created by FastQC developers](https://www.youtube.com/watch?v=bz93ReOv87Y "FastQC video") 
 
@@ -153,8 +155,11 @@ time java -jar /scratch/micro612w16_fluxod/shared/bin/Trimmomatic/trimmomatic-0.
 ```
 fastqc -o Rush_KPC_264_FastQC_results/after_trimmomatic/ --extract -f fastq Rush_KPC_264_trimmomatic_results/forward_paired.fq.gz Rush_KPC_264_trimmomatic_results/reverse_paired.fq.gz
 ```
-	
->-- explain fastqc results with screenshots. How head bases in per base sequence content graph are imbalanced? The cross signal sign for that graph? How you can fix it by using headcrop parameter in trimmomatic? Fastqc report.
+
+`screenshots explaination`
+`before trimmomatic and after trimmomatic explanation: summary, quality, overrepresented sequences`
+
+>-- How head bases in per base sequence content graph are imbalanced? The cross signal sign for that graph? How you can fix it by using headcrop parameter in trimmomatic? 
 
 >vi. Run trimmomatic with headcrop 9
 
@@ -163,6 +168,8 @@ time java -jar /scratch/micro612w16_fluxod/shared/bin/Trimmomatic/trimmomatic-0.
 ```
 		
 >-- explain per base sequence content changed to just warning from cross sign.
+`screenshot explanation`
+`After trimmomatic headcrop screenshot explanation of summary and per base sequence content`
 
 >vii. Run FastQC on updated trimmomatic results and check report on your local computer
 
