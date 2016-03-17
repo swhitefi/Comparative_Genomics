@@ -224,7 +224,7 @@ bwa mem -M -R "@RG\tID:96\tSM:Rush_KPC_264_1_combine.fastq.gz\tLB:1\tPL:Illumina
 
 > -R readgroup parameter; what does it say?
 
-**3. SAM/BAM manipulation and variant calling using [Samtools](http://www.htslib.org/doc/samtools.html "Samtools Manual")
+**3. SAM/BAM manipulation and variant calling using [Samtools](http://www.htslib.org/doc/samtools.html "Samtools Manual")**
 
 >i. Change directory to results folder:
 
