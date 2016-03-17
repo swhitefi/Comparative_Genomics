@@ -10,6 +10,14 @@
 	- [Variant Calling](https://github.com/alipirani88/Comparative_Genomics#variant-calling-and-filteration)
 	- [Visualize BAM/VCF files in IGV/ACT](https://github.com/alipirani88/Comparative_Genomics#visualize-bam-and-vcf-files-in-igv-or-act)
 
+- [Day 2 Morning](https://github.com/alipirani88/Comparative_Genomics#day-2-morning)
+	- [Genome Assembly using [Spades](http://bioinf.spbau.ru/spades "spades") assembler]
+	- [Assembly evaluation using [QUAST](http://bioinf.spbau.ru/quast "QUAST")]
+	- [Post-assembly genome improvement using [ABACAS](http://www.sanger.ac.uk/science/tools/pagit "sanger pagit homepage") and visualization using [ACT](http://www.sanger.ac.uk/science/tools/artemis-comparison-tool-act "ACT")]
+	- [Map reads to the final ordered assembly and load it into ACT]
+	- [Genome Annotation using [Prokka](http://www.vicbioinformatics.com/software.prokka.shtml "Prokka homepage")]
+	- [Compare Many assemblies using [BRIG](http://brig.sourceforge.net/ "BRIG sourceforge page")]
+
 # Day 1 Morning
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 
@@ -307,11 +315,30 @@ bgzip Rush_KPC_264__filter_onlysnp.recode.vcf
 tabix Rush_KPC_264__filter_onlysnp.recode.vcf.gz
 ```
 
+>iv. Generate Statistics report using samtools, vcftools and qualimap
+
+```
+commands here
+```
+
+> open statistics file and see details
+> open qualimap pdf report in your local system
+> depth of coverage and other details
+
 ## Visualize BAM and VCF files in IGV or ACT
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 
 > Required Input files: KPNIH1 reference fasta and genbank file, Rush_KPC_264__aln_marked.bam and Rush_KPC_264__aln_marked.bai, Rush_KPC_264__aln_mpileup_raw.vcf and Rush_KPC_264__filter_onlysnp.recode.vcf
 
+```
+screenshots explanation here
+```
+
+[[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
+
+
+# Day 2 Morning
+[[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 
 
 
