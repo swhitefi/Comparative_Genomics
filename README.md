@@ -289,7 +289,7 @@ samtools mpileup -ug -f /scratch/micro612w16_fluxod/shared/bin/reference/KPNIH1/
 **2. Variant filtering and processed file generation using GATK and vcftools**
 
 >i. Variant filtering using [GATK](https://www.broadinstitute.org/gatk/guide/tooldocs/org_broadinstitute_gatk_tools_walkers_filters_VariantFiltration.php "GATK Variant Filteration"):
- 
+
 ```
 java -jar /scratch/micro612w16_fluxod/shared/bin/GenomeAnalysisTK-3.3-0/GenomeAnalysisTK.jar -T VariantFiltration -R
 /home2/apirani/bin/reference/KPNIH1/KPNIH1.fasta -o Rush_KPC_264__filter_gatk.vcf --variant Rush_KPC_264__aln_mpileup_raw.vcf --filterExpression "FQ < 0.025 && MQ > 50 && QUAL > 100 && DP > 15" --filterName pass_filter
