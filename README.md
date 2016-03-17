@@ -8,7 +8,7 @@
 - [Day 1 Afternoon](https://github.com/alipirani88/Comparative_Genomics#day-1-afternoon)
 	- [Read Mapping](https://github.com/alipirani88/Comparative_Genomics#read-mapping)
 	- [Variant Calling](https://github.com/alipirani88/Comparative_Genomics#variant-calling-and-filteration)
-	- [Visualize BAM/VCF files in IGV/ACT](https://github.com/alipirani88/Comparative_Genomics#visualize-bam/vcf-files-in-igv/act)
+	- [Visualize BAM/VCF files in IGV/ACT](https://github.com/alipirani88/Comparative_Genomics#visualize-bam-and-vcf-files-in-igv-or-act)
 
 # Day 1 Morning
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
@@ -307,7 +307,7 @@ bgzip Rush_KPC_264__filter_onlysnp.recode.vcf
 tabix Rush_KPC_264__filter_onlysnp.recode.vcf.gz
 ```
 
-## Visualize BAM/VCF files in IGV/ACT
+## Visualize BAM and VCF files in IGV or ACT
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 
 
