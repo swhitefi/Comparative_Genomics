@@ -24,19 +24,21 @@ ssh user@flux-login.engin.umich.edu
 
 **Set up your .bashrc file so your environment is all set for genomic analysis!**
 
->i. Make a backup copy of ~/.bashrc file in case something goes wrong 
+Environment variables are a way of passing information from the shell to programs when you run them. Programs look "in the environment" for particular variables and if they are found will use the values stored. Some are set by the system, others by you, yet others by the shell, or any program that loads another program. All the softwares/tools that we need in this workshop are installed in a directory "/scratch/micro612w16_fluxod/shared/bin/". We will set the environment variable PATH in .bashrc file by exporting the required paths.
+
+>i. Make a backup copy of ~/.bashrc file in case something goes wrong. 
 	
 ```
 cp ~/.bashrc ./bashrc_backup
 ```
 	
->ii. Add a line to your .bashrc file that points to required Perl library directories
+>ii. Add a line to your .bashrc file that points to required Perl library directories.
 
 ```
 export PERL5LIB=/scratch/micro612w16_fluxod/shared/bin/PAGIT/lib:/scratch/micro612w16_fluxod/shared/bin/vcftools_0.1.12b/perl:$PERL5LIB
 ```
 
->iii. Add entries in your .bashrc file to add genomics programs to your path variable
+>iii. Add entries in your .bashrc file to add required genomics programs to your path variable.
 
 ```
 export PATH=$PATH: /scratch/micro612w16_fluxod/shared/bin/mauve_snapshot_2015-02-13/linux-x64/
@@ -67,23 +69,25 @@ source .bashrc
 ## Quality Control using [FastQC](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/ "FastQC homepage")
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 
->i. Create directory for analysis
+FastQC is a quality control application for high throughput sequence data. It reads in sequence data in a variety of formats(fastq, bam, sam) and can either provide an interactive application to review the results of several different QC checks, or create an HTML based report which can be integrated into a pipeline. It is generally the first step that you take upon receiving the sequence data from sequencing facility to get a quick sense of the quality of data or whether it exhibits any unusual properties(contamination or interesting biological features)
+
+>i. The data that we will use in this workshop is located in workshop shared directory(/scratch/micro612w16_fluxod/shared/example_sample_2008_data_for_QC/). Copy *fastq.gz files to your home directory using below command.
+
+```
+cp /scratch/micro612w16_fluxod/shared/example_sample_2008_data_for_QC/Rush_KPC_264_*.gz ./
+```
+
+>ii. Create directories to save analysis results in your home directory.
 
 ```
 mkdir Rush_KPC_264_FastQC_results
 mkdir Rush_KPC_264_FastQC_results/before_trimmomatic
 ```
 
->ii. Verify that FastQC is in your path
+>iii. Verify that FastQC is in your path by invoking it from command line.
 
 ```
 fastqc -h
-```
-
->iii. Copy example fastq files to your home directory
-
-```
-cp /scratch/micro612w16_fluxod/shared/example_sample_2008_data_for_QC/Rush_KPC_264_*.gz ./
 ```
 
 >iv. Get an interactive cluster node to start running programs
