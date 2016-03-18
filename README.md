@@ -7,11 +7,13 @@
 	- [Quality Trimming using Trimmomatic](https://github.com/alipirani88/Comparative_Genomics#quality-trimming-using-trimmomatic)
 
 - [Day 1 Afternoon](https://github.com/alipirani88/Comparative_Genomics#day-1-afternoon)
+***
 	- [Read Mapping](https://github.com/alipirani88/Comparative_Genomics#read-mapping)
 	- [Variant Calling](https://github.com/alipirani88/Comparative_Genomics#variant-calling-and-filteration)
 	- [Visualize BAM/VCF files in IGV/ACT](https://github.com/alipirani88/Comparative_Genomics#visualize-bam-and-vcf-files-in-igv-or-act)
 
 - [Day 2 Morning](https://github.com/alipirani88/Comparative_Genomics#day-2-morning)
+***
 	- [Genome Assembly](https://github.com/alipirani88/Comparative_Genomics#genome-assembly)
 	- [Assembly evaluation](https://github.com/alipirani88/Comparative_Genomics#assembly-evaluation)
 	- [Post-assembly genome improvement](https://github.com/alipirani88/Comparative_Genomics#post-assembly-genome-improvement)
@@ -84,14 +86,14 @@ FastQC is a quality control application for high throughput sequence data. It re
 >i. The data that we will use in this workshop is located in workshop shared directory(/scratch/micro612w16_fluxod/shared/example_sample_2008_data_for_QC/). Copy *fastq.gz files to your home directory using below command.
 
 ```
-cp /scratch/micro612w16_fluxod/shared/example_sample_2008_data_for_QC/Rush_KPC_264_*.gz ./
+cp /scratch/micro612w16_fluxod/shared/example_sample_2008_data_for_QC/Rush_KPC_266_*.gz ./
 ```
 
 >ii. Create directories to save analysis results in your home directory.
 
 ```
-mkdir Rush_KPC_264_FastQC_results
-mkdir Rush_KPC_264_FastQC_results/before_trimmomatic
+mkdir Rush_KPC_266_FastQC_results
+mkdir Rush_KPC_266_FastQC_results/before_trimmomatic
 ```
 
 >iii. Verify that FastQC is in your path by invoking it from command line.
@@ -106,10 +108,10 @@ fastqc -h
 >v. Run FastQC to generate quality report on one of the example files
 
 ```
-fastqc -o Rush_KPC_264_FastQC_results/before_trimmomatic/ Rush_KPC_264_1_combine.fastq.gz Rush_KPC_264_2_combine.fastq.gz –extract
+fastqc -o Rush_KPC_266_FastQC_results/before_trimmomatic/ Rush_KPC_266_1_combine.fastq.gz Rush_KPC_266_2_combine.fastq.gz –extract
 ```
 
-> This will generate the results directory for forward and reverse fastq reads called Rush_KPC_264_1_combine_fastqc and Rush_KPC_264_2_combine_fastqc in out put folder provided with -o argument. The summary.txt file in these directories tells if the data passed different quality control tests. You can visualize and assess the quality of data by opening html report in a browser.
+> This will generate the results directory for forward and reverse fastq reads called Rush_KPC_266_1_combine_fastqc and Rush_KPC_266_2_combine_fastqc in out put folder provided with -o argument. The summary.txt file in these directories tells if the data passed different quality control tests. You can visualize and assess the quality of data by opening html report in a browser.
 
 
 >vi. Exit your cluster node so you don’t waste cluster resources and $$$!
@@ -138,10 +140,10 @@ fastqc -o Rush_KPC_264_FastQC_results/before_trimmomatic/ Rush_KPC_264_1_combine
 >ii. Create output directories to save trimmomatic results
 
 ```
-mkdir Rush_KPC_264_trimmomatic_results
-mkdir Rush_KPC_264_trimmomatic_results_with_headcrop/
-mkdir Rush_KPC_264_FastQC_results/after_trimmomatic
-mkdir Rush_KPC_264_FastQC_results/after_trimmomatic_headcrop/
+mkdir Rush_KPC_266_trimmomatic_results
+mkdir Rush_KPC_266_trimmomatic_results_with_headcrop/
+mkdir Rush_KPC_266_FastQC_results/after_trimmomatic
+mkdir Rush_KPC_266_FastQC_results/after_trimmomatic_headcrop/
 ```
 
 >iii. Load latest version of java and try to run trimmomatic
@@ -157,13 +159,13 @@ java -jar /scratch/micro612w16_fluxod/shared/bin/Trimmomatic/trimmomatic-0.33.ja
 >iv. Run trimmomatic on raw reads
 
 ```
-time java -jar /scratch/micro612w16_fluxod/shared/bin/Trimmomatic/trimmomatic-0.33.jar PE Rush_KPC_264_1_combine.fastq.gz Rush_KPC_264_2_combine.fastq.gz Rush_KPC_264_trimmomatic_results/forward_paired.fq.gz Rush_KPC_264_trimmomatic_results/forward_unpaired.fq.gz Rush_KPC_264_trimmomatic_results/reverse_paired.fq.gz Rush_KPC_264_trimmomatic_results/reverse_unpaired.fq.gz ILLUMINACLIP:/scratch/micro612w16_fluxod/shared/bin/Trimmomatic/adapters/TruSeq3-PE.fa:2:30:10:8:true SLIDINGWINDOW:4:20 MINLEN:40 HEADCROP:0
+time java -jar /scratch/micro612w16_fluxod/shared/bin/Trimmomatic/trimmomatic-0.33.jar PE Rush_KPC_266_1_combine.fastq.gz Rush_KPC_266_2_combine.fastq.gz Rush_KPC_266_trimmomatic_results/forward_paired.fq.gz Rush_KPC_266_trimmomatic_results/forward_unpaired.fq.gz Rush_KPC_266_trimmomatic_results/reverse_paired.fq.gz Rush_KPC_266_trimmomatic_results/reverse_unpaired.fq.gz ILLUMINACLIP:/scratch/micro612w16_fluxod/shared/bin/Trimmomatic/adapters/TruSeq3-PE.fa:2:30:10:8:true SLIDINGWINDOW:4:20 MINLEN:40 HEADCROP:0
 ```
 
 >v. Run FastQC on trimmomatic results and check report on your local computer
 
 ```
-fastqc -o Rush_KPC_264_FastQC_results/after_trimmomatic/ --extract -f fastq Rush_KPC_264_trimmomatic_results/forward_paired.fq.gz Rush_KPC_264_trimmomatic_results/reverse_paired.fq.gz
+fastqc -o Rush_KPC_266_FastQC_results/after_trimmomatic/ --extract -f fastq Rush_KPC_266_trimmomatic_results/forward_paired.fq.gz Rush_KPC_266_trimmomatic_results/reverse_paired.fq.gz
 ```
 
 `screenshots explaination`
@@ -174,7 +176,7 @@ fastqc -o Rush_KPC_264_FastQC_results/after_trimmomatic/ --extract -f fastq Rush
 >vi. Run trimmomatic with headcrop 9
 
 ```
-time java -jar /scratch/micro612w16_fluxod/shared/bin/Trimmomatic/trimmomatic-0.33.jar PE Rush_KPC_264_1_combine.fastq.gz Rush_KPC_264_2_combine.fastq.gz Rush_KPC_264_trimmomatic_results_with_headcrop/forward_paired.fq.gz Rush_KPC_264_trimmomatic_results_with_headcrop/forward_unpaired.fq.gz Rush_KPC_264_trimmomatic_results_with_headcrop/reverse_paired.fq.gz Rush_KPC_264_trimmomatic_results_with_headcrop/reverse_unpaired.fq.gz ILLUMINACLIP:/scratch/micro612w16_fluxod/shared/bin/Trimmomatic/adapters/TruSeq3-PE.fa:2:30:10:8:true SLIDINGWINDOW:4:20 MINLEN:40 HEADCROP:9
+time java -jar /scratch/micro612w16_fluxod/shared/bin/Trimmomatic/trimmomatic-0.33.jar PE Rush_KPC_266_1_combine.fastq.gz Rush_KPC_266_2_combine.fastq.gz Rush_KPC_266_trimmomatic_results_with_headcrop/forward_paired.fq.gz Rush_KPC_266_trimmomatic_results_with_headcrop/forward_unpaired.fq.gz Rush_KPC_266_trimmomatic_results_with_headcrop/reverse_paired.fq.gz Rush_KPC_266_trimmomatic_results_with_headcrop/reverse_unpaired.fq.gz ILLUMINACLIP:/scratch/micro612w16_fluxod/shared/bin/Trimmomatic/adapters/TruSeq3-PE.fa:2:30:10:8:true SLIDINGWINDOW:4:20 MINLEN:40 HEADCROP:9
 ```
 		
 >-- explain per base sequence content changed to just warning from cross sign.
@@ -184,7 +186,7 @@ time java -jar /scratch/micro612w16_fluxod/shared/bin/Trimmomatic/trimmomatic-0.
 >vii. Run FastQC on updated trimmomatic results and check report on your local computer
 
 ```
-fastqc -o Rush_KPC_264_FastQC_results/after_trimmomatic_headcrop/ --extract -f fastq Rush_KPC_264_trimmomatic_results_with_headcrop/forward_paired.fq.gz Rush_KPC_264_trimmomatic_results_with_headcrop/reverse_paired.fq.gz
+fastqc -o Rush_KPC_266_FastQC_results/after_trimmomatic_headcrop/ --extract -f fastq Rush_KPC_266_trimmomatic_results_with_headcrop/forward_paired.fq.gz Rush_KPC_266_trimmomatic_results_with_headcrop/reverse_paired.fq.gz
 ```
 
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
@@ -197,12 +199,12 @@ fastqc -o Rush_KPC_264_FastQC_results/after_trimmomatic_headcrop/ --extract -f f
 **1. Create a directory to save results and run trimmomatic**
 
 ```
- mkdir Rush_KPC_264_varcall_result
+ mkdir Rush_KPC_266_varcall_result
 ```
 
 ```
- java -jar /scratch/micro612w16_fluxod/shared/bin/Trimmomatic/trimmomatic-0.33.jar PE Rush_KPC_264_1_combine.fastq.gz
-Rush_KPC_264_2_combine.fastq.gz Rush_KPC_264_varcall_result/forward_paired.fq.gz Rush_KPC_264_varcall_result/forward_unpaired.fq.gz Rush_KPC_264_varcall_result/reverse_paired.fq.gz Rush_KPC_264_varcall_result/reverse_unpaired.fq.gz ILLUMINACLIP:/scratch/micro612w16_fluxod/shared/bin/Trimmomatic/adapters/TruSeq3-PE.fa:2:30:10:8:true SLIDINGWINDOW:4:20 MINLEN:40
+ java -jar /scratch/micro612w16_fluxod/shared/bin/Trimmomatic/trimmomatic-0.33.jar PE Rush_KPC_266_1_combine.fastq.gz
+Rush_KPC_266_2_combine.fastq.gz Rush_KPC_266_varcall_result/forward_paired.fq.gz Rush_KPC_266_varcall_result/forward_unpaired.fq.gz Rush_KPC_266_varcall_result/reverse_paired.fq.gz Rush_KPC_266_varcall_result/reverse_unpaired.fq.gz ILLUMINACLIP:/scratch/micro612w16_fluxod/shared/bin/Trimmomatic/adapters/TruSeq3-PE.fa:2:30:10:8:true SLIDINGWINDOW:4:20 MINLEN:40
 HEADCROP:0
 ```
 
@@ -219,8 +221,8 @@ bwa index /scratch/micro612w16_fluxod/shared/bin/reference/KPNIH1/KPNIH1.fasta
 >ii. Align reads to reference and output into SAM file
 
 ```
-bwa mem -M -R "@RG\tID:96\tSM:Rush_KPC_264_1_combine.fastq.gz\tLB:1\tPL:Illumina" -t 8
-/scratch/micro612w16_fluxod/shared/bin/reference/KPNIH1/KPNIH1.fasta Rush_KPC_264_varcall_result/forward_paired.fq.gz Rush_KPC_264_varcall_result/reverse_paired.fq.gz > Rush_KPC_264_varcall_result/Rush_KPC_264__aln.sam
+bwa mem -M -R "@RG\tID:96\tSM:Rush_KPC_266_1_combine.fastq.gz\tLB:1\tPL:Illumina" -t 8
+/scratch/micro612w16_fluxod/shared/bin/reference/KPNIH1/KPNIH1.fasta Rush_KPC_266_varcall_result/forward_paired.fq.gz Rush_KPC_266_varcall_result/reverse_paired.fq.gz > Rush_KPC_266_varcall_result/Rush_KPC_266__aln.sam
 ```
 
 > -R readgroup parameter; what does it say?
@@ -230,19 +232,19 @@ bwa mem -M -R "@RG\tID:96\tSM:Rush_KPC_264_1_combine.fastq.gz\tLB:1\tPL:Illumina
 >i. Change directory to results folder:
 
 ```
-cd Rush_KPC_264_varcall_result
+cd Rush_KPC_266_varcall_result
 ```
 
 >ii. Convert SAM to BAM using SAMTOOLS:
 
 ```
-samtools view -Sb Rush_KPC_264__aln.sam > Rush_KPC_264__aln.bam
+samtools view -Sb Rush_KPC_266__aln.sam > Rush_KPC_266__aln.bam
 ```
 
 >iii. Sort BAM file using SAMTOOLS:
 
 ```
-samtools sort Rush_KPC_264__aln.bam Rush_KPC_264__aln_sort
+samtools sort Rush_KPC_266__aln.bam Rush_KPC_266__aln_sort
 ```
 
 **4. Mark duplicates(PCR optical duplicates) and remove them using [PICARD](http://broadinstitute.github.io/picard/command-line-overview.html#MarkDuplicates "Picard MarkDuplicates")**
@@ -256,7 +258,7 @@ java -jar /scratch/micro612w16_fluxod/shared/bin/picard-tools-1.130/picard.jar C
 >ii. Run PICARD for removing duplicates.
 
 ```
-java -jar /scratch/micro612w16_fluxod/shared/bin/picard-tools-1.130/picard.jar MarkDuplicates REMOVE_DUPLICATES=true INPUT=Rush_KPC_264__aln_sort.bam OUTPUT= Rush_KPC_264__aln_marked.bam METRICS_FILE=Rush_KPC_264__markduplicates_metrics
+java -jar /scratch/micro612w16_fluxod/shared/bin/picard-tools-1.130/picard.jar MarkDuplicates REMOVE_DUPLICATES=true INPUT=Rush_KPC_266__aln_sort.bam OUTPUT= Rush_KPC_266__aln_marked.bam METRICS_FILE=Rush_KPC_266__markduplicates_metrics
 CREATE_INDEX=true VALIDATION_STRINGENCY=LENIENT
 ```
 
@@ -265,13 +267,13 @@ CREATE_INDEX=true VALIDATION_STRINGENCY=LENIENT
 >iii. Sort these marked BAM file again (for downstream compatibility)
 
 ```
-samtools sort Rush_KPC_264__aln_marked.bam Rush_KPC_264__aln_sort
+samtools sort Rush_KPC_266__aln_marked.bam Rush_KPC_266__aln_sort
 ```
 
 >iv. Index these marked bam file using SAMTOOLS
 
 ```
-samtools index Rush_KPC_264__aln_sort.bam
+samtools index Rush_KPC_266__aln_sort.bam
 ```
 
 ## Variant Calling and Filteration
@@ -280,7 +282,7 @@ samtools index Rush_KPC_264__aln_sort.bam
 **1. Call variants using [samtools](http://www.htslib.org/doc/samtools.html "samtools manual") mpileup and [bcftools](https://samtools.github.io/bcftools/bcftools.html "bcftools")**
 
 ```
-samtools mpileup -ug -f /scratch/micro612w16_fluxod/shared/bin/reference/KPNIH1/KPNIH1.fasta Rush_KPC_264__aln_sort.bam | bcftools call -O v -v -c -o Rush_KPC_264__aln_mpileup_raw.vcf
+samtools mpileup -ug -f /scratch/micro612w16_fluxod/shared/bin/reference/KPNIH1/KPNIH1.fasta Rush_KPC_266__aln_sort.bam | bcftools call -O v -v -c -o Rush_KPC_266__aln_mpileup_raw.vcf
 ```
 
 >**-g generate genotype likelihood in bcf format   
@@ -293,7 +295,7 @@ samtools mpileup -ug -f /scratch/micro612w16_fluxod/shared/bin/reference/KPNIH1/
 
 ```
 java -jar /scratch/micro612w16_fluxod/shared/bin/GenomeAnalysisTK-3.3-0/GenomeAnalysisTK.jar -T VariantFiltration -R
-/home2/apirani/bin/reference/KPNIH1/KPNIH1.fasta -o Rush_KPC_264__filter_gatk.vcf --variant Rush_KPC_264__aln_mpileup_raw.vcf --filterExpression "FQ < 0.025 && MQ > 50 && QUAL > 100 && DP > 15" --filterName pass_filter
+/home2/apirani/bin/reference/KPNIH1/KPNIH1.fasta -o Rush_KPC_266__filter_gatk.vcf --variant Rush_KPC_266__aln_mpileup_raw.vcf --filterExpression "FQ < 0.025 && MQ > 50 && QUAL > 100 && DP > 15" --filterName pass_filter
 ```
 
 >**FQ, MQ, DP, QUAL
@@ -303,8 +305,8 @@ java -jar /scratch/micro612w16_fluxod/shared/bin/GenomeAnalysisTK-3.3-0/GenomeAn
  
  
 ```
-vcftools --vcf Rush_KPC_264__filter_gatk.vcf --keep-filtered pass_filter --remove-indels --recode --recode-INFO-all --out
-Rush_KPC_264__filter_onlysnp
+vcftools --vcf Rush_KPC_266__filter_gatk.vcf --keep-filtered pass_filter --remove-indels --recode --recode-INFO-all --out
+Rush_KPC_266__filter_onlysnp
 ```
 
 >>**why remove indels  
@@ -312,8 +314,8 @@ Rush_KPC_264__filter_onlysnp
 >iii. Generate Consensus fasta file from filtered variants using vcftools:
 
 ```
-bgzip Rush_KPC_264__filter_onlysnp.recode.vcf
-tabix Rush_KPC_264__filter_onlysnp.recode.vcf.gz
+bgzip Rush_KPC_266__filter_onlysnp.recode.vcf
+tabix Rush_KPC_266__filter_onlysnp.recode.vcf.gz
 ```
 
 >iv. Generate Statistics report using samtools, vcftools and qualimap
@@ -329,7 +331,7 @@ commands here
 ## Visualize BAM and VCF files in IGV or ACT
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 
-> Required Input files: KPNIH1 reference fasta and genbank file, Rush_KPC_264__aln_marked.bam and Rush_KPC_264__aln_marked.bai, Rush_KPC_264__aln_mpileup_raw.vcf and Rush_KPC_264__filter_onlysnp.recode.vcf
+> Required Input files: KPNIH1 reference fasta and genbank file, Rush_KPC_266__aln_marked.bam and Rush_KPC_266__aln_marked.bai, Rush_KPC_266__aln_mpileup_raw.vcf and Rush_KPC_266__filter_onlysnp.recode.vcf
 
 ```
 screenshots explanation here
@@ -352,6 +354,7 @@ screenshots explanation here
 ## Genome Annotation
 
 ## Compare multiple assemblies
+
 
 
 
