@@ -81,6 +81,16 @@ source .bashrc
 ## Quality Control using [FastQC](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/ "FastQC homepage")
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 
+As soon as you receive your sample data from sequencing centre, The first thing you do is check the quality of data using some quality control tool.
+
+Even before running QC tool on your data, you can run a bash one-liner to get some basic statistics about the raw reads.
+
+```
+for i in *.gz; do zcat $i | awk '((NR-2)%4==0){read=$1;total++;count[read]++}END{for(read in count){if(!max||count[read]>max) {max=count[read];maxRead=read};if(count[read]==1){unique++}};print total,unique,unique*100/total,maxRead,count[maxRead],count[maxRead]*100/total}'; done
+```
+
+This command will print total number of reads, total number unique reads, percentage of unique reads, most abundant sequence, its frequency, and percentage of total in fastq reads file. You can find more of such bash one-liners at Stephen Turner's github [page.](https://github.com/stephenturner/oneliners)
+
 FastQC is a quality control application for high throughput sequence data. It reads in sequence data in a variety of formats(fastq, bam, sam) and can either provide an interactive application to review the results of several different QC checks, or create an HTML based report which can be integrated into a pipeline. It is generally the first step that you take upon receiving the sequence data from sequencing facility to get a quick sense of the quality of data or whether it exhibits any unusual properties(contamination or interesting biological features)
 
 >i. The data that we will use in this workshop is located in workshop shared directory(/scratch/micro612w16_fluxod/shared/example_sample_2008_data_for_QC/). Copy *fastq.gz files to your home directory using below command.
