@@ -81,25 +81,28 @@ source .bashrc
 ## Quality Control using [FastQC](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/ "FastQC homepage")
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 
-As soon as you receive your sample data from sequencing centre, The first thing you do is check the quality of data using some quality control tool.
+>i. Execute the following commands to copy files for this morning’s exercises to your scratch directory: 
 
-Even before running QC tool on your data, you can run a bash one-liner to get some basic statistics about the raw reads.
+```
+cd /scratch/micro612w16_fluxod/username
+cp -r /scratch/micro612w16_fluxod/shared/data/day1_morn/ ./
+cd /scratch/micro612w16_fluxod/username/day1_morn/
+ls
+```
+
+As soon as you receive your sample data from sequencing centre, the first thing you do is check its quality using quality control tool such as FastQC. But before carrying out extensive QC, you can run a bash one-liner to get some basic statistics about the raw reads.
+
+Run the following command to print total number of reads in each file, total number of unique reads, percentage of unique reads, most abundant sequence(useful to find adapter sequences or contamination), its frequency, and frequency of that sequence as a proportion of the total reads.
 
 ```
 for i in *.gz; do zcat $i | awk '((NR-2)%4==0){read=$1;total++;count[read]++}END{for(read in count){if(!max||count[read]>max) {max=count[read];maxRead=read};if(count[read]==1){unique++}};print total,unique,unique*100/total,maxRead,count[maxRead],count[maxRead]*100/total}'; done
 ```
 
-This command will print total number of reads, total number unique reads, percentage of unique reads, most abundant sequence, its frequency, and percentage of total in fastq reads file. You can find more of such bash one-liners at Stephen Turner's github [page.](https://github.com/stephenturner/oneliners)
+You can find more of such bash one-liners at Stephen Turner's github [page.](https://github.com/stephenturner/oneliners)
 
-FastQC is a quality control application for high throughput sequence data. It reads in sequence data in a variety of formats(fastq, bam, sam) and can either provide an interactive application to review the results of several different QC checks, or create an HTML based report which can be integrated into a pipeline. It is generally the first step that you take upon receiving the sequence data from sequencing facility to get a quick sense of the quality of data or whether it exhibits any unusual properties(contamination or interesting biological features)
+Now we will run FastQC on these raw data to assess its quality. FastQC is a quality control tool that reads in sequence data in a variety of formats(fastq, bam, sam) and can either provide an interactive application to review the results or create an HTML based report which can be integrated into any pipeline. It is generally the first step that you take upon receiving the sequence data from sequencing facility to get a quick sense of its quality or whether it exhibits any unusual properties(contamination or interesting biological features)
 
->i. The data that we will use in this workshop is located in workshop shared directory(/scratch/micro612w16_fluxod/shared/example_sample_2008_data_for_QC/). Copy *fastq.gz files to your home directory using below command.
-
-```
-cp /scratch/micro612w16_fluxod/shared/example_sample_2008_data_for_QC/Rush_KPC_266_*.gz ./
-```
-
->ii. Create directories to save analysis results in your home directory.
+>ii. In your day1_morn directory, create a new directory for saving FastQC results.
 
 ```
 mkdir Rush_KPC_266_FastQC_results
@@ -111,22 +114,26 @@ mkdir Rush_KPC_266_FastQC_results/before_trimmomatic
 ```
 fastqc -h
 ```
-> FastQC can be run in two modes: "command line" or as a GUI (graphical user interface). We will analyse the data using command line version.
+> FastQC can be run in two modes: "command line" or as a GUI (graphical user interface). We will be using command line version of it.
 
 >iv. Get an interactive cluster node to start running programs
 
->v. Run FastQC to generate quality report on one of the example files
+>v. Run FastQC to generate quality report of sequence reads.
 
 ```
-fastqc -o Rush_KPC_266_FastQC_results/before_trimmomatic/ Rush_KPC_266_1_combine.fastq.gz Rush_KPC_266_2_combine.fastq.gz –extract
+fastqc -o Rush_KPC_266_FastQC_results/before_trimmomatic/ Rush_KPC_266_1_combine.fastq.gz Rush_KPC_266_2_combine.fastq.gz -extract
 ```
 
-> This will generate the results directory for forward and reverse fastq reads called Rush_KPC_266_1_combine_fastqc and Rush_KPC_266_2_combine_fastqc in out put folder provided with -o argument. The summary.txt file in these directories tells if the data passed different quality control tests. You can visualize and assess the quality of data by opening html report in a browser.
+> This will generate the results directory for forward and reverse fastq reads called Rush_KPC_266_1_combine_fastqc and Rush_KPC_266_2_combine_fastqc in output folder provided with -o argument. The summary.txt file in these directories indicates if the data passed different quality control tests. You can visualize and assess the quality of data by opening html report in a local browser.
 
 
 >vi. Exit your cluster node so you don’t waste cluster resources and $$$!
 
 >vii. Download FastQC report to your home computer to examine
+
+```
+scp username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day1_morn/Rush_KPC_266_FastQC_results/before_trimmomatic/*.html /path-to-local-directory/
+```
 
 > The analysis in FastQC is performed by a series of analysis modules. The left hand side of the main interactive display or the top of the HTML report show a summary of the modules which were run, and a quick evaluation of whether the results of the module seem entirely normal (green tick), slightly abnormal (orange triangle) or very unusual (red cross). 
 
@@ -134,12 +141,6 @@ fastqc -o Rush_KPC_266_FastQC_results/before_trimmomatic/ Rush_KPC_266_1_combine
 `Explaining Summary results, Basic statistics, per base sequence quality, overrepresented sequences(adapters) from before trimmomatic report.`
 
 > [A video FastQC walkthrough created by FastQC developers](https://www.youtube.com/watch?v=bz93ReOv87Y "FastQC video") 
-
->viii. Write shell script to run FastQC on all files in ???? directory(Not necessary)
-
->ix. Write PBS script to run your FastQC shell script on the cluster(Not necessary)
-
->x. Once your cluster job is finished, download reports to your home computer(Not necessary)
 
 ## Quality Trimming using [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic "Trimmomatic Homepage")
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
