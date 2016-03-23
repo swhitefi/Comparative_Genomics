@@ -142,7 +142,7 @@ The analysis in FastQC is performed by a series of analysis modules. The left ha
 
 Notice the quality drop(per base sequence quality graph) at the end of Rush_KPC_266_2_combine_fastqc.html report. This is commonly observed in illumina samples that as the number of sequencing cycles performed is increased the average quality of the base calls, as reported by the Phred Scores produced by the sequencer falls. Check the overrepresented sequences graph and the kind of adapters that were used for sequencing these samples.
 
-Check out [this](https://sequencing.qcfail.com/articles/loss-of-base-call-accuracy-with-increasing-sequencing-cycles/) detailed explaination as to why quality drops with increasing sequencing cycles.
+Check out [this](https://sequencing.qcfail.com/articles/loss-of-base-call-accuracy-with-increasing-sequencing-cycles/) for more detailed explaination as to why quality drops with increasing sequencing cycles.
 
 > [A video FastQC walkthrough created by FastQC developers](https://www.youtube.com/watch?v=bz93ReOv87Y "FastQC video") 
 
@@ -158,8 +158,6 @@ Now we will run Trimmomatic on these raw data to remove low quality reads and ad
 
 ```
 mkdir Rush_KPC_266_trimmomatic_results
-mkdir Rush_KPC_266_trimmomatic_results_with_headcrop/
-mkdir Rush_KPC_266_FastQC_results/after_trimmomatic_headcrop/
 ```
 
 >iii. Load latest version of java and try to invoke trimmomatic from command line.
@@ -177,6 +175,7 @@ explaining parameters and its default value. Adapter file. Changing only SLIDING
 ```
 time java -jar /scratch/micro612w16_fluxod/shared/bin/Trimmomatic/trimmomatic-0.33.jar PE Rush_KPC_266_1_combine.fastq.gz Rush_KPC_266_2_combine.fastq.gz Rush_KPC_266_trimmomatic_results/forward_paired.fq.gz Rush_KPC_266_trimmomatic_results/forward_unpaired.fq.gz Rush_KPC_266_trimmomatic_results/reverse_paired.fq.gz Rush_KPC_266_trimmomatic_results/reverse_unpaired.fq.gz ILLUMINACLIP:/scratch/micro612w16_fluxod/shared/bin/Trimmomatic/adapters/TruSeq3-PE.fa:2:30:10:8:true SLIDINGWINDOW:4:20 MINLEN:40 HEADCROP:0
 ```
+We are using the default parameters changing only SLIDINGWINDOW from 4:15 to 4:20.
 
 >v. Now create new directories in day1_morn folder and Run FastQC on these trimmomatic results.
 
@@ -184,66 +183,75 @@ time java -jar /scratch/micro612w16_fluxod/shared/bin/Trimmomatic/trimmomatic-0.
 mkdir Rush_KPC_266_FastQC_results/after_trimmomatic
 
 fastqc -o Rush_KPC_266_FastQC_results/after_trimmomatic/ Rush_KPC_266_trimmomatic_results/forward_paired.fq.gz Rush_KPC_266_trimmomatic_results/reverse_paired.fq.gz --extract
+scp username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day1_morn/Rush_KPC_266_FastQC_results/after_trimmomatic/*.html /path-to-local-directory/
 ```
 
 `screenshots explaination`
-`before trimmomatic and after trimmomatic explanation: summary, quality, overrepresented sequences`
+`before trimmomatic and after trimmomatic explanation: How quality and overrepresented sequences red cross signal disappeared after running trimmomatic`
 
->-- How head bases in per base sequence content graph are imbalanced? The cross signal sign for that graph? How you can fix it by using headcrop parameter in trimmomatic? 
+The head bases in per base sequence content graph are slightly imbalanced. This is not very bad but you can fix this by running trimming these imbalanced head bases using HEADCROP:9 parameter in the above command.
 
->vi. Run trimmomatic with headcrop 9
+>vi. Lets Run trimmomatic again with headcrop 9 and save it in a different directory called Rush_KPC_266_trimmomatic_results_with_headcrop/
 
 ```
+mkdir Rush_KPC_266_trimmomatic_results_with_headcrop/
+
 time java -jar /scratch/micro612w16_fluxod/shared/bin/Trimmomatic/trimmomatic-0.33.jar PE Rush_KPC_266_1_combine.fastq.gz Rush_KPC_266_2_combine.fastq.gz Rush_KPC_266_trimmomatic_results_with_headcrop/forward_paired.fq.gz Rush_KPC_266_trimmomatic_results_with_headcrop/forward_unpaired.fq.gz Rush_KPC_266_trimmomatic_results_with_headcrop/reverse_paired.fq.gz Rush_KPC_266_trimmomatic_results_with_headcrop/reverse_unpaired.fq.gz ILLUMINACLIP:/scratch/micro612w16_fluxod/shared/bin/Trimmomatic/adapters/TruSeq3-PE.fa:2:30:10:8:true SLIDINGWINDOW:4:20 MINLEN:40 HEADCROP:9
 ```
-		
->-- explain per base sequence content changed to just warning from cross sign.
-`screenshot explanation`
-`After trimmomatic headcrop screenshot explanation of summary and per base sequence content`
 
->vii. Run FastQC on updated trimmomatic results and check report on your local computer
+>vii. Run FastQC on updated trimmomatic results with headcrop and check report on your local computer
 
 ```
+mkdir Rush_KPC_266_FastQC_results/after_trimmomatic_headcrop/
 fastqc -o Rush_KPC_266_FastQC_results/after_trimmomatic_headcrop/ --extract -f fastq Rush_KPC_266_trimmomatic_results_with_headcrop/forward_paired.fq.gz Rush_KPC_266_trimmomatic_results_with_headcrop/reverse_paired.fq.gz
+scp username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day1_morn/Rush_KPC_266_FastQC_results/after_trimmomatic_headcrop/*.html /path-to-local-directory/
 ```
+
+Notice the per base sequence content graph in report changed to just warning from red cross sign.
+`screenshot explanation`
+
 
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 
 # Day 1 Afternoon
 
+Read Mapping is one of the most common Bioinformatics operation that needs to be carried out on NGS data. Reads are generally generally mapped to a reference genome sequence or closely related genome. There are number of tools that can map reads to a reference genome and differ from each other in algorithm, speed and accuracy. Most of these tools work first builds an index of the reference sequence which works like a dictionary for fast search/lookup and then calling an alignment algorithm which uses these index to align short read sequences against the reference. These alignment has a vast number of uses ranging from Variant/SNP calling, Coverage estimation and expression analysis.
+
 ## Read Mapping
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 
-**1. Create a directory to save results and run trimmomatic**
+**1. Copy day1_after directory from shared data directory in your home directory.
 
 ```
- mkdir Rush_KPC_266_varcall_result
+cp -r /scratch/micro612w16_fluxod/shared/data/day1_after ./
+cd day1_after/
+mkdir Rush_KPC_266_varcall_result
 ```
 
-```
- java -jar /scratch/micro612w16_fluxod/shared/bin/Trimmomatic/trimmomatic-0.33.jar PE Rush_KPC_266_1_combine.fastq.gz
-Rush_KPC_266_2_combine.fastq.gz Rush_KPC_266_varcall_result/forward_paired.fq.gz Rush_KPC_266_varcall_result/forward_unpaired.fq.gz Rush_KPC_266_varcall_result/reverse_paired.fq.gz Rush_KPC_266_varcall_result/reverse_unpaired.fq.gz ILLUMINACLIP:/scratch/micro612w16_fluxod/shared/bin/Trimmomatic/adapters/TruSeq3-PE.fa:2:30:10:8:true SLIDINGWINDOW:4:20 MINLEN:40
-HEADCROP:0
-```
+We will be using the trimmed clean reads that were obtained after Trimmmatic on raw reads.
 
 **2. Map your reads against a finished reference genome using [BWA](http://bio-bwa.sourceforge.net/bwa.shtml "BWA manual")**
 
->i. Create BWA index from Reference fasta file:
+BWA is one of the several and a very good example of read mappers that are based on Burrows-Wheeler transform algorithm. If you feel like challenging yourselves, you can read BWA paper [here](http://bioinformatics.oxfordjournals.org/content/25/14/1754.short)
 
+>i. To create BWA index of Reference fasta file, you need to run the following command.
+
+path to reference fasta: /scratch/micro612w16_fluxod/shared/bin/reference/KPNIH1/KPNIH1.fasta
+
+> No need to create index, We have already created an index for you using this command.
 ```
 bwa index /scratch/micro612w16_fluxod/shared/bin/reference/KPNIH1/KPNIH1.fasta
 ```
 
->index file usage 
-
 >ii. Align reads to reference and output into SAM file
 
+Now lets align both left and right end reads to our reference using BWA alignment algorithm 'mem' which is one of the three algorithms that is fast and works on mate paired end reads. For other algorithms, you can refer to BWA [manual](http://bio-bwa.sourceforge.net/bwa.shtml "BWA manual")
+
 ```
-bwa mem -M -R "@RG\tID:96\tSM:Rush_KPC_266_1_combine.fastq.gz\tLB:1\tPL:Illumina" -t 8
-/scratch/micro612w16_fluxod/shared/bin/reference/KPNIH1/KPNIH1.fasta Rush_KPC_266_varcall_result/forward_paired.fq.gz Rush_KPC_266_varcall_result/reverse_paired.fq.gz > Rush_KPC_266_varcall_result/Rush_KPC_266__aln.sam
+bwa mem -M -R "@RG\tID:96\tSM:Rush_KPC_266_1_combine.fastq.gz\tLB:1\tPL:Illumina" -t 8 /scratch/micro612w16_fluxod/shared/bin/reference/KPNIH1/KPNIH1.fasta forward_paired.fq.gz reverse_paired.fq.gz > Rush_KPC_266__aln.sam
 ```
 
-> -R readgroup parameter; what does it say?
+> -R readgroup parameter; what does it say? screenshot.
 
 **3. SAM/BAM manipulation and variant calling using [Samtools](http://www.htslib.org/doc/samtools.html "Samtools Manual")**
 
@@ -267,7 +275,7 @@ samtools sort Rush_KPC_266__aln.bam Rush_KPC_266__aln_sort
 
 **4. Mark duplicates(PCR optical duplicates) and remove them using [PICARD](http://broadinstitute.github.io/picard/command-line-overview.html#MarkDuplicates "Picard MarkDuplicates")**
 
->i. Create a dictionary for reference fasta file required by PICARD(If KPNIH1.dict doesn’t exist).
+>i. Create a dictionary for reference fasta file required by PICARD(If KPNIH1.dict doesn’t exist. Ignore if already exists.).
  
 ```
 java -jar /scratch/micro612w16_fluxod/shared/bin/picard-tools-1.130/picard.jar CreateSequenceDictionary REFERENCE=/scratch/micro612w16_fluxod/shared/bin/reference/KPNIH1/KPNIH1.fasta OUTPUT=/scratch/micro612w16_fluxod/shared/bin/reference/KPNIH1/KPNIH1.dict
@@ -279,8 +287,6 @@ java -jar /scratch/micro612w16_fluxod/shared/bin/picard-tools-1.130/picard.jar C
 java -jar /scratch/micro612w16_fluxod/shared/bin/picard-tools-1.130/picard.jar MarkDuplicates REMOVE_DUPLICATES=true INPUT=Rush_KPC_266__aln_sort.bam OUTPUT= Rush_KPC_266__aln_marked.bam METRICS_FILE=Rush_KPC_266__markduplicates_metrics
 CREATE_INDEX=true VALIDATION_STRINGENCY=LENIENT
 ```
-
->PCR optical duplicates; why remove that?
 
 >iii. Sort these marked BAM file again (for downstream compatibility)
 
