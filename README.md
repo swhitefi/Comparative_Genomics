@@ -694,7 +694,7 @@ Sequence file 2  = sample_266_contigs_ordered.gbf
 
 >Play around with ACT to see what types of genes are unique to sample 266!!! 
 
-# Day 2 – Afternoon
+# Day 2 Afternoon
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 
 ## High-throughput BLAST and pan-genome analysis
@@ -1082,7 +1082,7 @@ See if you can find:
 3) antibiotic resistance island variation.
 
 
-# Day 2 – Afternoon
+# Day 3 Morning
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 
 On day 1, we ran through a pipeline to map reads against a reference genome and call variants, but didn’t do much with the variants we identified. Among the most common analyses to perform on a set of variants is to construct phylogenetic trees. Here we will explore different tools for generating and visualizing phylogenetic trees, and also see how recombination can distort phylogenetic signal.
@@ -1410,7 +1410,7 @@ Do community and hospital isolates cluster together, or are they inter-mixed?
 
 
 
-# Day 3 – Afternoon
+# Day 3 Afternoon
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 
 ## Klebsiella pneumoniae comparative genomic analysis 
