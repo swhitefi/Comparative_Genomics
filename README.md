@@ -23,18 +23,18 @@
 
 - [Day 2 Afternoon](https://github.com/alipirani88/Comparative_Genomics#day-2-afternoon)
 ***
-	- [Determine which genomes contain beta-lactamase genes](https://github.com/alipirani88/Comparative_Genomics#getting-your-data-onto-glux-and-setting-up-environment-variable)
-	- [Identification of antibiotic resistance genes with LS-BSR and the ARDB database](https://github.com/alipirani88/Comparative_Genomics#quality-control-using-fastqc)
-	- [Perform pan-genome analysis with LS-BSR](https://github.com/alipirani88/Comparative_Genomics#quality-trimming-using-trimmomatic)
-	- [Perform genome comparisons with ACT](https://github.com/alipirani88/Comparative_Genomics)
+	- [Determine which genomes contain beta-lactamase genes](https://github.com/alipirani88/Comparative_Genomics#determine-which-genomes-contain-beta-lactamase-genes)
+	- [Identification of antibiotic resistance genes with LS-BSR and the ARDB database](https://github.com/alipirani88/Comparative_Genomics#identification-of-antibiotic-resistance-genes-with-ls-bsr-and-the-ardb-database)
+	- [Perform pan-genome analysis with LS-BSR](https://github.com/alipirani88/Comparative_Genomics#perform-pan-genome-analysis-with-ls-bsr)
+	- [Perform genome comparisons with ACT](https://github.com/alipirani88/Comparative_Genomics#perform-genome-comparisons-with-act)
 
 - [Day 3 Morning](https://github.com/alipirani88/Comparative_Genomics#day-3-morning)
 ***
-	- [Perform whole genome alignment with Mauve](https://github.com/alipirani88/Comparative_Genomics#getting-your-data-onto-glux-and-setting-up-environment-variable)
-	- [Perform DNA sequence comparisons and phylogenetic analysis in ape(an R package)](https://github.com/alipirani88/Comparative_Genomics#quality-control-using-fastqc)
-	- [Perform SNP density analysis to discern evidence of recombination](https://github.com/alipirani88/Comparative_Genomics#quality-trimming-using-trimmomatic)
-	- [Perform recombination filtering with gubbins ](https://github.com/alipirani88/Comparative_Genomics)
-	- [Create annotated publication quality trees with iTOL ]()
+	- [Perform whole genome alignment with Mauve](https://github.com/alipirani88/Comparative_Genomics#perform-whole-genome-alignment-with-Mauve)
+	- [Perform DNA sequence comparisons and phylogenetic analysis in ape(an R package)](https://github.com/alipirani88/Comparative_Genomics#perform-dna-sequence-comparisons-and-phylogenetic-analysis-in-ape)
+	- [Perform SNP density analysis to discern evidence of recombination](https://github.com/alipirani88/Comparative_Genomics#perform-snp-density-analysis-to-discern-evidence-of-recombination)
+	- [Perform recombination filtering with gubbins](https://github.com/alipirani88/Comparative_Genomics#perform-recombination-filtering-with-gubbins)
+	- [Create annotated publication quality trees with iTOL]((https://github.com/alipirani88/Comparative_Genomics#create-annotated-publication-quality-trees-with-itol)
 
 
 - [Helpful resources for microbial genomics](https://github.com/alipirani88/Comparative_Genomics#helpful-resources-for-microbial-genomics)
