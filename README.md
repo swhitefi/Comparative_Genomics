@@ -34,7 +34,7 @@
 	- [Perform DNA sequence comparisons and phylogenetic analysis in ape(an R package)](https://github.com/alipirani88/Comparative_Genomics#perform-dna-sequence-comparisons-and-phylogenetic-analysis-in-ape)
 	- [Perform SNP density analysis to discern evidence of recombination](https://github.com/alipirani88/Comparative_Genomics#perform-snp-density-analysis-to-discern-evidence-of-recombination)
 	- [Perform recombination filtering with gubbins](https://github.com/alipirani88/Comparative_Genomics#perform-recombination-filtering-with-gubbins)
-	- [Create annotated publication quality trees with iTOL]((https://github.com/alipirani88/Comparative_Genomics#create-annotated-publication-quality-trees-with-itol)
+	- [Create annotated publication quality trees with iTOL](https://github.com/alipirani88/Comparative_Genomics#create-annotated-publication-quality-trees-with-itol)
 
 
 - [Helpful resources for microbial genomics](https://github.com/alipirani88/Comparative_Genomics#helpful-resources-for-microbial-genomics)
