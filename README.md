@@ -714,7 +714,7 @@ cd /scratch/micro612w16_fluxod/username
 cp -r /scratch/micro612w16_fluxod/shared/data/day2_after/ ./
 ```
 
-**1. Determine which genomes contain beta-lactamase genes**
+##1. Determine which genomes contain beta-lactamase genes
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 
 Before comparing full genomic content, lets start by looking for the presence of particular genes of interest. A. baumannii harbors an arsenal of resistance genes, and it would be interesting to know how particular resistance families vary among our 4 genomes. To accomplish this we will use the antibiotic resistance database (ARDB). In particular, we are going to extract a set of genes from ARDB that we are interested in probing our genomes for, and create a custom BLAST database to compare against. i. Get beta-lactamase genes from ARDB database
@@ -787,7 +787,7 @@ BLAST!
 blastall -p blastp -i Abau_all.pfasta -d ardb_ROI_genes.pfasta -o bl_blastp_results -m 8 -e 1e-20 -v 1 -b 1
 ```
 
-**2. Identification of antibiotic resistance genes with LS-BSR and the ARDB database**
+##2. Identification of antibiotic resistance genes with LS-BSR and the ARDB database
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 
 Next, instead of looking at resistance classes one at a time, lets look at them all in one shot! To do this we will use LS-BSR, which essentially is just a wrapper for doing the same sort of BLASTing we just did in the previous step. BSR stands for BLAST Score Ratio, which refers to what the output is. In particular, for each query gene LS-BSR returns the ratio between: 1) the BLAST score of best hit in target genome and 2) BLAST score of query gene against itself. So, the output is a query x target genome matrix, where the values are between 0 and 1, and indicate the strength of a given queries BLAST hit in the target genome. 
@@ -916,7 +916,7 @@ unique_bsr_mat = bsr_mat[rowSums(bsr_mat > .5) == 1,]
 
 Print out to screen and make a heatmap to explore
 
-**3. Perform pan-genome analysis with LS-BSR**
+##3. Perform pan-genome analysis with LS-BSR
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 
 As a final BLASTing exercise we will use LS-BSR to explore the pan-genome of our A. baumannii. The pan-genome is just a fancy term for the full complement of genes in a set of genomes. 
