@@ -616,7 +616,7 @@ Sequence file 2  = sample_266_contigs_ordered.fasta
 
 > Notice that the alignment is totally beautiful now!!! Scan through the alignment and play with ACT features to look at genes present in reference but not in assembly 
 
-## Map reads to the final ordered assembly(To do or not to do that is the question!)
+## Map reads to the final ordered assembly(To do or not to do!)
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 
 ## Genome Annotation
