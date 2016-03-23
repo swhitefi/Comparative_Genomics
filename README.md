@@ -322,45 +322,126 @@ java -jar /scratch/micro612w16_fluxod/shared/bin/GenomeAnalysisTK-3.3-0/GenomeAn
 /home2/apirani/bin/reference/KPNIH1/KPNIH1.fasta -o Rush_KPC_266__filter_gatk.vcf --variant Rush_KPC_266__aln_mpileup_raw.vcf --filterExpression "FQ < 0.025 && MQ > 50 && QUAL > 100 && DP > 15" --filterName pass_filter
 ```
 
-The quality filters that we are generally employed to get high quality variants are:
+Open the file Rush_KPC_266__filter_gatk.vcf and have a look at 7th column. Take a glance at the rows with 'pass_filter' in its 7 column. 
+
+```
+grep 'pass_filter' Rush_KPC_266__filter_gatk.vcf | head
+```
+
+The quality filters that we generally employ to get high quality variants are:
 FQ: Consensus Quality
 MQ: Mapping quality.
 DP: Depth of reads supporting that variant.
 QUAL: Overall quality of the variant called.
 
-More Info on VCF format specifications can be found [here](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0ahUKEwjzkcSP4MfLAhUDyYMKHU3yDwMQFggjMAA&url=https%3A%2F%2Fsamtools.github.io%2Fhts-specs%2FVCFv4.2.pdf&usg=AFQjCNGFka33WgRmvOfOfp4nSaCzkV95HA&sig2=6Xb3XDaZfghadZfcnnPQxw&cad=rja "VCF format Specs.")
+But going forward you can use other parameters as well based on your requirements.
+More Info on VCF format and parameter specifications can be found [here](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0ahUKEwjzkcSP4MfLAhUDyYMKHU3yDwMQFggjMAA&url=https%3A%2F%2Fsamtools.github.io%2Fhts-specs%2FVCFv4.2.pdf&usg=AFQjCNGFka33WgRmvOfOfp4nSaCzkV95HA&sig2=6Xb3XDaZfghadZfcnnPQxw&cad=rja "VCF format Specs.")
 
->ii. Remove indels and keep only variants that passed filter parameter from VCF file using [vcftools](http://vcftools.sourceforge.net/man_latest.html vcftools manual):
- 
- 
+>ii. Remove indels and keep only SNPS that passed our filter criteria using [vcftools](http://vcftools.sourceforge.net/man_latest.html vcftools manual):
+
+In most outbreak studies, we are trying to find how these outbreak samples differ and evolve from the reference/index genome. Many tools that carry out such type of phylogenetic analysis requires a consensus sequences containing only variant calls(SNPs). Though there are few tools that take into consideration both SNPs and Indels and give a greater resolution.
+Now we will try to construct a consensus sequence using only SNP calls.
+
+vcftools is a program package that is especially written to work with vcf file formats. It thus saves your precious time by making available all the common operations with a single command.
+Lets remove indels from our final vcf file and keep only variants that passed the filters.
+
 ```
 vcftools --vcf Rush_KPC_266__filter_gatk.vcf --keep-filtered pass_filter --remove-indels --recode --recode-INFO-all --out
-Rush_KPC_266__filter_onlysnp
+Rush_KPC_266__filter_onlysnp 
 ```
 
->>**why remove indels  
+Notice the details that were printed out in STDOUT.
 
 >iii. Generate Consensus fasta file from filtered variants using vcftools:
+
+A consensus fasta sequence will contain alleles from reference sequence at positions where no variants were observed and variants that were observed at positions described in vcf file.
 
 ```
 bgzip Rush_KPC_266__filter_onlysnp.recode.vcf
 tabix Rush_KPC_266__filter_onlysnp.recode.vcf.gz
+cat /scratch/micro612w16_fluxod/shared/bin/reference/KPNIH1/KPNIH1.fasta | vcf-consensus Rush_KPC_266__filter_onlysnp.recode.vcf.gz > Rush_KPC_266__consensus.fa
 ```
 
->iv. Generate Statistics report using samtools, vcftools and qualimap
+Check the fasta header and change it using sed.
 
 ```
-commands here
+head -n1 Rush_KPC_266__consensus.fa
+sed -i 's/>.*/>Rush_KPC_266_/g' Rush_KPC_266__consensus.fa 
 ```
 
-> open statistics file and see details
-> open qualimap pdf report in your local system
-> depth of coverage and other details
+**3. Variant Annotation using snpEff:
 
-## Visualize BAM and VCF files in IGV or ACT
+Variant annotation is one of the crucial steps in any Variant Calling Pipeline. Most of the variant annotation tools creates their own database or an external one to assign function and predicts the effect of variants on genes. We will try to touch base on some basic steps of annotating variants in our vcf file using snpEff. 
+
+>i. Check snpEff internal database for your reference genome:
+
+```     
+java -jar /scratch/micro612w16_fluxod/shared/bin/snpEff/snpEff.jar databases | grep 'kpnih1'
+```
+Note down the genome id for your reference genome KPNIH1. In this case: GCA_000281535.2.29
+
+>ii. Change the Chromosome name in vcf file to ‘Chromosome’ for snpEff reference database compatibility. 
+
+```
+sed -i 's/gi.*|/Chromosome/g' Rush_KPC_266__filter_gatk.vcf
+```
+>iii. Run snpEff for variant annotation.
+
+```
+java -jar snpEff.jar -v GCA_000281535.2.29 Rush_KPC_266__filter_gatk.vcf > Rush_KPC_266__filter_gatk_ann.vcf -htmlStats Rush_KPC_266__filter_gatk_stats
+```
+
+Check the STDOUT printed which contains some useful details. Explain!
+
+Lets go through the ANN field added after annotation step.
+
+```
+grep '^Chromosome' Rush_KPC_266__filter_gatk_ann.vcf | head -n1
+```
+
+Explain ANN field!!!
+
+***4. Generate Statistics report using samtools, vcftools and qualimap
+
+Lets try to get some statistics about various outputs that were created using these pipeline steps and check if everything makes sense.
+
+>i. Reads Alignment statistics:
+ 
+```
+samtools flagstat Rush_KPC_266__aln.bam > Rush_KPC_266__alignment_stats
+```
+
+Explain the output!
+
+ii. VCF statistics:  
+
+```
+bgzip Rush_KPC_266__aln_mpileup_raw.vcf   
+tabix Rush_KPC_266__aln_mpileup_raw.vcf.gz  
+vcf-stats Rush_KPC_266__aln_mpileup_raw.vcf.gz > Rush_KPC_266__raw_vcf_stats
+```
+
+Explain the output!
+
+iii. Qualimap report of BAM coverage:
+
+``` 
+qualimap bamqc -bam Rush_KPC_266__aln_sort.bam -outdir ./ -outfile Rush_KPC_266__report.pdf -outformat pdf 
+```
+
+Open the pdf report in your local system.
+
+```
+scp username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day1_after/Rush_KPC_266_varcall_result/Rush_KPC_266__report.pdf /path-to-local-directory/
+```
+Check the Chromosome stats table.
+Check the coverage across reference and Mapping quality across the reference.
+Explain the output!
+
+## Visualize BAM and VCF files in IGV or ACT(Screenshots Pending)
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 
-> Required Input files: KPNIH1 reference fasta and genbank file, Rush_KPC_266__aln_marked.bam and Rush_KPC_266__aln_marked.bai, Rush_KPC_266__aln_mpileup_raw.vcf and Rush_KPC_266__filter_onlysnp.recode.vcf
+> Required Input files: KPNIH1 reference fasta and genbank file, Rush_KPC_266__aln_marked.bam and Rush_KPC_266__aln_marked.bai, Rush_KPC_266__aln_mpileup_raw.vcf/Rush_KPC_266__filter_onlysnp.recode.vcf/Rush_KPC_266__filter_gatk_ann.vcf
 
 ```
 screenshots explanation here
