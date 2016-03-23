@@ -369,7 +369,7 @@ head -n1 Rush_KPC_266__consensus.fa
 sed -i 's/>.*/>Rush_KPC_266_/g' Rush_KPC_266__consensus.fa 
 ```
 
-**3. Variant Annotation using snpEff:
+**3. Variant Annotation using snpEff**
 
 Variant annotation is one of the crucial steps in any Variant Calling Pipeline. Most of the variant annotation tools creates their own database or an external one to assign function and predicts the effect of variants on genes. We will try to touch base on some basic steps of annotating variants in our vcf file using snpEff. 
 
@@ -401,7 +401,7 @@ grep '^Chromosome' Rush_KPC_266__filter_gatk_ann.vcf | head -n1
 
 Explain ANN field!!!
 
-***4. Generate Statistics report using samtools, vcftools and qualimap
+**4. Generate Statistics report using samtools, vcftools and qualimap**
 
 Lets try to get some statistics about various outputs that were created using these pipeline steps and check if everything makes sense.
 
@@ -598,9 +598,6 @@ perl abacas.1.3.1.pl -r KPNIH1.fasta -q sample_266_contigs.fasta -p nucmer -b -d
 
 v. Use ACT to view contig alignment to reference genome
 
-```
-cd /scratch/micro612w16_fluxod/username/day2_morn
-
 > Use scp to get ordered fasta sequence and .cruch file onto your laptop 
 scp username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day2_morn/sample_266_contigs_ordered* /path-to-local-ACT_contig_comparison-directory/
 ```
@@ -612,32 +609,37 @@ Go to File -> open
 Sequence file 1 = KPNIH.gb 
 Comparison file 1  = sample_266_contigs_ordered.crunch 
 Sequence file 2  = sample_266_contigs_ordered.fasta
+```
 
 > Notice that the alignment is totally beautiful now!!! Scan through the alignment and play with ACT features to look at genes present in reference but not in assembly 
 
 ## Map reads to the final ordered assembly(To do or not to do that is the question!)
 
 ## Genome Annotation
-4. Identify protein-coding genes with Prokka
-From our ACT comparison of our assembly and the reference we can clearly see that there is unique sequence in our assembly. However, we still don’t know what that sequence encodes! To try to get some insight into the sorts of genes unique to our assembly we will run a genome annotation pipeline called Prokka. Prokka works by first running denovo gene prediction algorithms to identify protein coding genes and tRNA genes. Next, for protein coding genes Prokka runs a series of comparisons to databases of annotated genes to generate putative annotations for your genome. i. Run Prokka on assembly
- Load modules required for Prokka
 
-module load med perl-modules prokka prokka –setupdb
+**Identify protein-coding genes with Prokka**
 
- Execute Prokka on your ordered assembly
+From our ACT comparison of our assembly and the reference we can clearly see that there is unique sequence in our assembly. However, we still don’t know what that sequence encodes! To try to get some insight into the sorts of genes unique to our assembly we will run a genome annotation pipeline called Prokka. Prokka works by first running denovo gene prediction algorithms to identify protein coding genes and tRNA genes. Next, for protein coding genes Prokka runs a series of comparisons against databases of annotated genes to generate putative annotations for your genome. 
 
+>i. Run Prokka on assembly
+
+Load modules required for Prokka
+
+```
+module load med perl-modules prokka 
+prokka –setupdb
+```
+
+Execute Prokka on your ordered assembly 
+
+```
 cd /scratch/micro612w16_fluxod/username/day2_morn/
-                mkdir sample_266_prokka prokka -kingdom Bacteria -outdir
-/scratch/micro612w16_fluxod/username/day2_morn/sample_266_prokka -force -prefix sample_266 sample_266_contigs_ordered.fasta
- Use sftp to get Prokka annotated genome on your laptop
-cd ~/Desktop (or wherever your desktop is)
+mkdir sample_266_prokka 
+prokka -kingdom Bacteria -outdir /scratch/micro612w16_fluxod/username/day2_morn/sample_266_prokka -force -prefix sample_266 sample_266_contigs_ordered.fasta
 
-cd ACT_contig_comparison 
+Use scp to get Prokka annotated genome on your laptop
 
-## Compare multiple assemblies
-
-
-
-
-
+```
+scp -r username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day2_morn/sample_266_prokka/ /path-to-local-ACT_contig_comparison-directory/
+```
 
