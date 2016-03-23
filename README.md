@@ -37,7 +37,8 @@
 	- [Create annotated publication quality trees with iTOL ]()
 
 
-
+- [Helpful resources for microbial genomics](https://github.com/alipirani88/Comparative_Genomics#helpful-resources-for-microbial-genomics)
+***
 
 
 
