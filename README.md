@@ -141,7 +141,8 @@ mkdir Rush_KPC_266_FastQC_results/before_trimmomatic
 ```
 fastqc -h
 ```
-> FastQC can be run in two modes: "command line" or as a GUI (graphical user interface). We will be using command line version of it.
+
+FastQC can be run in two modes: "command line" or as a GUI (graphical user interface). We will be using command line version of it.
 
 >iv. Get an interactive cluster node to start running programs
 
@@ -151,7 +152,9 @@ fastqc -h
 fastqc -o Rush_KPC_266_FastQC_results/before_trimmomatic/ Rush_KPC_266_1_combine.fastq.gz Rush_KPC_266_2_combine.fastq.gz --extract
 ```
 
-This will generate the results directory for forward and reverse fastq reads called Rush_KPC_266_1_combine_fastqc and Rush_KPC_266_2_combine_fastqc in output folder provided with -o argument. The summary.txt file in these directories indicates if the data passed different quality control tests. You can visualize and assess the quality of data by opening html report in a local browser.
+This will generate two results directory, Rush_KPC_266_1_combine_fastqc and Rush_KPC_266_2_combine_fastqc in output folder provided with -o flag. 
+The summary.txt file in these directories indicates if the data passed different quality control tests. 
+You can visualize and assess the quality of data by opening html report in a local browser.
 
 
 >vi. Exit your cluster node so you don’t waste cluster resources and $$$!
@@ -167,7 +170,9 @@ The analysis in FastQC is performed by a series of analysis modules. The left ha
 `Screenshots explanation.`
 `Explaining Summary results, Basic statistics, per base sequence quality, overrepresented sequences(adapters) from before trimmomatic report.`
 
-Notice the quality drop(per base sequence quality graph) at the end of Rush_KPC_266_2_combine_fastqc.html report. This is commonly observed in illumina samples that as the number of sequencing cycles performed is increased the average quality of the base calls, as reported by the Phred Scores produced by the sequencer falls. Check the overrepresented sequences graph and the kind of adapters that were used for sequencing these samples.
+Notice the quality drop(per base sequence quality graph) at the end of Rush_KPC_266_2_combine_fastqc.html report. This is commonly observed in illumina samples. The reason for this drop is that as the number of sequencing cycles performed increases, the average quality of the base calls, as reported by the Phred Scores produced by the sequencer falls. 
+
+Now, Check the overrepresented sequences graph and the kind of adapters that were used for sequencing these samples.(Truseq or Nextera)
 
 Check out [this](https://sequencing.qcfail.com/articles/loss-of-base-call-accuracy-with-increasing-sequencing-cycles/) for more detailed explaination as to why quality drops with increasing sequencing cycles.
 
@@ -176,7 +181,7 @@ Check out [this](https://sequencing.qcfail.com/articles/loss-of-base-call-accura
 ## Quality Trimming using [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic "Trimmomatic Homepage")
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 
-Now we will run Trimmomatic on these raw data to remove low quality reads and adapters and run FastQC again to check if the quality improved after running trimmomatic. 
+Now we will run Trimmomatic on these raw data to remove low quality reads as well as adapters. 
 
 >i. Get an interactive cluster node to start running programs
 
@@ -195,14 +200,13 @@ module load lsa java/1.8.0
 java -jar /scratch/micro612w16_fluxod/shared/bin/Trimmomatic/trimmomatic-0.33.jar –h
 ```
 
-explaining parameters and its default value. Adapter file. Changing only SLIDINGWINDOW parameter from default 4:15 to 4:20 for raw reads.
+Pending: explaining parameters and its default value. Adapter file. Changing only SLIDINGWINDOW parameter from default 4:15 to 4:20 for raw reads.
 
->iv. Run the below trimmomatic commands on raw reads(explaining parameters and its default value. Adapter file.)
+>iv. Run the below trimmomatic commands on raw reads.
 
 ```
-time java -jar /scratch/micro612w16_fluxod/shared/bin/Trimmomatic/trimmomatic-0.33.jar PE Rush_KPC_266_1_combine.fastq.gz Rush_KPC_266_2_combine.fastq.gz Rush_KPC_266_trimmomatic_results/forward_paired.fq.gz Rush_KPC_266_trimmomatic_results/forward_unpaired.fq.gz Rush_KPC_266_trimmomatic_results/reverse_paired.fq.gz Rush_KPC_266_trimmomatic_results/reverse_unpaired.fq.gz ILLUMINACLIP:/scratch/micro612w16_fluxod/shared/bin/Trimmomatic/adapters/TruSeq3-PE.fa:2:30:10:8:true SLIDINGWINDOW:4:20 MINLEN:40 HEADCROP:0
+time java -jar /scratch/micro612w16_fluxod/shared/bin/Trimmomatic/trimmomatic-0.33.jar PE Rush_KPC_266_1_combine.fastq.gz Rush_KPC_266_2_combine.fastq.gz Rush_KPC_266_trimmomatic_results/forward_paired.fq.gz Rush_KPC_266_trimmomatic_results/forward_unpaired.fq.gz Rush_KPC_266_trimmomatic_results/reverse_paired.fq.gz Rush_KPC_266_trimmomatic_results/reverse_unpaired.fq.gz ILLUMINACLIP:/scratch/micro612w16_fluxod/shared/bin/Trimmomatic/adapters/TruSeq3-PE.fa:2:30:10:8:true SLIDINGWINDOW:4:15 MINLEN:40 HEADCROP:0
 ```
-We are using the default parameters changing only SLIDINGWINDOW from 4:15 to 4:20.
 
 >v. Now create new directories in day1_morn folder and Run FastQC on these trimmomatic results.
 
@@ -216,7 +220,7 @@ scp username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day1
 `screenshots explaination`
 `before trimmomatic and after trimmomatic explanation: How quality and overrepresented sequences red cross signal disappeared after running trimmomatic`
 
-The head bases in per base sequence content graph are slightly imbalanced. This is not very bad but you can fix this by running trimming these imbalanced head bases using HEADCROP:9 parameter in the above command.
+If you notice the per base sequence content graph, the head bases(~9 bp) are slightly imbalanced. Each nucleotide content should run parallel to each other. This is not very bad but you can fix this by trimming these imbalanced head bases using HEADCROP:9 flag in the above command.
 
 >vi. Lets Run trimmomatic again with headcrop 9 and save it in a different directory called Rush_KPC_266_trimmomatic_results_with_headcrop/
 
@@ -344,6 +348,7 @@ samtools mpileup -ug -f /scratch/micro612w16_fluxod/shared/bin/reference/KPNIH1/
 >i. Variant filtering using [GATK](https://www.broadinstitute.org/gatk/guide/tooldocs/org_broadinstitute_gatk_tools_walkers_filters_VariantFiltration.php "GATK Variant Filteration"):
 
 Now lets filter these variants based on their quality using GATK.
+
 ```
 java -jar /scratch/micro612w16_fluxod/shared/bin/GenomeAnalysisTK-3.3-0/GenomeAnalysisTK.jar -T VariantFiltration -R
 /home2/apirani/bin/reference/KPNIH1/KPNIH1.fasta -o Rush_KPC_266__filter_gatk.vcf --variant Rush_KPC_266__aln_mpileup_raw.vcf --filterExpression "FQ < 0.025 && MQ > 50 && QUAL > 100 && DP > 15" --filterName pass_filter
@@ -430,15 +435,13 @@ Explain ANN field!!!
 
 **4. Generate Statistics report using samtools, vcftools and qualimap**
 
-Lets try to get some statistics about various outputs that were created using these pipeline steps and check if everything makes sense.
+Lets try to get some statistics about various outputs that were created using the above steps and check if everything makes sense.
 
 >i. Reads Alignment statistics:
  
 ```
 samtools flagstat Rush_KPC_266__aln.bam > Rush_KPC_266__alignment_stats
 ```
-
-Explain the output!
 
 ii. VCF statistics:  
 
@@ -447,8 +450,6 @@ bgzip Rush_KPC_266__aln_mpileup_raw.vcf
 tabix Rush_KPC_266__aln_mpileup_raw.vcf.gz  
 vcf-stats Rush_KPC_266__aln_mpileup_raw.vcf.gz > Rush_KPC_266__raw_vcf_stats
 ```
-
-Explain the output!
 
 iii. Qualimap report of BAM coverage:
 
@@ -461,9 +462,9 @@ Open the pdf report in your local system.
 ```
 scp username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day1_after/Rush_KPC_266_varcall_result/Rush_KPC_266__report.pdf /path-to-local-directory/
 ```
+
 Check the Chromosome stats table.
 Check the coverage across reference and Mapping quality across the reference.
-Explain the output!
 
 ## Visualize BAM and VCF files in IGV or ACT(Screenshots Pending)
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
