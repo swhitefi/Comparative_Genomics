@@ -36,6 +36,13 @@
 	- [Perform recombination filtering with gubbins](https://github.com/alipirani88/Comparative_Genomics#perform-recombination-filtering-with-gubbins)
 	- [Create annotated publication quality trees with iTOL](https://github.com/alipirani88/Comparative_Genomics#create-annotated-publication-quality-trees-with-itol)
 
+- [Day 3 Afternoon](https://github.com/alipirani88/Comparative_Genomics#day-3-afternoon)
+***
+	- [Perform QC on fastq files](https://github.com/alipirani88/Comparative_Genomics#perform-qc-on-fastq-files)
+	- [Examine results of SPANDx pipeline](https://github.com/alipirani88/Comparative_Genomics#examine-results-of-spandx-pipeline)
+	- [Recombination detection and tree generation](https://github.com/alipirani88/Comparative_Genomics#recombination-detection-and-tree-generation)
+	- [Phylogenetic tree annotation and visualization](https://github.com/alipirani88/Comparative_Genomics#phylogenetic-tree-annotation-and-visualization)
+	- [Assessment of genomic deletions](https://github.com/alipirani88/Comparative_Genomics#assessment-of-genomic-deletions)
 
 - [Helpful resources for microbial genomics](https://github.com/alipirani88/Comparative_Genomics#helpful-resources-for-microbial-genomics)
 ***
