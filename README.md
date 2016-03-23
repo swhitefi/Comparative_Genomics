@@ -21,6 +21,12 @@
 	- [Genome Annotation](https://github.com/alipirani88/Comparative_Genomics#genome-annotation)
 	- [Visualize multiple assemblies](https://github.com/alipirani88/Comparative_Genomics#visualize-multiple-assemblies)
 
+- [Day 3 Morning](https://github.com/alipirani88/Comparative_Genomics#day-3-morning)
+***
+	- [Getting your data onto Flux and setting up Environment variable](https://github.com/alipirani88/Comparative_Genomics#getting-your-data-onto-glux-and-setting-up-environment-variable)
+	- [Quality Control using FastQC](https://github.com/alipirani88/Comparative_Genomics#quality-control-using-fastqc)
+	- [Quality Trimming using Trimmomatic](https://github.com/alipirani88/Comparative_Genomics#quality-trimming-using-trimmomatic)
+
 # Day 1 Morning
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 
@@ -647,3 +653,13 @@ Use scp to get Prokka annotated genome on your laptop
 scp -r username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day2_morn/sample_266_prokka/ /path-to-local-ACT_contig_comparison-directory/
 ```
 
+>ii. Reload comparison into ACT now that we’ve annotated the un-annotated!
+
+Read files into ACT
+```
+Go to File -> open
+Sequence file 1  = KPNIH.gb 
+Comparison file 1  = sample_266_contigs_ordered.crunch 
+Sequence file 2  = sample_266_contigs_ordered.gbf
+
+>Play around with ACT to see what types of genes are unique to sample 266!!! 
