@@ -23,7 +23,7 @@
 
 - [Day 2 Afternoon](https://github.com/alipirani88/Comparative_Genomics#day-2-afternoon)
 ***
-	- [Determine which genomes contain beta-lactamase genes](https://github.com/alipirani88/Comparative_Genomics#determine-which-genomes-contain-beta-lactamase-genes)
+	- [Determine which genomes contain beta-lactamase genes](https://github.com/alipirani88/Comparative_Genomics#1.-determine-which-genomes-contain-beta-lactamase-genes)
 	- [Identification of antibiotic resistance genes with LS-BSR and the ARDB database](https://github.com/alipirani88/Comparative_Genomics#identification-of-antibiotic-resistance-genes-with-ls-bsr-and-the-ardb-database)
 	- [Perform pan-genome analysis with LS-BSR](https://github.com/alipirani88/Comparative_Genomics#perform-pan-genome-analysis-with-ls-bsr)
 	- [Perform genome comparisons with ACT](https://github.com/alipirani88/Comparative_Genomics#perform-genome-comparisons-with-act)
