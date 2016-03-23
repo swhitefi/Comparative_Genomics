@@ -683,6 +683,7 @@ Sequence file 2  = sample_266_contigs_ordered.gbf
 >Play around with ACT to see what types of genes are unique to sample 266!!! 
 
 # Day 2 – Afternoon
+[[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 
 ## High-throughput BLAST and pan-genome analysis
 
@@ -702,6 +703,7 @@ cp -r /scratch/micro612w16_fluxod/shared/data/day2_after/ ./
 ```
 
 **1. Determine which genomes contain beta-lactamase genes**
+[[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 
 Before comparing full genomic content, lets start by looking for the presence of particular genes of interest. A. baumannii harbors an arsenal of resistance genes, and it would be interesting to know how particular resistance families vary among our 4 genomes. To accomplish this we will use the antibiotic resistance database (ARDB). In particular, we are going to extract a set of genes from ARDB that we are interested in probing our genomes for, and create a custom BLAST database to compare against. i. Get beta-lactamase genes from ARDB database
 
@@ -774,6 +776,7 @@ blastall -p blastp -i Abau_all.pfasta -d ardb_ROI_genes.pfasta -o bl_blastp_resu
 ```
 
 **2. Identification of antibiotic resistance genes with LS-BSR and the ARDB database**
+[[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 
 Next, instead of looking at resistance classes one at a time, lets look at them all in one shot! To do this we will use LS-BSR, which essentially is just a wrapper for doing the same sort of BLASTing we just did in the previous step. BSR stands for BLAST Score Ratio, which refers to what the output is. In particular, for each query gene LS-BSR returns the ratio between: 1) the BLAST score of best hit in target genome and 2) BLAST score of query gene against itself. So, the output is a query x target genome matrix, where the values are between 0 and 1, and indicate the strength of a given queries BLAST hit in the target genome. 
 
@@ -902,6 +905,7 @@ unique_bsr_mat = bsr_mat[rowSums(bsr_mat > .5) == 1,]
 Print out to screen and make a heatmap to explore
 
 **3. Perform pan-genome analysis with LS-BSR**
+[[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 
 As a final BLASTing exercise we will use LS-BSR to explore the pan-genome of our A. baumannii. The pan-genome is just a fancy term for the full complement of genes in a set of genomes. 
 The way LS-BSR does this is by: 
@@ -1012,6 +1016,7 @@ sum(grepl("hypothetical" , row.names(bsr_mat_PG[rowSums(bsr_mat_PG > 0.4) == 4,]
 ```
 
 **4. Perform genome comparisons with ACT**
+[[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 
 In the previous exercises we were focusing on gene content, but losing the context of the structural variation underlying gene content variation (e.g. large insertions and deletions). 
 Here we will use ACT to compare two of our genomes (note that you can use ACT to compare more than two genomes if desired). 
@@ -1066,6 +1071,7 @@ See if you can find:
 
 
 # Day 2 – Afternoon
+[[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 
 On day 1, we ran through a pipeline to map reads against a reference genome and call variants, but didn’t do much with the variants we identified. Among the most common analyses to perform on a set of variants is to construct phylogenetic trees. Here we will explore different tools for generating and visualizing phylogenetic trees, and also see how recombination can distort phylogenetic signal.
 
@@ -1087,6 +1093,7 @@ cp -r /scratch/micro612w16_fluxod/shared/data/day3_morn ./
 ```
 
 **1. Perform whole genome alignment with Mauve and convert alignment to other useful formats**
+[[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 
 An alternative approach for identification of variants among genomes is to perform whole genome alignments of assemblies. If the original short read data is unavailable, this might be the only approach available to you. Typically, these programs don’t scale well to large numbers of genomes (e.g. > 100), but they are worth being familiar with. We will use the tool mauve for constructing whole genome alignments of our five A. baumannii genomes.
 
@@ -1130,6 +1137,7 @@ perl convert_msa_format.pl -i mauve_ECII_outgroup -o mauve_ECII_outgroup.fasta -
 ```
 
 **2. Perform some DNA sequence comparisons and phylogenetic analysis in ape**
+[[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 
 There are lots of options for phylogenetic analysis. Here, we will use the ape package in R to look at our multiple alignments and construct a tree using the Neighbor Joining method. 
 
@@ -1204,6 +1212,7 @@ plot(abau_nj_tree)
 ```
 
 **3. Perform SNP density analysis to discern evidence of recombination**
+[[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 
 An often-overlooked aspect of a proper phylogenetic analysis is to exclude recombinant sequences. Homologous recombination in bacterial genomes is a mode of horizontal transfer, wherein genomic DNA is taken up and swapped in for a homologous sequence. The reason it is critical to account for these recombinant regions is that these horizontally acquired sequences do not represent the phylogenetic history of the strain of interest, but rather in contains information regarding the strain in which the sequence was acquired from. One simple approach for detecting the presence of recombination is to look at the density of variants across a genome. The existence of unusually high or low densities of variants is suggestive that these regions of aberrant density were horizontally acquired. Here we will look at our closely related A. baumannii genomes to see if there is evidence of aberrant variant densities.
 
@@ -1242,6 +1251,7 @@ hist(which(abau_no_outgroup_var_pos & abau_no_outgroup_non_gap_pos), 10000)
 ```
 
 **4. Perform recombination filtering with gubbins**
+[[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 
 Now that we know there is recombination, we know that we need to filter out the recombinant regions to discern the true phylogenetic relationship among our strains. In fact, this is such an extreme case (~99% of variants of recombinant), that we could be totally misled without filtering recombinant regions. To accomplish this we will use the tool gubbins, which essentially relies on elevated regions of variant density to perform recombination filtering.
 
@@ -1303,6 +1313,7 @@ How does the structure look different than the unfiltered tree?
 >Note that turning back to the backstory of these isolates, Abau_B and Abau_C were both isolated first from the same patient. So this analysis supports that patient having imported both strains, which likely diverged at a prior hospital at which they resided.
 
 **5. Create annotated publication quality trees with iTOL**
+[[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 
 For the final exercise we will use a different dataset, composed of USA300 methicillin-resistant Staphylococcus aureus genomes. USA300 is a strain of growing concern, as it has been observed to cause infections in both hospitals and in otherwise healthy individuals in the community. An open question is whether there are sub-clades of USA300 in the hospital and the community, or if they are all the same. Here you will create an annotated phylogenetic tree of strains from the community and the hospital, to discern if these form distinct clusters.
 
@@ -1388,6 +1399,9 @@ Do community and hospital isolates cluster together, or are they inter-mixed?
 
 
 # Day 3 – Afternoon
+[[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
+
+## Klebsiella pneumoniae comparative genomic analysis 
 
 To finish up the workshop we are going to go through the process of working up a complete dataset, from start to finish.  This set of genomes originated from a regional outbreak of bla-KPC carrying Klebsiella pneumoniae – one of the most concerning healthcare associated pathogens. 
 The goal is to follow up on a previously published epidemiologic analysis (http://cid.oxfordjournals.org/content/53/6/532.abstract), and see if genomics supports prior epidemiologic conclusions and can provide additional insights. We have our genomes, and we know in which regional facility each isolate originated. 
@@ -1409,6 +1423,7 @@ cp –r  /scratch/micro612w16_fluxod/shared/data/day3_after .
 ```
 
 **1. Perform QC on fastq files**
+[[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 
 On the first morning you ran FastQC to evaluate the quality of a single genome. However, a typical project will include many genomes and you will want to check the quality of all of your samples. From the bash workshop, I hope you can appreciate that you do not want to process 100 genomes by typing 100 commands – rather you want to write a short shell script to do the work for you!
 
@@ -1431,6 +1446,7 @@ Rather than copying these to your directory, analyze the files in that directory
 >ii. Examine output of FastQC to verify that all samples are OK
 
 **2. Examine results of SPANDx pipeline**
+[[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 
 On the afternoon of day 1 we saw how many steps are involved in calling variants relative to a reference genome. However, the same steps are applied to every sample, which makes this very pipeline friendly!  So, you could write your own shell script to string together these commands, or take advantage of one of several published pipelines. Here, we will use the output of the SPANDx pipeline, which takes as input a directory of fastq files and produces core variant and indel calls.
 
@@ -1464,6 +1480,7 @@ Use sftp to download this file and view in excel
 - How many genomes do these HIGH impact mutations tend to be present in? How do you interpret this?
 
 **3. Recombination detection and tree generation**
+[[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 
 >i. Plot the distribution of variants across the genome in R
 
@@ -1498,6 +1515,7 @@ Save tree for later analysis
 ```
 
 **4. Phylogenetic tree annotation and visualization**
+[[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 
 >i. Load the maximum likelihood tree into iTOL
 
@@ -1513,6 +1531,7 @@ Which patient’s infections might have originated from the blue facility?
 ```
 
 **5. Assessment of genomic deletions**
+[[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 
 >i. Download genome coverage bed file and load into R
 
@@ -1548,6 +1567,61 @@ iii. Explore genomic deletion in more detail with ACT
 ```
 What genes appear to have been lost?
 ```
+
+# Helpful resources for microbial genomics
+
+1. General resources
+	- https://omicstools.com
+	
+	
+2. Short read processing 
+	- bwa 
+	- bowtie 
+	- samtools 
+	- vcftools 
+	- bcftools 
+	- gatk 
+	- picard 
+	- SPANDx  
+	- Snippy 
+	
+3. Genome assembly 
+	- Spades 
+	- Velvet 
+	- Mira 
+	- A5
+	
+4. Genome alignment 
+	- Mauve
+	- MUMmer
+	- Mugsy 
+	
+5. Visualization of genomic data
+	- Artemis 
+	- Artemis Comparison Tool 
+	- IGV
+	
+6. Genome annotation 
+	- Prokka 
+	- Blastall
+	- LS-BSR 
+	
+7. Phylogenetic tools and resources
+	- Visualization 
+		- Seaview 
+		- iTOL 
+		- Figtree 
+	- Phylogenetic software 
+		- PAUP
+		- RaxML 
+		- PhyML
+		- BEAST
+		- PHYLIP 
+	- Recombination detection 
+		- Gubbins
+		- ClonalFrame
+		- RDP
+ 
 
 
 
