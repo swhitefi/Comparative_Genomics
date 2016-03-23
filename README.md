@@ -258,7 +258,7 @@ Read Mapping is one of the most common Bioinformatics operation that needs to be
 ## Read Mapping
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 
-**1. Copy day1_after directory from shared data directory in your home directory.
+**1. Copy day1_after directory from shared data directory in your home directory.**
 
 ```
 cp -r /scratch/micro612w16_fluxod/shared/data/day1_after ./
