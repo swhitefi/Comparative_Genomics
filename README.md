@@ -309,21 +309,26 @@ samtools index Rush_KPC_266__aln_sort.bam
 samtools mpileup -ug -f /scratch/micro612w16_fluxod/shared/bin/reference/KPNIH1/KPNIH1.fasta Rush_KPC_266__aln_sort.bam | bcftools call -O v -v -c -o Rush_KPC_266__aln_mpileup_raw.vcf
 ```
 
->**-g generate genotype likelihood in bcf format   
->**mpileup format   
->**-c samtools consensus caller
+> -g generates genotype likelihood in bcf format   
+> -c call samtools consensus caller
 
 **2. Variant filtering and processed file generation using GATK and vcftools**
 
 >i. Variant filtering using [GATK](https://www.broadinstitute.org/gatk/guide/tooldocs/org_broadinstitute_gatk_tools_walkers_filters_VariantFiltration.php "GATK Variant Filteration"):
 
+Now lets filter these variants based on their quality using GATK.
 ```
 java -jar /scratch/micro612w16_fluxod/shared/bin/GenomeAnalysisTK-3.3-0/GenomeAnalysisTK.jar -T VariantFiltration -R
 /home2/apirani/bin/reference/KPNIH1/KPNIH1.fasta -o Rush_KPC_266__filter_gatk.vcf --variant Rush_KPC_266__aln_mpileup_raw.vcf --filterExpression "FQ < 0.025 && MQ > 50 && QUAL > 100 && DP > 15" --filterName pass_filter
 ```
 
->**FQ, MQ, DP, QUAL
-> [More Info on VCF format specifications](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0ahUKEwjzkcSP4MfLAhUDyYMKHU3yDwMQFggjMAA&url=https%3A%2F%2Fsamtools.github.io%2Fhts-specs%2FVCFv4.2.pdf&usg=AFQjCNGFka33WgRmvOfOfp4nSaCzkV95HA&sig2=6Xb3XDaZfghadZfcnnPQxw&cad=rja "VCF format Specs.")
+The quality filters that we are generally employed to get high quality variants are:
+FQ: Consensus Quality
+MQ: Mapping quality.
+DP: Depth of reads supporting that variant.
+QUAL: Overall quality of the variant called.
+
+More Info on VCF format specifications can be found [here](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0ahUKEwjzkcSP4MfLAhUDyYMKHU3yDwMQFggjMAA&url=https%3A%2F%2Fsamtools.github.io%2Fhts-specs%2FVCFv4.2.pdf&usg=AFQjCNGFka33WgRmvOfOfp4nSaCzkV95HA&sig2=6Xb3XDaZfghadZfcnnPQxw&cad=rja "VCF format Specs.")
 
 >ii. Remove indels and keep only variants that passed filter parameter from VCF file using [vcftools](http://vcftools.sourceforge.net/man_latest.html vcftools manual):
  
