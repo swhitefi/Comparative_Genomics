@@ -11,8 +11,6 @@ Read Mapping is one of the most common Bioinformatics operation that needs to be
 
 ```
 cp -r /scratch/micro612w16_fluxod/shared/data/day1_after ./
-cd day1_after/
-mkdir Rush_KPC_266_varcall_result
 ```
 
 We will be using the trimmed clean reads that were obtained after Trimmmatic on raw reads.
@@ -27,23 +25,24 @@ Read Mapping is a time-consuming step that involves searching the reference and 
 
 Lets create an bwa index file for our reference genome located at: /scratch/micro612w16_fluxod/shared/bin/reference/KPNIH1/KPNIH1.fasta
 
-Copy the refernce fasta sequence to your home directory and run bwa index on these file. 
 ```
-cp /scratch/micro612w16_fluxod/shared/bin/reference/KPNIH1/KPNIH1.fasta ./
-bwa index /path-to-reference/KPNIH1.fasta
+cp /scratch/micro612w16_fluxod/shared/bin/reference/KPNIH1/KPNIH1.fasta day1_after/
+cd day1_after/
+mkdir Rush_KPC_266_varcall_result
 ```
 
-> Note: Dont forget to put the actual path to the refeerence sequence in place of /path-to-reference/
+Create bwa index for the reference genome.
+```
+bwa index KPNIH1.fasta
+```
 
 >ii. Align reads to reference and output into SAM file
 
 Now lets align both left and right end reads to our reference using BWA alignment algorithm 'mem' which is one of the three algorithms that is fast and works on mate paired end reads. For other algorithms, you can refer to BWA [manual](http://bio-bwa.sourceforge.net/bwa.shtml "BWA manual")
 
 ```
-bwa mem -M -R "@RG\tID:96\tSM:Rush_KPC_266_1_combine.fastq.gz\tLB:1\tPL:Illumina" -t 8 /path-to-reference/KPNIH1.fasta forward_paired.fq.gz reverse_paired.fq.gz > Rush_KPC_266__aln.sam
+bwa mem -M -R "@RG\tID:96\tSM:Rush_KPC_266_1_combine.fastq.gz\tLB:1\tPL:Illumina" -t 8 KPNIH1.fasta forward_paired.fq.gz reverse_paired.fq.gz > Rush_KPC_266__aln.sam
 ```
-
-> Note: Dont forget to put the actual path to the refeerence sequence in place of /path-to-reference/
 
 > -R readgroup parameter; what does it say? screenshot.
 
@@ -163,6 +162,8 @@ bgzip Rush_KPC_266__filter_onlysnp.recode.vcf
 tabix Rush_KPC_266__filter_onlysnp.recode.vcf.gz
 cat /path-to-reference/KPNIH1.fasta | vcf-consensus Rush_KPC_266__filter_onlysnp.recode.vcf.gz > Rush_KPC_266__consensus.fa
 ```
+
+> Note: Dont forget to put the actual path to the refeerence sequence in place of /path-to-reference/
 
 Check the fasta header and change it using sed.
 
