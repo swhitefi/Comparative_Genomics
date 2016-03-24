@@ -82,7 +82,7 @@ Run the following command to print total number of reads in each file, total num
 for i in *.gz; do zcat $i | awk '((NR-2)%4==0){read=$1;total++;count[read]++}END{for(read in count){if(!max||count[read]>max) {max=count[read];maxRead=read};if(count[read]==1){unique++}};print total,unique,unique*100/total,maxRead,count[maxRead],count[maxRead]*100/total}'; done
 ```
 
-You can find more of such bash one-liners at Stephen Turner's github [page.](https://github.com/stephenturner/oneliners)
+You can find more of such super useful bash one-liners at Stephen Turner's github [page.](https://github.com/stephenturner/oneliners)
 
 Now we will run FastQC on these raw data to assess its quality. FastQC is a quality control tool that reads in sequence data in a variety of formats(fastq, bam, sam) and can either provide an interactive application to review the results or create an HTML based report which can be integrated into any pipeline. It is generally the first step that you take upon receiving the sequence data from sequencing facility to get a quick sense of its quality or whether it exhibits any unusual properties(contamination or interesting biological features)
 
@@ -110,8 +110,10 @@ fastqc -o Rush_KPC_266_FastQC_results/before_trimmomatic/ Rush_KPC_266_1_combine
 ```
 
 This will generate two results directory, Rush_KPC_266_1_combine_fastqc and Rush_KPC_266_2_combine_fastqc in output folder provided with -o flag. 
-The summary.txt file in these directories indicates if the data passed different quality control tests. 
+The summary.txt file in these directories indicates if the data passed different quality control tests in text format.
 You can visualize and assess the quality of data by opening html report in a local browser.
+
+
 
 
 >vi. Exit your cluster node so you don’t waste cluster resources and $$$!
