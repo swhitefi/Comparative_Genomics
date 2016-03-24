@@ -1,13 +1,14 @@
 # Day 1 Afternoon
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
-Read Mapping is one of the most common Bioinformatics operation that needs to be carried out on NGS data. Reads are generally generally mapped to a reference genome sequence or closely related genome. There are number of tools that can map reads to a reference genome and differ from each other in algorithm, speed and accuracy. Most of these tools work first builds an index of the reference sequence which works like a dictionary for fast search/lookup and then calling an alignment algorithm which uses these index to align short read sequences against the reference. These alignment has a vast number of uses ranging from Variant/SNP calling, Coverage estimation and expression analysis.
+Read Mapping is one of the most common Bioinformatics operation that needs to be carried out on NGS data. Reads are generally mapped to a reference genome sequence or closely related genome if reference is not available. There are number of tools that can map reads to a reference genome and differ from each other in algorithm, speed and accuracy. Most of these tools works by first building an index of reference sequence which works like a dictionary for fast search/lookup and then calling an alignment algorithm that uses these index to align short read sequences against the reference. These alignment has a vast number of uses ranging from Variant/SNP calling, Coverage estimation and gene expression analysis.
 
 ## Read Mapping
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
+![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_after/1.png)
 
-**1. Copy day1_after directory from shared data directory in your home directory.**
+**1. Copy day1_after directory from shared data directory into your home directory.**
 
 ```
 cp -r /scratch/micro612w16_fluxod/shared/data/day1_after ./
