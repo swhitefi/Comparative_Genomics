@@ -197,10 +197,16 @@ or use scp
 scp username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day1_morn/Rush_KPC_266_FastQC_results/after_trimmomatic/*.html /path-to-local-directory/
 ```
 
-`screenshots explaination`
-`before trimmomatic and after trimmomatic explanation: How quality and overrepresented sequences red cross signal disappeared after running trimmomatic`
+![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_morning/3.png)
 
-If you notice the per base sequence content graph, the head bases(~9 bp) are slightly imbalanced. Each nucleotide content should run parallel to each other. This is not very bad but you can fix this by trimming these imbalanced head bases using HEADCROP:9 flag in the above command.
+After running Trimmomatic, the sequence quality improved and now doesn't contain any contaminants/adapters.
+
+Also, If you notice the per base sequence content graph, the head bases(~9 bp) are slightly imbalanced. In a perfect scenario,each nucleotide content should run parallel to each other. 
+
+Quoting FastQC:
+	"It's worth noting that some types of library will always produce biased sequence composition, normally at the start of the read. Libraries produced by priming using random hexamers (including nearly all RNA-Seq libraries) and those which were fragmented using transposases inherit an intrinsic bias in the positions at which reads start. This bias does not concern an absolute sequence, but instead provides enrichement of a number of different K-mers at the 5' end of the reads. Whilst this is a true technical bias, it isn't something which can be corrected by trimming and in most cases doesn't seem to adversely affect the downstream analysis. It will however produce a warning or error in this module."
+
+This doesn't look very bad but you can remove the red cross sign by trimming these imbalanced head bases using HEADCROP:9 flag in the above command.
 
 >vi. Lets Run trimmomatic again with headcrop 9 and save it in a different directory called Rush_KPC_266_trimmomatic_results_with_headcrop/
 
@@ -210,7 +216,7 @@ mkdir Rush_KPC_266_trimmomatic_results_with_headcrop/
 time java -jar /scratch/micro612w16_fluxod/shared/bin/Trimmomatic/trimmomatic-0.33.jar PE Rush_KPC_266_1_combine.fastq.gz Rush_KPC_266_2_combine.fastq.gz Rush_KPC_266_trimmomatic_results_with_headcrop/forward_paired.fq.gz Rush_KPC_266_trimmomatic_results_with_headcrop/forward_unpaired.fq.gz Rush_KPC_266_trimmomatic_results_with_headcrop/reverse_paired.fq.gz Rush_KPC_266_trimmomatic_results_with_headcrop/reverse_unpaired.fq.gz ILLUMINACLIP:/scratch/micro612w16_fluxod/shared/bin/Trimmomatic/adapters/TruSeq3-PE.fa:2:30:10:8:true SLIDINGWINDOW:4:20 MINLEN:40 HEADCROP:9
 ```
 
->vii. Run FastQC on updated trimmomatic results with headcrop and check report on your local computer
+>vii. Run FastQC 'one last time' on updated trimmomatic results with headcrop and check report on your local computer
 
 ```
 mkdir Rush_KPC_266_FastQC_results/after_trimmomatic_headcrop/
@@ -228,8 +234,7 @@ or use scp
 scp username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day1_morn/Rush_KPC_266_FastQC_results/after_trimmomatic_headcrop/*.html /path-to-local-directory/
 ```
 
-Notice the per base sequence content graph in report changed to just warning from red cross sign.
-`screenshot explanation`
+The red cross sign disappeared!
 
 
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
