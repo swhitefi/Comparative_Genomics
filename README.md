@@ -32,11 +32,11 @@
 ***
 	- [Perform whole genome alignment with Mauve](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_morning/README.md#perform-whole-genome-alignment-with-Mauve)
 	- [Perform DNA sequence comparisons and phylogenetic analysis in ape(an R package)](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_morning/README.md#perform-dna-sequence-comparisons-and-phylogenetic-analysis-in-ape)
-	- [Perform SNP density analysis to discern evidence of recombination]https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_morning/README.md#perform-snp-density-analysis-to-discern-evidence-of-recombination)
+	- [Perform SNP density analysis to discern evidence of recombination](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_morning/README.md#perform-snp-density-analysis-to-discern-evidence-of-recombination)
 	- [Perform recombination filtering with gubbins](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_morning/README.md#perform-recombination-filtering-with-gubbins)
 	- [Create annotated publication quality trees with iTOL](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_morning/README.md#create-annotated-publication-quality-trees-with-itol)
 
-- [Day 3 Afternoon]https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_afternoon/README.md#day-3-afternoon)
+- [Day 3 Afternoon](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_afternoon/README.md#day-3-afternoon)
 ***
 	- [Perform QC on fastq files](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_afternoon/README.md#perform-qc-on-fastq-files)
 	- [Examine results of SPANDx pipeline](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_afternoon/README.md#examine-results-of-spandx-pipeline)
