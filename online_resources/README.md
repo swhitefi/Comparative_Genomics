@@ -1,5 +1,5 @@
 # Helpful resources for microbial genomics
-***
+[[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
 1. General Bioinformatics resources
 	- [Omictools](http://omictools.com/)
