@@ -23,9 +23,10 @@ BWA is one of the several and a very good example of read mappers that are based
 
 >i. To create BWA index of Reference fasta file, you need to run the following command.
 
-path to reference fasta: /scratch/micro612w16_fluxod/shared/bin/reference/KPNIH1/KPNIH1.fasta
+Read Mapping is a time-consuming step that involves searching the reference and aligning millions of reads. Craeting an index file of reference sequence for quick lookup/search operations significantly decreases the time required for read alignment.
 
-> No need to create index, We have already created an index for you using this command.
+Lets create an bwa index file for our reference genome located at: /scratch/micro612w16_fluxod/shared/bin/reference/KPNIH1/KPNIH1.fasta
+
 ```
 bwa index /scratch/micro612w16_fluxod/shared/bin/reference/KPNIH1/KPNIH1.fasta
 ```
