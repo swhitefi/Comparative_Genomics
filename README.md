@@ -40,7 +40,7 @@
 ***
 	- [Perform QC on fastq files](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_afternoon/README.md#perform-qc-on-fastq-files)
 	- [Examine results of SPANDx pipeline](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_afternoon/README.md#examine-results-of-spandx-pipeline)
-	- [Recombination detection and tree generation]https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_afternoon/README.md#recombination-detection-and-tree-generation)
+	- [Recombination detection and tree generation](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_afternoon/README.md#recombination-detection-and-tree-generation)
 	- [Phylogenetic tree annotation and visualization](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_afternoon/README.md#phylogenetic-tree-annotation-and-visualization)
 	- [Assessment of genomic deletions](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_afternoon/README.md#assessment-of-genomic-deletions)
 
