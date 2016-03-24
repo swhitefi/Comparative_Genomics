@@ -1,5 +1,5 @@
 # Day 3 Afternoon
-[[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
+[[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
 ## Klebsiella pneumoniae comparative genomic analysis 
 
@@ -24,6 +24,7 @@ cp –r  /scratch/micro612w16_fluxod/shared/data/day3_after .
 
 ## Perform QC on fastq files
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
+[[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
 On the first morning you ran FastQC to evaluate the quality of a single genome. However, a typical project will include many genomes and you will want to check the quality of all of your samples. From the bash workshop, I hope you can appreciate that you do not want to process 100 genomes by typing 100 commands – rather you want to write a short shell script to do the work for you!
 
@@ -47,6 +48,7 @@ Rather than copying these to your directory, analyze the files in that directory
 
 ## Examine results of SPANDx pipeline
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
+[[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
 On the afternoon of day 1 we saw how many steps are involved in calling variants relative to a reference genome. However, the same steps are applied to every sample, which makes this very pipeline friendly!  So, you could write your own shell script to string together these commands, or take advantage of one of several published pipelines. Here, we will use the output of the SPANDx pipeline, which takes as input a directory of fastq files and produces core variant and indel calls.
 
@@ -81,6 +83,7 @@ Use sftp to download this file and view in excel
 
 ## Recombination detection and tree generation
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
+[[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
 >i. Plot the distribution of variants across the genome in R
 
@@ -116,6 +119,7 @@ Save tree for later analysis
 
 ## Phylogenetic tree annotation and visualization
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
+[[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
 >i. Load the maximum likelihood tree into iTOL
 
@@ -132,6 +136,7 @@ Which patient’s infections might have originated from the blue facility?
 
 ## Assessment of genomic deletions
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
+[[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
 >i. Download genome coverage bed file and load into R
 
