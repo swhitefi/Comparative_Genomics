@@ -6,11 +6,11 @@
 	- [Quality Control using FastQC](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md#quality-control-using-fastqc)
 	- [Quality Trimming using Trimmomatic](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md#quality-trimming-using-trimmomatic)
 
-- [Day 1 Afternoon](https://github.com/alipirani88/Comparative_Genomics#day-1-afternoon)
+- [Day 1 Afternoon](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_afternoon/README.md#day-1-afternoon)
 ***
-	- [Read Mapping](https://github.com/alipirani88/Comparative_Genomics#read-mapping)
-	- [Variant Calling](https://github.com/alipirani88/Comparative_Genomics#variant-calling-and-filteration)
-	- [Visualize BAM/VCF files in IGV/ACT](https://github.com/alipirani88/Comparative_Genomics#visualize-bam-and-vcf-files-in-igv-or-act)
+	- [Read Mapping](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_afternoon/README.md#read-mapping)
+	- [Variant Calling](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_afternoon/README.md#variant-calling-and-filteration)
+	- [Visualize BAM/VCF files in IGV/ACT](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_afternoon/README.md#visualize-bam-and-vcf-files-in-igv-or-act)
 
 - [Day 2 Morning](https://github.com/alipirani88/Comparative_Genomics#day-2-morning)
 ***
