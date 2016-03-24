@@ -63,6 +63,7 @@ source .bashrc
 
 ## Quality Control using [FastQC](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/ "FastQC homepage")
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
+[[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
 >i. Execute the following commands to copy files for this morning’s exercises to your scratch directory: 
 
@@ -136,6 +137,7 @@ Check out [this](https://sequencing.qcfail.com/articles/loss-of-base-call-accura
 
 ## Quality Trimming using [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic "Trimmomatic Homepage")
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
+[[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
 Now we will run Trimmomatic on these raw data to remove low quality reads as well as adapters. 
 
@@ -199,3 +201,4 @@ Notice the per base sequence content graph in report changed to just warning fro
 
 
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
+[[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
