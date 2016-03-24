@@ -120,6 +120,13 @@ You can visualize and assess the quality of data by opening html report in a loc
 >vii. Download FastQC report to your home computer to examine
 
 ```
+sftp username@flux-login.engin.umich.edu
+cd /scratch/micro612w16_fluxod/username/day1_morn/Rush_KPC_266_FastQC_results/before_trimmomatic/
+get Rush_KPC_266_1_combine_fastqc.html
+get Rush_KPC_266_2_combine_fastqc.html
+
+or use scp.
+
 scp username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day1_morn/Rush_KPC_266_FastQC_results/before_trimmomatic/*.html /path-to-local-directory/
 ```
 
@@ -176,6 +183,17 @@ time java -jar /scratch/micro612w16_fluxod/shared/bin/Trimmomatic/trimmomatic-0.
 mkdir Rush_KPC_266_FastQC_results/after_trimmomatic
 
 fastqc -o Rush_KPC_266_FastQC_results/after_trimmomatic/ Rush_KPC_266_trimmomatic_results/forward_paired.fq.gz Rush_KPC_266_trimmomatic_results/reverse_paired.fq.gz --extract
+```
+
+Get these html reports to local system.
+```
+sftp username@flux-login.engin.umich.edu
+cd /scratch/micro612w16_fluxod/username/day1_morn/Rush_KPC_266_FastQC_results/after_trimmomatic/
+get forward_paired.fq_fastqc.html
+get reverse_paired.fq_fastqc.html
+
+or use scp 
+
 scp username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day1_morn/Rush_KPC_266_FastQC_results/after_trimmomatic/*.html /path-to-local-directory/
 ```
 
@@ -197,6 +215,16 @@ time java -jar /scratch/micro612w16_fluxod/shared/bin/Trimmomatic/trimmomatic-0.
 ```
 mkdir Rush_KPC_266_FastQC_results/after_trimmomatic_headcrop/
 fastqc -o Rush_KPC_266_FastQC_results/after_trimmomatic_headcrop/ --extract -f fastq Rush_KPC_266_trimmomatic_results_with_headcrop/forward_paired.fq.gz Rush_KPC_266_trimmomatic_results_with_headcrop/reverse_paired.fq.gz
+```
+Download the reports again and see the difference.
+```
+sftp username@flux-login.engin.umich.edu
+cd /scratch/micro612w16_fluxod/username/day1_morn/Rush_KPC_266_FastQC_results/after_trimmomatic_headcrop/
+get forward_paired.fq_fastqc.html
+get reverse_paired.fq_fastqc.html
+
+or use scp
+
 scp username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day1_morn/Rush_KPC_266_FastQC_results/after_trimmomatic_headcrop/*.html /path-to-local-directory/
 ```
 
