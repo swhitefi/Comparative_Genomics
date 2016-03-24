@@ -31,7 +31,7 @@
 - [Day 3 Morning](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_morning/README.md#day-3-morning)
 ***
 	- [Perform whole genome alignment with Mauve](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_morning/README.md#perform-whole-genome-alignment-with-Mauve)
-	- [Perform DNA sequence comparisons and phylogenetic analysis in ape](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_morning/README.md#perform-dna-sequence-comparisons-and-phylogenetic-analysis-in-ape)
+	- [Perform DNA sequence comparisons and phylogenetic analysis in ape](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_morning/README.md#perform-some-dna-sequence-comparisons-and-phylogenetic-analysis-in-ape)
 	- [Perform SNP density analysis to discern evidence of recombination](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_morning/README.md#perform-snp-density-analysis-to-discern-evidence-of-recombination)
 	- [Perform recombination filtering with gubbins](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_morning/README.md#perform-recombination-filtering-with-gubbins)
 	- [Create annotated publication quality trees with iTOL](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_morning/README.md#create-annotated-publication-quality-trees-with-itol)
