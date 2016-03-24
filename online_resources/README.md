@@ -1,4 +1,5 @@
 # Helpful resources for microbial genomics
+***
 
 1. General Bioinformatics resources
 	- [Omictools](http://omictools.com/)
