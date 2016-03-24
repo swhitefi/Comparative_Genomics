@@ -14,17 +14,18 @@ Read Mapping is one of the most common Bioinformatics operation that needs to be
 cp -r /scratch/micro612w16_fluxod/shared/data/day1_after ./
 ```
 
-We will be using the trimmed clean reads that were obtained after Trimmmatic on raw reads.
+We will be using the trimmed clean reads that were obtained after running Trimmmatic on raw reads.
 
 **2. Map your reads against a finished reference genome using [BWA](http://bio-bwa.sourceforge.net/bwa.shtml "BWA manual")**
 
-BWA is one of the several and a very good example of read mappers that are based on Burrows-Wheeler transform algorithm. If you feel like challenging yourselves, you can read BWA paper [here](http://bioinformatics.oxfordjournals.org/content/25/14/1754.short)
+BWA is one of the several and a very good example of read mappers that are based on Burrows-Wheeler transform algorithm. If you feel like challenging yourselves, you can read BWA paper [here](http://bioinformatics.oxfordjournals.org/content/25/14/1754.short) 
 
->i. To create BWA index of Reference fasta file, you need to run the following command.
+Read Mapping is a time-consuming step that involves searching the reference and aligning millions of reads. Creating an index file of reference sequence for quick lookup/search operations significantly decreases the time required for read alignment.
 
-Read Mapping is a time-consuming step that involves searching the reference and aligning millions of reads. Craeting an index file of reference sequence for quick lookup/search operations significantly decreases the time required for read alignment.
+>i. To create BWA index of Reference, you need to run following command.
 
-Lets create an bwa index file for our reference genome located at: /scratch/micro612w16_fluxod/shared/bin/reference/KPNIH1/KPNIH1.fasta
+Our reference genome is located at: /scratch/micro612w16_fluxod/shared/bin/reference/KPNIH1/KPNIH1.fasta
+Copy it to day1_after folder and create Rush_KPC_266_varcall_result folder for saving this exercise's output.
 
 ```
 cp /scratch/micro612w16_fluxod/shared/bin/reference/KPNIH1/KPNIH1.fasta day1_after/
@@ -37,15 +38,22 @@ Create bwa index for the reference genome.
 bwa index KPNIH1.fasta
 ```
 
+Also go ahead and create fai index file using samtools required by GATK in downstream steps.
+
+```
+samtools faidx KPNIH1.fasta
+```
+
 >ii. Align reads to reference and output into SAM file
 
-Now lets align both left and right end reads to our reference using BWA alignment algorithm 'mem' which is one of the three algorithms that is fast and works on mate paired end reads. For other algorithms, you can refer to BWA [manual](http://bio-bwa.sourceforge.net/bwa.shtml "BWA manual")
+Now lets align both left and right end reads to our reference using BWA alignment algorithm 'mem' which is one of the three algorithms that is fast and works on mate paired end reads. 
+For other algorithms employed by BWA, you can refer to BWA [manual](http://bio-bwa.sourceforge.net/bwa.shtml "BWA manual")
 
 ```
 bwa mem -M -R "@RG\tID:96\tSM:Rush_KPC_266_1_combine.fastq.gz\tLB:1\tPL:Illumina" -t 8 KPNIH1.fasta forward_paired.fq.gz reverse_paired.fq.gz > Rush_KPC_266__aln.sam
 ```
 
-> -R readgroup parameter; what does it say? screenshot.
+Many algorithms need to know that certain reads were sequenced together on a specific lane. This string with -R flag says that all reads belongs to ID 96 sample Rush_KPC_266_1_combine.fastq.gz and was sequenced on illumina platform.
 
 **3. SAM/BAM manipulation and variant calling using [Samtools](http://www.htslib.org/doc/samtools.html "Samtools Manual")**
 
@@ -57,11 +65,18 @@ cd Rush_KPC_266_varcall_result
 
 >ii. Convert SAM to BAM using SAMTOOLS:
 
+SAM stands for sequence alignment/map format and is a TAB-delimited text format that describes how each reads were aligned to the reference sequence. For detailed specifications of SAM format fields, Please  read this [pdf](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0ahUKEwizkvfAk9rLAhXrm4MKHVXxC9kQFggdMAA&url=https%3A%2F%2Fsamtools.github.io%2Fhts-specs%2FSAMv1.pdf&usg=AFQjCNHFmjxTXKnxYqN0WpIFjZNylwPm0Q) document.
+
+BAM is the compressed binary equivalent of SAM but are usually quite smaller in size than SAM format. Since, parsing through a SAM format is slow, Most of the downstream tools requires SAM to be converted to BAM so that it can be easily sorted and indexed.
+
+The below command will ask samtools to convert SAM format(-S) to BAM format(-b)
 ```
 samtools view -Sb Rush_KPC_266__aln.sam > Rush_KPC_266__aln.bam
 ```
 
 >iii. Sort BAM file using SAMTOOLS:
+
+Now before indexing this BAM file, we will sort the data by positions(default) using samtools. Some expression tools requires it to be sorted by read name which is achieved by passing -n flag.
 
 ```
 samtools sort Rush_KPC_266__aln.bam Rush_KPC_266__aln_sort
@@ -69,7 +84,11 @@ samtools sort Rush_KPC_266__aln.bam Rush_KPC_266__aln_sort
 
 **4. Mark duplicates(PCR optical duplicates) and remove them using [PICARD](http://broadinstitute.github.io/picard/command-line-overview.html#MarkDuplicates "Picard MarkDuplicates")**
 
->i. Create a dictionary for reference fasta file required by PICARD(If KPNIH1.dict doesn’t exist. Ignore if already exists.).
+Illumina sequencing involves PCR amplification of adapter ligated DNA fragments so that we have enough starting material for sequencing. Therefore, some amount of duplicates are inevitable. Ideally, you amplify upto ~65 fold(4% reads) but higher rates of PCR duplicates e.g. 30% arise when people have too little starting material such that greater amplification of the library is needed or some smaller fragments which are easier to PCR amplify, end up over-represented.
+This step is necessary for removing false positive variant calls represented by PCR duplicate reads.
+For an in-depth explanation about how PCR duplicates arise in sequencing, please refer to this interesting [blog](http://www.cureffi.org/2012/12/11/how-pcr-duplicates-arise-in-next-generation-sequencing/)
+
+>i. Create a dictionary for reference fasta file required by PICARD
  
 ```
 java -jar /scratch/micro612w16_fluxod/shared/bin/picard-tools-1.130/picard.jar CreateSequenceDictionary REFERENCE=/path-to-reference/KPNIH1.fasta OUTPUT=/path-to-reference/KPNIH1.dict
@@ -83,14 +102,18 @@ java -jar /scratch/micro612w16_fluxod/shared/bin/picard-tools-1.130/picard.jar C
 java -jar /scratch/micro612w16_fluxod/shared/bin/picard-tools-1.130/picard.jar MarkDuplicates REMOVE_DUPLICATES=true INPUT=Rush_KPC_266__aln_sort.bam OUTPUT= Rush_KPC_266__aln_marked.bam METRICS_FILE=Rush_KPC_266__markduplicates_metrics
 CREATE_INDEX=true VALIDATION_STRINGENCY=LENIENT
 ```
+Open the markduplicates metrics file and glance through the number and percentage of PCR duplicates removed.
 
->iii. Sort these marked BAM file again (for downstream compatibility)
+```
+nano Rush_KPC_266__markduplicates_metrics
+```
+>iii. Sort these marked BAM file again (Just to make sure, it doesn't throw error in downstream steps)
 
 ```
 samtools sort Rush_KPC_266__aln_marked.bam Rush_KPC_266__aln_sort
 ```
 
->iv. Index these marked bam file using SAMTOOLS
+>iv. Index these marked bam file again using SAMTOOLS (Just to make sure, it doesn't throw error in downstream steps)
 
 ```
 samtools index Rush_KPC_266__aln_sort.bam
@@ -99,6 +122,7 @@ samtools index Rush_KPC_266__aln_sort.bam
 ## Variant Calling and Filteration
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
+
 
 **1. Call variants using [samtools](http://www.htslib.org/doc/samtools.html "samtools manual") mpileup and [bcftools](https://samtools.github.io/bcftools/bcftools.html "bcftools")**
 
