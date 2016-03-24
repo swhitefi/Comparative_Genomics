@@ -113,6 +113,7 @@ This will generate two results directory, Rush_KPC_266_1_combine_fastqc and Rush
 The summary.txt file in these directories indicates if the data passed different quality control tests in text format.
 You can visualize and assess the quality of data by opening html report in a local browser.
 
+![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_morning/1.png)
 
 
 
