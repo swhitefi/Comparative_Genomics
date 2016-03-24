@@ -1,6 +1,6 @@
 # Bacterial Comparative Genomics Workshop
 
-- [Day 1 Morning](https://github.com/alipirani88/Comparative_Genomics#day-1-morning)
+- [Day 1 Morning](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md)
 ***
 	- [Getting your data onto Flux and setting up Environment variable](https://github.com/alipirani88/Comparative_Genomics#getting-your-data-onto-glux-and-setting-up-environment-variable)
 	- [Quality Control using FastQC](https://github.com/alipirani88/Comparative_Genomics#quality-control-using-fastqc)
