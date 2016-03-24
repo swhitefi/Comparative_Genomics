@@ -220,7 +220,7 @@ scp username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day1
 Check the Chromosome stats table.
 Check the coverage across reference and Mapping quality across the reference.
 
-## Visualize BAM and VCF files in IGV or ACT(Screenshots Pending)
+## Visualize BAM and VCF files in IGV or ACT
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 
 > Required Input files: KPNIH1 reference fasta and genbank file, Rush_KPC_266__aln_marked.bam and Rush_KPC_266__aln_marked.bai, Rush_KPC_266__aln_mpileup_raw.vcf/Rush_KPC_266__filter_onlysnp.recode.vcf/Rush_KPC_266__filter_gatk_ann.vcf
