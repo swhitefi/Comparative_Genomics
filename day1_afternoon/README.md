@@ -147,19 +147,25 @@ samtools mpileup -ug -f /path-to-reference/KPNIH1.fasta Rush_KPC_266__aln_sort.b
 Lets go through our vcf file and try to understand a few vcf specifications and criteria that we can use for filtering low confidence snps. 
 
 ```
-gzip -d Rush_KPC_266__aln_mpileup_raw.vcf.gz
 less Rush_KPC_266__aln_mpileup_raw.vcf
 ```
 
-VCF format stores a large variety of information and you will find more details about each nomenclature in this [pdf](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0ahUKEwit35bvktzLAhVHkoMKHe3hAhYQFggdMAA&url=https%3A%2F%2Fsamtools.github.io%2Fhts-specs%2FVCFv4.2.pdf&usg=AFQjCNGFka33WgRmvOfOfp4nSaCzkV95HA&sig2=tPLD6jW5ALombN3ALRiCZg&cad=rja)
+VCF format stores a large variety of information and you can find more details about each nomenclature in this [pdf](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0ahUKEwit35bvktzLAhVHkoMKHe3hAhYQFggdMAA&url=https%3A%2F%2Fsamtools.github.io%2Fhts-specs%2FVCFv4.2.pdf&usg=AFQjCNGFka33WgRmvOfOfp4nSaCzkV95HA&sig2=tPLD6jW5ALombN3ALRiCZg&cad=rja)
 
 **2. Variant filtering and processed file generation using GATK and vcftools**
 
 >i. Variant filtering using [GATK](https://www.broadinstitute.org/gatk/guide/tooldocs/org_broadinstitute_gatk_tools_walkers_filters_VariantFiltration.php "GATK Variant Filteration"):
 
-Now lets filter these variants based on their quality using GATK.
+There are various tools that can you can try for variant filteration such as vcftools, GATK, vcfutils. Here we will use GATK VariantFiltration utility to filter out low confidence variants.
 
-There are various tools that can you can try for variant filteration such as vcftools, GATK, 
+Here, the below command will add a 'pass_filter' text in the 7th FILTER column for those variant positions that passed our filtered criteria:
+1. DP: Depth of reads. More than 15 reads supporting a variant call at these position.
+2. MQ: Root Mean Square Mapping Quality. This provides an estimation of the overall mapping quality of reads supporting a variant call. The root mean square is equivalent to the mean of the mapping qualities plus the standard deviation of the mapping qualities.
+3. QUAL stands for phred-scaled quality score for the assertion made in ALT. High QUAL scores indicate high confidence calls.
+4. FQ stands for consensus quality. A positive value indicates heterozygote and a negative value indicates homozygous. In bacterial analysis, this plays an important role in defining if a genes was duplicated in a particular sample. We will more about later while visualizing our BAM files in IGV.
+
+Run this command on raw vcf file Rush_KPC_266__aln_mpileup_raw.vcf.
+
 ```
 java -jar /scratch/micro612w16_fluxod/shared/bin/GenomeAnalysisTK-3.3-0/GenomeAnalysisTK.jar -T VariantFiltration -R
 /path-to-reference/KPNIH1.fasta -o Rush_KPC_266__filter_gatk.vcf --variant Rush_KPC_266__aln_mpileup_raw.vcf --filterExpression "FQ < 0.025 && MQ > 50 && QUAL > 100 && DP > 15" --filterName pass_filter
@@ -167,39 +173,36 @@ java -jar /scratch/micro612w16_fluxod/shared/bin/GenomeAnalysisTK-3.3-0/GenomeAn
 
 > Note: Dont forget to put the actual path to the refeerence sequence in place of /path-to-reference/
 
-Open the file Rush_KPC_266__filter_gatk.vcf and have a look at 7th column. Take a glance at the rows with 'pass_filter' in its 7 column. 
+Lets look at some of the filtered positions.
 
 ```
 grep 'pass_filter' Rush_KPC_266__filter_gatk.vcf | head
 ```
+caveat: These filter criterias should be applied carefully after giving some thoughts based on the type of library, coverage, average mapping quality, type of analysis and other such requirements.
 
-The quality filters that we generally employ to get high quality variants are:
-FQ: Consensus Quality
-MQ: Mapping quality.
-DP: Depth of reads supporting that variant.
-QUAL: Overall quality of the variant called.
-
-But going forward you can use other parameters as well based on your requirements.
 More Info on VCF format and parameter specifications can be found [here](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0ahUKEwjzkcSP4MfLAhUDyYMKHU3yDwMQFggjMAA&url=https%3A%2F%2Fsamtools.github.io%2Fhts-specs%2FVCFv4.2.pdf&usg=AFQjCNGFka33WgRmvOfOfp4nSaCzkV95HA&sig2=6Xb3XDaZfghadZfcnnPQxw&cad=rja "VCF format Specs.")
 
 >ii. Remove indels and keep only SNPS that passed our filter criteria using [vcftools](http://vcftools.sourceforge.net/man_latest.html vcftools manual):
 
-In most outbreak studies, we are trying to find how these outbreak samples differ and evolve from the reference/index genome. Many tools that carry out such type of phylogenetic analysis requires a consensus sequences containing only variant calls(SNPs). Though there are few tools that take into consideration both SNPs and Indels and give a greater resolution.
+In most of the phylogenetic analysis, we are trying to find how these samples differ and evolve from the reference/index genome. Many tools that carry out such type of phylogenetic analysis requires a consensus sequences containing only variant calls(SNPs). Though there are few tools that take into consideration both SNPs and Indels and give a greater resolution.
 Now we will try to construct a consensus sequence using only SNP calls.
 
-vcftools is a program package that is especially written to work with vcf file formats. It thus saves your precious time by making available all the common operations with a single command.
-Lets remove indels from our final vcf file and keep only variants that passed the filters.
+vcftools is a program package that is especially written to work with vcf file formats. It thus saves your precious time by making available all the common operations that you would like to perfome on vcf file using a single command.
+
+Now, Lets remove indels from our final vcf file and keep only variants that passed our filter criteria(positions with pass_filter in their FILTER column).
 
 ```
 vcftools --vcf Rush_KPC_266__filter_gatk.vcf --keep-filtered pass_filter --remove-indels --recode --recode-INFO-all --out
 Rush_KPC_266__filter_onlysnp 
 ```
 
-Notice the details that were printed out in STDOUT.
+Notice the details that were printed out in STDOUT.(How many sites were retained out of total site?)
 
 >iii. Generate Consensus fasta file from filtered variants using vcftools:
 
 A consensus fasta sequence will contain alleles from reference sequence at positions where no variants were observed and variants that were observed at positions described in vcf file.
+
+Run these below commands to generatea consensus fasta sequence.
 
 ```
 bgzip Rush_KPC_266__filter_onlysnp.recode.vcf
@@ -219,6 +222,9 @@ sed -i 's/>.*/>Rush_KPC_266_/g' Rush_KPC_266__consensus.fa
 **3. Variant Annotation using snpEff**
 
 Variant annotation is one of the crucial steps in any Variant Calling Pipeline. Most of the variant annotation tools creates their own database or an external one to assign function and predicts the effect of variants on genes. We will try to touch base on some basic steps of annotating variants in our vcf file using snpEff. 
+You can annoate these variants before performing any filtering steps that we did earlier or you can decide to annotate just the final filtered variants. 
+
+Lets check if snpEff contains a database of our reference genome.
 
 >i. Check snpEff internal database for your reference genome:
 
