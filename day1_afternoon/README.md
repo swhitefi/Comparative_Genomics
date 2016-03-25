@@ -120,7 +120,7 @@ samtools sort Rush_KPC_266__aln_marked.bam Rush_KPC_266__aln_sort
 >iv. Index these marked bam file again using SAMTOOLS (Just to make sure, it doesn't throw error in downstream steps)
 
 ```
-samtools index Rush_KPC_266__aln_sort.bam
+samtools index Rush_KPC_266__aln_marked.bam
 ```
 
 ## Variant Calling and Filteration
@@ -139,7 +139,7 @@ Here we will use samtools mpileup to perform this operation on our BAM file and 
 samtools mpileup generate pileup format from alignments, computes genotype likelihood(-ug flag) and outputs it in bcf format(binary version of vcf). This bcf output is then piped to bcftools that calls variants and outputs it in vcf format(-c flag for consensus calling and -v for outputting variants positions only)
 
 ```
-samtools mpileup -ug -f /path-to-reference/KPNIH1.fasta Rush_KPC_266__aln_sort.bam | bcftools call -O v -v -c -o Rush_KPC_266__aln_mpileup_raw.vcf
+samtools mpileup -ug -f /path-to-reference/KPNIH1.fasta Rush_KPC_266__aln_marked.bam | bcftools call -O v -v -c -o Rush_KPC_266__aln_mpileup_raw.vcf
 ```
 
 > Note: Dont forget to put the actual path to the reference sequence in place of /path-to-reference/
@@ -297,7 +297,39 @@ scp username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day1
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
+A visual visualization of all these various output helps in making some significant decisions and inferences about your entire analysis. There are wide a wide variety of visualization tools out there that you can choose for this purpose.
+Lets go ahead and use IGV- Integrative Genomics Viewer for viewing BAM and vcf files.
+
+
 > Required Input files: KPNIH1 reference fasta and genbank file, Rush_KPC_266__aln_marked.bam and Rush_KPC_266__aln_marked.bai, Rush_KPC_266__aln_mpileup_raw.vcf/Rush_KPC_266__filter_onlysnp.recode.vcf/Rush_KPC_266__filter_gatk_ann.vcf
+
+Lets make a seperate folder for the files that we need for visualization and copy it to that folder
+
+```
+mkdir IGV_files
+bgzip -d Rush_KPC_266__aln_mpileup_raw.vcf.gz
+cp /path-to-reference/KPNIH1.fasta Rush_KPC_266__aln_marked.bam Rush_KPC_266__aln_marked.bai Rush_KPC_266__aln_mpileup_raw.vcf Rush_KPC_266__filter_onlysnp.recode.vcf Rush_KPC_266__filter_gatk_ann.vcf IGV_files/
+```
+
+We need to replace the genome name we changed earlier for snpEff compatibility.
+
+```
+cd IGV_files
+sed -i 's/Chromosome/gi|661922017|gb|CP008827.1|/g' *.vcf
+```
+
+Get these file to your local system and start IGV.
+
+```
+scp -r username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day1_after/Rush_KPC_266_varcall_result/IGV_files/ /path-to-local-directory/
+```
+
+Lets first load our reference genome by selecting Genome -> Load Genome from File
+Now load raw vcf, annotated vcf and BAM file by selecting File -> Load From File seperately for each file.
+
+
+
+
 
 ```
 screenshots explanation here
