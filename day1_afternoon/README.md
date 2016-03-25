@@ -252,7 +252,10 @@ Lets go through the ANN field added after annotation step.
 grep '^Chromosome' Rush_KPC_266__filter_gatk_ann.vcf | head -n1
 ```
 
-Explain ANN field!!!
+ANN field will provide information such as the impact of variants (HIGH/LOW/MODERATE/MODIFIER) on genes and transcripts along with other useful annotations.
+
+Detailed information of ANN field and sequence onlogy terms that it uses can be found [here](http://snpeff.sourceforge.net/SnpEff_manual.html#input)
+
 
 **4. Generate Statistics report using samtools, vcftools and qualimap**
 
@@ -264,6 +267,8 @@ Lets try to get some statistics about various outputs that were created using th
 samtools flagstat Rush_KPC_266__aln.bam > Rush_KPC_266__alignment_stats
 ```
 
+These statistics will give you an idea about how well your reads aligned to the reference genome in terms of what percentage of reads that you supplied actually mapped to the genome. 
+
 ii. VCF statistics:  
 
 ```
@@ -272,20 +277,21 @@ tabix Rush_KPC_266__aln_mpileup_raw.vcf.gz
 vcf-stats Rush_KPC_266__aln_mpileup_raw.vcf.gz > Rush_KPC_266__raw_vcf_stats
 ```
 
+Open Rush_KPC_266__raw_vcf_stats and check the number of snps and indels called for this sample.  
+
 iii. Qualimap report of BAM coverage:
+
+Qualimap outputs a very imformative reports about the alignments and coverage across the entire genome. Let create one for our samples. The below command call bamqc utility of qualimap and generates a report in pdf format.
 
 ``` 
 qualimap bamqc -bam Rush_KPC_266__aln_sort.bam -outdir ./ -outfile Rush_KPC_266__report.pdf -outformat pdf 
 ```
 
-Open the pdf report in your local system.
+Lets get this pdf report onto our local system and check the chromosome stats table, mapping quality and coverage across the entire reference genome.
 
 ```
 scp username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day1_after/Rush_KPC_266_varcall_result/Rush_KPC_266__report.pdf /path-to-local-directory/
 ```
-
-Check the Chromosome stats table.
-Check the coverage across reference and Mapping quality across the reference.
 
 ## Visualize BAM and VCF files in IGV or ACT
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
