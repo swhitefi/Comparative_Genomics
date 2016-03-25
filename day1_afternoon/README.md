@@ -224,7 +224,7 @@ sed -i 's/>.*/>Rush_KPC_266_/g' Rush_KPC_266__consensus.fa
 Variant annotation is one of the crucial steps in any Variant Calling Pipeline. Most of the variant annotation tools creates their own database or an external one to assign function and predicts the effect of variants on genes. We will try to touch base on some basic steps of annotating variants in our vcf file using snpEff. 
 You can annoate these variants before performing any filtering steps that we did earlier or you can decide to annotate just the final filtered variants. 
 
-Lets check if snpEff contains a database of our reference genome.
+snpEff contains database of about 20000 reference genome built from trusted and public sources. Lets check if snpEff contains a database of our reference genome.
 
 >i. Check snpEff internal database for your reference genome:
 
@@ -241,10 +241,10 @@ sed -i 's/gi.*|/Chromosome/g' Rush_KPC_266__filter_gatk.vcf
 >iii. Run snpEff for variant annotation.
 
 ```
-java -jar snpEff.jar -v GCA_000281535.2.29 Rush_KPC_266__filter_gatk.vcf > Rush_KPC_266__filter_gatk_ann.vcf -htmlStats Rush_KPC_266__filter_gatk_stats
+java -jar /scratch/micro612w16_fluxod/shared/bin/snpEff/snpEff.jar -v GCA_000281535.2.29 Rush_KPC_266__filter_gatk.vcf > Rush_KPC_266__filter_gatk_ann.vcf -htmlStats Rush_KPC_266__filter_gatk_stats
 ```
 
-Check the STDOUT printed which contains some useful details. Explain!
+The STDOUT  will print out some useful details such as genome name and version being used, no. of genes, protein-coding genes and transcripts, chromosome and plasmid names etc
 
 Lets go through the ANN field added after annotation step.
 
