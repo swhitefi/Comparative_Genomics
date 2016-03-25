@@ -150,7 +150,7 @@ Check out [this](https://sequencing.qcfail.com/articles/loss-of-base-call-accura
 
 Now we will run Trimmomatic on these raw data to remove low quality reads as well as adapters. 
 
->i. Get an interactive cluster node to start running programs
+>i. Get an interactive cluster node to start running programs (need more memory than last interactive node?)
 
 
 >ii. Create these output directories in your day1_morn folder to save trimmomatic results
