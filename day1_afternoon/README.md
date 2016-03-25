@@ -106,7 +106,7 @@ java -jar /scratch/micro612w16_fluxod/shared/bin/picard-tools-1.130/picard.jar C
 java -jar /scratch/micro612w16_fluxod/shared/bin/picard-tools-1.130/picard.jar MarkDuplicates REMOVE_DUPLICATES=true INPUT=Rush_KPC_266__aln_sort.bam OUTPUT= Rush_KPC_266__aln_marked.bam METRICS_FILE=Rush_KPC_266__markduplicates_metrics
 CREATE_INDEX=true VALIDATION_STRINGENCY=LENIENT
 ```
-Open the markduplicates metrics file and glance through the number and percentage of PCR duplicates removed.
+Open the markduplicates metrics file and glance through the number and percentage of PCR duplicates removed. For more details about each metrics in a metrics file, please refer [this](https://broadinstitute.github.io/picard/picard-metric-definitions.html#DuplicationMetrics)
 
 ```
 nano Rush_KPC_266__markduplicates_metrics
