@@ -298,7 +298,7 @@ scp username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day1
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
 A visual visualization of all these various output helps in making some significant decisions and inferences about your entire analysis. There are wide a wide variety of visualization tools out there that you can choose for this purpose.
-Lets go ahead and use IGV- Integrative Genomics Viewer for viewing BAM and vcf files.
+Lets go ahead and use IGV- Integrative Genomics Viewer(developed by Broad Institute) for viewing BAM and vcf files.
 
 
 > Required Input files: KPNIH1 reference fasta and genbank file, Rush_KPC_266__aln_marked.bam and Rush_KPC_266__aln_marked.bai, Rush_KPC_266__aln_mpileup_raw.vcf/Rush_KPC_266__filter_onlysnp.recode.vcf/Rush_KPC_266__filter_gatk_ann.vcf
@@ -330,15 +330,19 @@ Now load raw vcf, annotated vcf and BAM file by selecting File -> Load From File
 
 
 
-Lets type these genomic positions in the position box: 321,818-322,060 to see an example of HET variants.The coverage for this region 321881 - 321980 is unusually high compare to its flanking region(upto 300). Let zoom in and hover at the coverage for one of the variants observed in these region which are called HET variants. Tis means that more than one allele with high quality and depth was observed at these positions so we cannot decide which or the  one is the true variant
 
-We removed these type of variants during our Variant Filteration step using the criteria FQ. (If the FQ is unusually high, it is suggestive of HET variant and negative FQ value is a suggestive of true variant as observed in the reads mapped to this position) 
-You can inspect these HET variants later and addition of these details will give a better resolution while inferring Phylogenetic trees.
+
+Lets type these genomic positions in the position box: 321,818-322,060 to see an example of HET variants.The coverage for this region 321881 - 321980 is unusually high compare to its flanking region(upto 300). Let zoom in and hover at the coverage for one of the variants observed in these region which are called HET variants. This means that more than one allele with high quality and depth was observed at these positions so we cannot decide which one of these is a true variant.
+
+We removed these type of variants during our Variant Filteration step using the criteria FQ. (If the FQ is unusually high, it is suggestive of HET variant and negative FQ value is a suggestive of true variant as observed in the mapped reads) 
+You can inspect these HET variants later for any gene duplication and addition of these details will give a better resolution while inferring Phylogenetic trees.
 
 
 ```
 screenshots explanation here
 ```
+
+Play around with IGV to look at what other kind of information you can find from these BAM and vcf files. Also refer to [this](https://www.broadinstitute.org/igv/UserGuide) user guide provided by Broad Institute or watch [this](https://www.youtube.com/watch?v=IILfC3Uc6Vo) video for different kind files that you can visualize in IGV.
 
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
