@@ -85,8 +85,12 @@ samtools sort Rush_KPC_266__aln.bam Rush_KPC_266__aln_sort
 **4. Mark duplicates(PCR optical duplicates) and remove them using [PICARD](http://broadinstitute.github.io/picard/command-line-overview.html#MarkDuplicates "Picard MarkDuplicates")**
 
 Illumina sequencing involves PCR amplification of adapter ligated DNA fragments so that we have enough starting material for sequencing. Therefore, some amount of duplicates are inevitable. Ideally, you amplify upto ~65 fold(4% reads) but higher rates of PCR duplicates e.g. 30% arise when people have too little starting material such that greater amplification of the library is needed or some smaller fragments which are easier to PCR amplify, end up over-represented.
-This step is necessary for removing false positive variant calls represented by PCR duplicate reads.
+
 For an in-depth explanation about how PCR duplicates arise in sequencing, please refer to this interesting [blog](http://www.cureffi.org/2012/12/11/how-pcr-duplicates-arise-in-next-generation-sequencing/)
+
+Picard identifies duplicates by search for reads that have same start position on reference or in PE reads same start for both ends. It will choose a representative from the based on base quality scores and other criteria and retain it while removing other duplicates. This step is plays a significant role in removing false positive variant calls represented by PCR duplicate reads.
+
+![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_after/1.png)
 
 >i. Create a dictionary for reference fasta file required by PICARD
  
