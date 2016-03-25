@@ -254,7 +254,7 @@ grep '^Chromosome' Rush_KPC_266__filter_gatk_ann.vcf | head -n1
 
 ANN field will provide information such as the impact of variants (HIGH/LOW/MODERATE/MODIFIER) on genes and transcripts along with other useful annotations.
 
-Detailed information of ANN field and sequence onlogy terms that it uses can be found [here](http://snpeff.sourceforge.net/SnpEff_manual.html#input)
+Detailed information of ANN field and sequence ontology terms that it uses can be found [here](http://snpeff.sourceforge.net/SnpEff_manual.html#input)
 
 
 **4. Generate Statistics report using samtools, vcftools and qualimap**
