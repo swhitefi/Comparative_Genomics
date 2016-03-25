@@ -90,7 +90,7 @@ For an in-depth explanation about how PCR duplicates arise in sequencing, please
 
 Picard identifies duplicates by search for reads that have same start position on reference or in PE reads same start for both ends. It will choose a representative from the based on base quality scores and other criteria and retain it while removing other duplicates. This step is plays a significant role in removing false positive variant calls represented by PCR duplicate reads.
 
-![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_after/1.png)
+![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_after/picard.png)
 
 >i. Create a dictionary for reference fasta file required by PICARD
  
