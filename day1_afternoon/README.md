@@ -136,7 +136,7 @@ Here we will use samtools mpileup to perform this operation on our BAM file and 
 
 **1. Call variants using [samtools](http://www.htslib.org/doc/samtools.html "samtools manual") mpileup and [bcftools](https://samtools.github.io/bcftools/bcftools.html "bcftools")**
 
-Run this command to call variants using samtools mpileup and pipe its output to bcftool which will generate the vcf.
+samtools mpileup generate pileup format from alignments, computes genotype likelihood(-ug flag) and outputs it in bcf format(binary version of vcf). This bcf output is then piped to bcftools that calls variants and outputs it in vcf format(-c flag for consensus calling and -v for outputting variants positions only)
 
 ```
 samtools mpileup -ug -f /path-to-reference/KPNIH1.fasta Rush_KPC_266__aln_sort.bam | bcftools call -O v -v -c -o Rush_KPC_266__aln_mpileup_raw.vcf
@@ -144,8 +144,14 @@ samtools mpileup -ug -f /path-to-reference/KPNIH1.fasta Rush_KPC_266__aln_sort.b
 
 > Note: Dont forget to put the actual path to the reference sequence in place of /path-to-reference/
 
-> -g generates genotype likelihood in bcf format   
-> -c call samtools consensus caller
+Lets go through our vcf file and try to understand a few vcf specifications and criteria that we can use for filtering low confidence snps. 
+
+```
+gzip -d Rush_KPC_266__aln_mpileup_raw.vcf.gz
+less Rush_KPC_266__aln_mpileup_raw.vcf
+```
+
+VCF format stores a large variety of information and you will find more details about each nomenclature in this [pdf](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0ahUKEwit35bvktzLAhVHkoMKHe3hAhYQFggdMAA&url=https%3A%2F%2Fsamtools.github.io%2Fhts-specs%2FVCFv4.2.pdf&usg=AFQjCNGFka33WgRmvOfOfp4nSaCzkV95HA&sig2=tPLD6jW5ALombN3ALRiCZg&cad=rja)
 
 **2. Variant filtering and processed file generation using GATK and vcftools**
 
@@ -153,6 +159,7 @@ samtools mpileup -ug -f /path-to-reference/KPNIH1.fasta Rush_KPC_266__aln_sort.b
 
 Now lets filter these variants based on their quality using GATK.
 
+There are various tools that can you can try for variant filteration such as vcftools, GATK, 
 ```
 java -jar /scratch/micro612w16_fluxod/shared/bin/GenomeAnalysisTK-3.3-0/GenomeAnalysisTK.jar -T VariantFiltration -R
 /path-to-reference/KPNIH1.fasta -o Rush_KPC_266__filter_gatk.vcf --variant Rush_KPC_266__aln_mpileup_raw.vcf --filterExpression "FQ < 0.025 && MQ > 50 && QUAL > 100 && DP > 15" --filterName pass_filter
