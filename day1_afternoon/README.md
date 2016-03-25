@@ -126,7 +126,13 @@ samtools index Rush_KPC_266__aln_sort.bam
 ## Variant Calling and Filteration
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
+One of the downstream uses of read mapping is finding differences between our sequence data against a reference. This step is achieve by carrying out calling variants using any of the variant callers(samtools, gatk, freebayes etc). Each variant callers use different statistical framework to discover SNP and other types of mutations. For those of you who are interested in finding out more about the statistics involved, please refere to [this]() samtools paper, one of most commonly used variant caller.
 
+This GATK best practices [guide](https://www.broadinstitute.org/gatk/guide/best-practices.php) will provide more details about various steps that you can incorporate in your analysis.
+
+There are many publications that compares different variant callers but this is a very interesting [blog](https://bcbio.wordpress.com/2013/10/21/updated-comparison-of-variant-detection-methods-ensemble-freebayes-and-minimal-bam-preparation-pipelines/) that compares the performance and accuracy of different variant callers.
+
+Here we will use samtools mpileup to perform this operation on our BAM file and generate VCF file. To 
 
 **1. Call variants using [samtools](http://www.htslib.org/doc/samtools.html "samtools manual") mpileup and [bcftools](https://samtools.github.io/bcftools/bcftools.html "bcftools")**
 
