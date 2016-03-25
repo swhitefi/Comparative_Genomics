@@ -105,6 +105,12 @@ FastQC can be run in two modes: "command line" or as a GUI (graphical user inter
 
 qsub -I -V -l nodes=1:ppn=1,mem=4000mb,walltime=7:00:00:00 -q fluxod -l qos=flux -A micro612w16_fluxod
 
+Change your directory to day1_morn
+
+```
+cd /scratch/micro612w16_fluxod/username/day1_morn/
+```
+
 >v. Run FastQC to generate quality report of sequence reads.
 
 ```
@@ -153,6 +159,12 @@ Now we will run Trimmomatic on these raw data to remove low quality reads as wel
 >i. Get an interactive cluster node to start running programs
 
 qsub -I -V -l nodes=1:ppn=4,mem=16000mb,walltime=7:00:00:00 -q fluxod -l qos=flux -A micro612w16_fluxod
+
+Change your directory to day1_morn
+
+```
+cd /scratch/micro612w16_fluxod/username/day1_morn/
+```
 
 >ii. Create these output directories in your day1_morn folder to save trimmomatic results
 
