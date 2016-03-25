@@ -330,6 +330,11 @@ Now load raw vcf, annotated vcf and BAM file by selecting File -> Load From File
 
 
 
+Lets type these genomic positions in the position box: 321,818-322,060 to see an example of HET variants.The coverage for this region 321881 - 321980 is unusually high compare to its flanking region(upto 300). Let zoom in and hover at the coverage for one of the variants observed in these region which are called HET variants. Tis means that more than one allele with high quality and depth was observed at these positions so we cannot decide which or the  one is the true variant
+
+We removed these type of variants during our Variant Filteration step using the criteria FQ. (If the FQ is unusually high, it is suggestive of HET variant and negative FQ value is a suggestive of true variant as observed in the reads mapped to this position) 
+You can inspect these HET variants later and addition of these details will give a better resolution while inferring Phylogenetic trees.
+
 
 ```
 screenshots explanation here
