@@ -136,6 +136,12 @@ LS-BSR is pretty intensive, so we want to get an interactive node to run this
 qsub -I -V -l nodes=1:ppn=1,mem=4000mb,walltime=7:00:00:00 -q fluxod -l qos=flux -A micro612w16_fluxod
 ```
 
+Change your directory to day2_after
+
+```
+cd /scratch/micro612w16_fluxod/username/day1_after/
+```
+
 Run LS-BSR (it will take a few minutes)! 
 
 The input parameters are: a directory with your genomes (-d Abau_genomes) and a fasta file of query genes (-g resisGenes_nr.pep)
@@ -240,6 +246,13 @@ Make sure you are on an interactive node, as this will be even more computationa
 ```
 qsub -I -V -l nodes=1:ppn=1,mem=4000mb,walltime=7:00:00:00 -q fluxod -l qos=flux -A micro612w16_fluxod
 ```
+
+Change your directory to day2_after
+
+```
+cd /scratch/micro612w16_fluxod/username/day2_after/
+```
+
 
 Run LS-BSR! The –u parameter is just a path to where usearch lives on flux.
 
