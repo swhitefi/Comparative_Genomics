@@ -24,7 +24,10 @@ cp ~/.bashrc ./bashrc_backup
 >ii. Add a line to your .bashrc file that points to required Perl library directories.
 
 ```
+
 export PERL5LIB=/scratch/micro612w16_fluxod/shared/bin/PAGIT/lib:/scratch/micro612w16_fluxod/shared/bin/vcftools_0.1.12b/perl:$PERL5LIB
+export PERL5LIB=/scratch/micro612w16_fluxod/shared/perl_libs:$PERL5LIB
+
 ```
 
 >iii. Add entries in your .bashrc file to add required genomics programs to your path variable.
