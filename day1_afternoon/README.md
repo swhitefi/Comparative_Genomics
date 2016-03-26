@@ -44,7 +44,7 @@ Also go ahead and create fai index file using samtools required by GATK in downs
 samtools faidx KPNIH1.fasta
 ```
 
->ii. Align reads to reference and output into SAM file
+>ii. Align reads to reference and redirect the output into SAM file
 
 Now lets align both left and right end reads to our reference using BWA alignment algorithm 'mem' which is one of the three algorithms that is fast and works on mate paired end reads. 
 For other algorithms employed by BWA, you can refer to BWA [manual](http://bio-bwa.sourceforge.net/bwa.shtml "BWA manual")
