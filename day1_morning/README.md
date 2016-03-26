@@ -62,7 +62,7 @@ source .bashrc
 ```
 
 ## Quality Control using [FastQC](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/ "FastQC homepage")
-[[back to top]]([[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md))
+[[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
 >i. Execute the following commands to copy files for this morning’s exercises to your scratch directory: 
@@ -151,7 +151,7 @@ Check out [this](https://sequencing.qcfail.com/articles/loss-of-base-call-accura
 > [A video FastQC walkthrough created by FastQC developers](https://www.youtube.com/watch?v=bz93ReOv87Y "FastQC video") 
 
 ## Quality Trimming using [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic "Trimmomatic Homepage")
-[[back to top]]((https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md)
+[[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
 Identifying adapter or other contaminant sequences within a dataset is inherently a trade off between sensitivity (ensuring all contaminant sequences are removed) and specificity (leaving all non-contaminant sequence data intact). Adapter and other technical contaminants can potentially occur in any location within the reads.(start, end, read-through, partial adapter sequences)
@@ -255,5 +255,5 @@ The red cross sign disappeared!
 
 Lets have a look at one of the Bad Illumina data example [here](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/bad_sequence_fastqc.html)
 
-[[back to top]]((https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md)
+[[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
