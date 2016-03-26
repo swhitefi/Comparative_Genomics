@@ -9,7 +9,7 @@
 	
 2. Short read processing 
 	- [FastQC](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
-	- [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic) [Manual](http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/TrimmomaticManual_V0.32.pdf)
+	- Trimmomatic: [Home](http://www.usadellab.org/cms/?page=trimmomatic) [Manual](http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/TrimmomaticManual_V0.32.pdf)
 	- [bwa]()
 	- [bowtie]()
 	- [samtools]()
