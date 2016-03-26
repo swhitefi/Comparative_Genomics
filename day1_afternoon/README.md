@@ -317,12 +317,12 @@ scp username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day1
 
 ```
 
-## Visualize BAM and VCF files in IGV or ACT
+## Visualize BAM and VCF files in Artemis
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_afternoon/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
 A visual visualization of all these various output files helps in making some significant decisions and inferences about your entire analysis. There are wide variety of visualization tools out there that you can choose from for this purpose.
-We will be using Artemis here, developed by Sanger Institute for viewing BAM and vcf files for manual inspection of some of the variants.
+We will be using [Artemis](http://www.sanger.ac.uk/science/tools/artemis) here, developed by Sanger Institute for viewing BAM and vcf files for manual inspection of some of the variants.
 
 
 > Required Input files: KPNIH1 reference fasta and genbank file, Rush_KPC_266__aln_marked.bam and Rush_KPC_266__aln_marked.bai, Rush_KPC_266__aln_mpileup_raw.vcf/Rush_KPC_266__filter_onlysnp.recode.vcf/Rush_KPC_266__filter_gatk_ann.vcf
