@@ -104,7 +104,7 @@ java -jar /scratch/micro612w16_fluxod/shared/bin/picard-tools-1.130/picard.jar C
 
 Make sure you copy this command appropriately.
 ```
-java -jar /scratch/micro612w16_fluxod/shared/bin/picard-tools-1.130/picard.jar MarkDuplicates REMOVE_DUPLICATES=true INPUT=Rush_KPC_266__aln_sort.bam OUTPUT= Rush_KPC_266__aln_marked.bam METRICS_FILE=Rush_KPC_266__markduplicates_metrics CREATE_INDEX=true VALIDATION_STRINGENCY=LENIENT
+> java -jar /scratch/micro612w16_fluxod/shared/bin/picard-tools-1.130/picard.jar MarkDuplicates REMOVE_DUPLICATES=true INPUT=Rush_KPC_266__aln_sort.bam OUTPUT= Rush_KPC_266__aln_marked.bam METRICS_FILE=Rush_KPC_266__markduplicates_metrics CREATE_INDEX=true VALIDATION_STRINGENCY=LENIENT
 ```
 
 >iii. Sort these marked BAM file again (Just to make sure, it doesn't throw error in downstream steps. Also we will be using this final marked BAM file in downstream steps)
