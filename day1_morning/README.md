@@ -58,7 +58,7 @@ export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/blast-2.2.26/bin/
 >iv. Source your .bashrc file
 
 ```
-source .bashrc
+source ~/.bashrc
 ```
 
 ## Quality Control using [FastQC](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/ "FastQC homepage")
