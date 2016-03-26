@@ -53,7 +53,7 @@ For other algorithms employed by BWA, you can refer to BWA [manual](http://bio-b
 bwa mem -M -R "@RG\tID:96\tSM:Rush_KPC_266_1_combine.fastq.gz\tLB:1\tPL:Illumina" -t 8 KPNIH1.fasta forward_paired.fq.gz reverse_paired.fq.gz > Rush_KPC_266__aln.sam
 ```
 
-Many algorithms need to know that certain reads were sequenced together on a specific lane. This string with -R flag says that all reads belongs to ID 96 sample Rush_KPC_266_1_combine.fastq.gz and was sequenced on illumina platform.
+Many algorithms need to know that certain reads were sequenced together on a specific lane. This string with -R flag says that all reads belongs to ID 96; with sample name Rush_KPC_266_1_combine.fastq.gz and was sequenced on illumina platform.
 
 **3. SAM/BAM manipulation and variant calling using [Samtools](http://www.htslib.org/doc/samtools.html "Samtools Manual")**
 
