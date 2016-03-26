@@ -4,9 +4,12 @@
 1. General Bioinformatics resources
 	- [Omictools](http://omictools.com/)
 	- [Bioinformatics One-liners by Stephen Turner](https://github.com/stephenturner/oneliners)
+	- [QC Fail: Explaining your errors](https://sequencing.qcfail.com/)
 	
 	
 2. Short read processing 
+	- [FastQC](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
+	- [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic) [Manual](http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/TrimmomaticManual_V0.32.pdf)
 	- [bwa]()
 	- [bowtie]()
 	- [samtools]()
@@ -53,7 +56,11 @@
 		- [Gubbins]()
 		- [ClonalFrame]()
 		- [RDP]()
- 
+
+8. Video Resources
+	- [FastQC](https://www.youtube.com/watch?v=bz93ReOv87Y) 
+	- 
+	
 
 
 
