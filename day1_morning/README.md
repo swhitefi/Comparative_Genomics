@@ -159,7 +159,9 @@ Now we will run Trimmomatic on these raw data to remove low quality reads as wel
 
 >i. Get an interactive cluster node to start running programs
 
+```
 qsub -I -V -l nodes=1:ppn=4,mem=16000mb,walltime=7:00:00:00 -q fluxod -l qos=flux -A micro612w16_fluxod
+```
 
 Change your directory to day1_morn
 
@@ -217,7 +219,7 @@ After running Trimmomatic, the sequence quality improved and now doesn't contain
 Also, If you notice the per base sequence content graph, the head bases(~9 bp) are slightly imbalanced. In a perfect scenario,each nucleotide content should run parallel to each other. 
 
 Quoting FastQC:
-	"It's worth noting that some types of library will always produce biased sequence composition, normally at the start of the read. Libraries produced by priming using random hexamers (including nearly all RNA-Seq libraries) and those which were fragmented using transposases inherit an intrinsic bias in the positions at which reads start. This bias does not concern an absolute sequence, but instead provides enrichement of a number of different K-mers at the 5' end of the reads. Whilst this is a true technical bias, it isn't something which can be corrected by trimming and in most cases doesn't seem to adversely affect the downstream analysis. It will however produce a warning or error in this module."
+	"It's worth noting that some types of library will always produce biased sequence composition, normally at the start of the read. Libraries produced by priming using random hexamers (including nearly all RNA-Seq libraries) and those which were fragmented using transposases inherit an intrinsic bias in the positions at which reads start. This bias does not concern an absolute sequence, but instead provides enrichment of a number of different K-mers at the 5' end of the reads. Whilst this is a true technical bias, it isn't something which can be corrected by trimming and in most cases doesn't seem to adversely affect the downstream analysis. It will however produce a warning or error in this module."
 
 This doesn't look very bad but you can remove the red cross sign by trimming these imbalanced head bases using HEADCROP:9 flag in the above command.
 
