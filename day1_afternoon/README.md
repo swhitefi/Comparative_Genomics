@@ -6,6 +6,7 @@ Read Mapping is one of the most common Bioinformatics operations that needs to b
 ## Read Mapping
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_afternoon/README.md#day-1-afternoon)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
+
 ![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_after/1.png)
 
 **1. Copy day1_after directory from shared data directory into your home directory.**
