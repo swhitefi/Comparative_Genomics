@@ -1,7 +1,7 @@
 # Day 1 Afternoon
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
-Read Mapping is one of the most common Bioinformatics operation that needs to be carried out on NGS data. Reads are generally mapped to a reference genome sequence or closely related genome if reference is not available. There are number of tools that can map reads to a reference genome and differ from each other in algorithm, speed and accuracy. Most of these tools works by first building an index of reference sequence which works like a dictionary for fast search/lookup and then calling an alignment algorithm that uses these index to align short read sequences against the reference. These alignment has a vast number of uses ranging from Variant/SNP calling, Coverage estimation and gene expression analysis.
+Read Mapping is one of the most common Bioinformatics operations that needs to be carried out on NGS data. Reads are generally mapped to a reference genome sequence or closely related genome if a reference is not available. There are number of tools that can map reads to a reference genome and they differ from each other in algorithm, speed and accuracy. Most of these tools work by first building an index of reference sequence which works like a dictionary for fast search/lookup and then calling an alignment algorithm that uses these index to align short read sequences against the reference. These alignment has a vast number of uses ranging from Variant/SNP calling, Coverage estimation and gene expression analysis.
 
 ## Read Mapping
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
@@ -71,12 +71,12 @@ BAM is the compressed binary equivalent of SAM but are usually quite smaller in 
 
 The below command will ask samtools to convert SAM format(-S) to BAM format(-b)
 ```
-samtools view -Sb Rush_KPC_266__aln.sam > Rush_KPC_266__aln.bam
+samtools view -Sb ../Rush_KPC_266__aln.sam > Rush_KPC_266__aln.bam
 ```
 
 >iii. Sort BAM file using SAMTOOLS:
 
-Now before indexing this BAM file, we will sort the data by positions(default) using samtools. Some expression tools requires it to be sorted by read name which is achieved by passing -n flag.
+Now before indexing this BAM file, we will sort the data by positions(default) using samtools. Some expression tools require it to be sorted by read name which is achieved by passing -n flag.
 
 ```
 samtools sort Rush_KPC_266__aln.bam Rush_KPC_266__aln_sort
