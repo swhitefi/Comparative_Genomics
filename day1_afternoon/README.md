@@ -28,9 +28,11 @@ Our reference genome is located at: /scratch/micro612w16_fluxod/shared/bin/refer
 Copy it to day1_after folder and create Rush_KPC_266_varcall_result folder for saving this exercise's output.
 
 ```
+
 cp /scratch/micro612w16_fluxod/shared/bin/reference/KPNIH1/KPNIH1.fasta day1_after/
 cd day1_after/
 mkdir Rush_KPC_266_varcall_result
+
 ```
 
 Create bwa index for the reference genome.
@@ -50,7 +52,9 @@ Now lets align both left and right end reads to our reference using BWA alignmen
 For other algorithms employed by BWA, you can refer to BWA [manual](http://bio-bwa.sourceforge.net/bwa.shtml "BWA manual")
 
 ```
+
 bwa mem -M -R "@RG\tID:96\tSM:Rush_KPC_266_1_combine.fastq.gz\tLB:1\tPL:Illumina" -t 8 KPNIH1.fasta forward_paired.fq.gz reverse_paired.fq.gz > Rush_KPC_266__aln.sam
+
 ```
 
 Many algorithms need to know that certain reads were sequenced together on a specific lane. This string with -R flag says that all reads belongs to ID 96; with sample name Rush_KPC_266_1_combine.fastq.gz and was sequenced on illumina platform.
@@ -95,16 +99,19 @@ Picard identifies duplicates by search for reads that have same start position o
 >i. Create a dictionary for reference fasta file required by PICARD
  
 ```
+
 java -jar /scratch/micro612w16_fluxod/shared/bin/picard-tools-1.130/picard.jar CreateSequenceDictionary REFERENCE=/path-to-reference/KPNIH1.fasta OUTPUT=/path-to-reference/KPNIH1.dict
+
 ```
 
 > Note: Dont forget to put the actual path to the refeerence sequence in place of /path-to-reference/ and also keep KPNIH1.dict as output filename in above command. /path-to-reference/ here is your day1_after directory
 
 >ii. Run PICARD for removing duplicates.
 
-Make sure you copy this command appropriately.
 ```
+
 java -jar /scratch/micro612w16_fluxod/shared/bin/picard-tools-1.130/picard.jar MarkDuplicates REMOVE_DUPLICATES=true INPUT=Rush_KPC_266__aln_sort.bam OUTPUT= Rush_KPC_266__aln_marked.bam METRICS_FILE=Rush_KPC_266__markduplicates_metrics CREATE_INDEX=true VALIDATION_STRINGENCY=LENIENT
+
 ```
 
 >iii. Sort these marked BAM file again (Just to make sure, it doesn't throw error in downstream steps. Also we will be using this final marked BAM file in downstream steps)
@@ -139,7 +146,9 @@ Here we will use samtools mpileup to perform this operation on our BAM file and 
 **1. Call variants using [samtools](http://www.htslib.org/doc/samtools.html "samtools manual") mpileup and [bcftools](https://samtools.github.io/bcftools/bcftools.html "bcftools")**
 
 ```
+
 samtools mpileup -ug -f /path-to-reference/KPNIH1.fasta Rush_KPC_266__aln_marked.bam | bcftools call -O v -v -c -o Rush_KPC_266__aln_mpileup_raw.vcf
+
 ```
 
 > Note: Dont forget to put the actual path to the reference sequence in place of /path-to-reference/
@@ -196,8 +205,10 @@ vcftools is a program package that is especially written to work with vcf file f
 Now, Lets remove indels from our final vcf file and keep only variants that passed our filter criteria(positions with pass_filter in their FILTER column).
 
 ```
+
 vcftools --vcf Rush_KPC_266__filter_gatk.vcf --keep-filtered pass_filter --remove-indels --recode --recode-INFO-all --out
 Rush_KPC_266__filter_onlysnp 
+
 ```
 
 Notice the details that were printed out in STDOUT.(How many sites were retained out of total site?)
@@ -209,9 +220,11 @@ A consensus fasta sequence will contain alleles from reference sequence at posit
 Run the commands below to generate a consensus fasta sequence.
 
 ```
+
 bgzip Rush_KPC_266__filter_onlysnp.recode.vcf
 tabix Rush_KPC_266__filter_onlysnp.recode.vcf.gz
 cat /path-to-reference/KPNIH1.fasta | vcf-consensus Rush_KPC_266__filter_onlysnp.recode.vcf.gz > Rush_KPC_266__consensus.fa
+
 ```
 
 > Note: Dont forget to put the actual path to the refeerence sequence in place of /path-to-reference/
@@ -245,7 +258,9 @@ sed -i 's/gi.*|/Chromosome/g' Rush_KPC_266__filter_gatk.vcf
 >iii. Run snpEff for variant annotation.
 
 ```
+
 java -jar /scratch/micro612w16_fluxod/shared/bin/snpEff/snpEff.jar -v GCA_000281535.2.29 Rush_KPC_266__filter_gatk.vcf > Rush_KPC_266__filter_gatk_ann.vcf -htmlStats Rush_KPC_266__filter_gatk_stats
+
 ```
 
 The STDOUT  will print out some useful details such as genome name and version being used, no. of genes, protein-coding genes and transcripts, chromosome and plasmid names etc
@@ -276,9 +291,11 @@ These statistics will give you an idea about how well your reads aligned to the 
 ii. VCF statistics:  
 
 ```
+
 bgzip Rush_KPC_266__aln_mpileup_raw.vcf   
 tabix Rush_KPC_266__aln_mpileup_raw.vcf.gz  
 vcf-stats Rush_KPC_266__aln_mpileup_raw.vcf.gz > Rush_KPC_266__raw_vcf_stats
+
 ```
 
 Open Rush_KPC_266__raw_vcf_stats and check the number of snps and indels called for this sample.  
@@ -294,7 +311,9 @@ qualimap bamqc -bam Rush_KPC_266__aln_sort.bam -outdir ./ -outfile Rush_KPC_266_
 Lets get this pdf report onto our local system and check the chromosome stats table, mapping quality and coverage across the entire reference genome.
 
 ```
+
 scp username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day1_after/Rush_KPC_266_varcall_result/Rush_KPC_266__report.pdf /path-to-local-directory/
+
 ```
 
 ## Visualize BAM and VCF files in IGV or ACT
@@ -310,9 +329,11 @@ Lets go ahead and use Artemis for viewing BAM and vcf files for inspect some of 
 Lets make a seperate folder for the files that we need for visualization and copy it to that folder
 
 ```
+
 mkdir Artemis_files
 bgzip -d Rush_KPC_266__aln_mpileup_raw.vcf.gz
 cp /path-to-reference/KPNIH1.fasta Rush_KPC_266__aln_marked.bam Rush_KPC_266__aln_marked.bai Rush_KPC_266__aln_mpileup_raw.vcf Rush_KPC_266__filter_onlysnp.recode.vcf Rush_KPC_266__filter_gatk_ann.vcf Artemis_files/
+
 ```
 
 We need to replace the genome name that we changed earlier for snpEff.
@@ -325,7 +346,9 @@ sed -i 's/Chromosome/gi|661922017|gb|CP008827.1|/g' *.vcf
 Get these file to your local system and start Artemis.
 
 ```
+
 scp -r username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day1_after/Rush_KPC_266_varcall_result/Artemis_files/ /path-to-local-directory/
+
 ```
 
 Set your working directory to Artemis_files and click OK.
