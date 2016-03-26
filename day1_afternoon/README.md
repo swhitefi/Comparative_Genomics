@@ -317,7 +317,7 @@ scp username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day1
 
 ```
 
-## Visualize BAM and VCF files in Artemis
+## Visualize BAM and VCF files in [Artemis](http://www.sanger.ac.uk/science/tools/artemis)
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_afternoon/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
