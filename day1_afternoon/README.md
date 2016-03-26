@@ -53,7 +53,7 @@ For other algorithms employed by BWA, you can refer to BWA [manual](http://bio-b
 
 ```
 
-bwa mem -M -R "@RG\tID:96\tSM:Rush_KPC_266_1_combine.fastq.gz\tLB:1\tPL:Illumina" -t 8 KPNIH1.fasta forward_paired.fq.gz reverse_paired.fq.gz > Rush_KPC_266__aln.sam
+bwa mem -M -R "@RG\tID:96\tSM:Rush_KPC_266_1_combine.fastq.gz\tLB:1\tPL:Illumina" -t 8 KPNIH1.fasta forward_paired.fq.gz reverse_paired.fq.gz > Rush_KPC_266_varcall_result/Rush_KPC_266__aln.sam
 
 ```
 
@@ -75,7 +75,7 @@ BAM is the compressed binary equivalent of SAM but are usually quite smaller in 
 
 The below command will ask samtools to convert SAM format(-S) to BAM format(-b)
 ```
-samtools view -Sb ../Rush_KPC_266__aln.sam > Rush_KPC_266__aln.bam
+samtools view -Sb Rush_KPC_266__aln.sam > Rush_KPC_266__aln.bam
 ```
 
 >iii. Sort BAM file using SAMTOOLS:
@@ -277,7 +277,7 @@ Detailed information of ANN field and sequence ontology terms that it uses can b
 
 **4. Generate Statistics report using samtools, vcftools and qualimap**
 
-Lets try to get some statistics about various outputs that were created using the above steps and check if everything makes sense.
+Often, While analyzing sequencing data, we are required to make sure that our analysis steps are correct. Some statistics about our analysis will help us in making that decision. So Lets try to get some statistics about various outputs that were created using the above steps and check if everything makes sense.
 
 >i. Reads Alignment statistics:
  
@@ -285,7 +285,7 @@ Lets try to get some statistics about various outputs that were created using th
 samtools flagstat Rush_KPC_266__aln.bam > Rush_KPC_266__alignment_stats
 ```
 
-These statistics will give you an idea about how well your reads aligned to the reference genome in terms of what percentage of reads that you supplied actually mapped to the genome. 
+These statistics will give you an idea about how well your reads aligned to the reference genome in terms of what percentage of reads that you supplied actually mapped. If there is very low percentage of reads that are being mapped, then you need to reconsider the reference genome being used for reads alignment.
 
 ii. VCF statistics:  
 
@@ -297,11 +297,11 @@ vcf-stats Rush_KPC_266__aln_mpileup_raw.vcf.gz > Rush_KPC_266__raw_vcf_stats
 
 ```
 
-Open Rush_KPC_266__raw_vcf_stats and check the number of snps and indels called for this sample.  
+Open Rush_KPC_266__raw_vcf_stats and check the number of snps and indels called for this sample. You can get the same kind of statistics for your final filtered vcf.
 
 iii. Qualimap report of BAM coverage:
 
-Qualimap outputs a very imformative reports about the alignments and coverage across the entire genome. Let create one for our samples. The below command call bamqc utility of qualimap and generates a report in pdf format.
+Qualimap outputs a very imformative reports about the alignments and coverage across the entire genome. Let create one for our sample. The below command calls bamqc utility of qualimap and generates a report in pdf format.
 
 ``` 
 qualimap bamqc -bam Rush_KPC_266__aln_sort.bam -outdir ./ -outfile Rush_KPC_266__report.pdf -outformat pdf 
@@ -319,8 +319,8 @@ scp username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day1
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
-A visual visualization of all these various output helps in making some significant decisions and inferences about your entire analysis. There are wide a wide variety of visualization tools out there that you can choose for this purpose.
-Lets go ahead and use Artemis for viewing BAM and vcf files for inspect some of the variants visually.
+A visual visualization of all these various output files helps in making some significant decisions and inferences about your entire analysis. There are wide variety of visualization tools out there that you can choose from for this purpose.
+We will be using Artemis here, developed by Sanger Institute for viewing BAM and vcf files for manual inspection of some of the variants.
 
 
 > Required Input files: KPNIH1 reference fasta and genbank file, Rush_KPC_266__aln_marked.bam and Rush_KPC_266__aln_marked.bai, Rush_KPC_266__aln_mpileup_raw.vcf/Rush_KPC_266__filter_onlysnp.recode.vcf/Rush_KPC_266__filter_gatk_ann.vcf
