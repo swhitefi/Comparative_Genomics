@@ -113,7 +113,7 @@ java -jar /scratch/micro612w16_fluxod/shared/bin/picard-tools-1.130/picard.jar M
 samtools sort Rush_KPC_266__aln_marked.bam Rush_KPC_266__aln_sort
 ```
 
-Open the markduplicates metrics file and glance through the number and percentage of PCR duplicates removed. For more details about each metrics in a metrics file, please refer [this](https://broadinstitute.github.io/picard/picard-metric-definitions.html#DuplicationMetrics)
+In the mean time, open the markduplicates metrics file and glance through the number and percentage of PCR duplicates removed. For more details about each metrics in a metrics file, please refer [this](https://broadinstitute.github.io/picard/picard-metric-definitions.html#DuplicationMetrics)
 
 ```
 nano Rush_KPC_266__markduplicates_metrics
@@ -128,7 +128,7 @@ samtools index Rush_KPC_266__aln_marked.bam
 ## Variant Calling and Filteration
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
-One of the downstream uses of read mapping is finding differences between our sequence data against a reference. This step is achieved by carrying out calling variants using any of the variant callers(samtools, gatk, freebayes etc). Each variant callers use different statistical framework to discover SNP and other types of mutations. For those of you who are interested in finding out more about the statistics involved, please refere to [this]() samtools paper, one of most commonly used variant callers.
+One of the downstream uses of read mapping is finding differences between our sequence data against a reference. This step is achieved by carrying out variants calling using any of the variant callers(samtools, gatk, freebayes etc). Each variant callers use different statistical framework to discover SNP and other types of mutations. For those of you who are interested in finding out more about the statistics involved, please refere to [this]() samtools paper, one of most commonly used variant callers.
 
 This GATK best practices [guide](https://www.broadinstitute.org/gatk/guide/best-practices.php) will provide more details about various steps that you can incorporate in your analysis.
 
@@ -138,15 +138,15 @@ Here we will use samtools mpileup to perform this operation on our BAM file and 
 
 **1. Call variants using [samtools](http://www.htslib.org/doc/samtools.html "samtools manual") mpileup and [bcftools](https://samtools.github.io/bcftools/bcftools.html "bcftools")**
 
-samtools mpileup generate pileup format from alignments, computes genotype likelihood(-ug flag) and outputs it in bcf format(binary version of vcf). This bcf output is then piped to bcftools that calls variants and outputs it in vcf format(-c flag for consensus calling and -v for outputting variants positions only)
-
 ```
 samtools mpileup -ug -f /path-to-reference/KPNIH1.fasta Rush_KPC_266__aln_marked.bam | bcftools call -O v -v -c -o Rush_KPC_266__aln_mpileup_raw.vcf
 ```
 
 > Note: Dont forget to put the actual path to the reference sequence in place of /path-to-reference/
 
-Lets go through our vcf file and try to understand a few vcf specifications and criteria that we can use for filtering low confidence snps. 
+samtools mpileup generate pileup format from alignments stored in BAM, computes genotype likelihood(-ug flag) and outputs it in bcf format(binary version of vcf). This bcf output is then piped to bcftools that calls variants and outputs it in vcf format(-c flag for consensus calling and -v for outputting variants positions only)
+
+Lets go through an example vcf file and try to understand a few vcf specifications and criteria that we can use for filtering low confidence snps. 
 
 ```
 less Rush_KPC_266__aln_mpileup_raw.vcf
