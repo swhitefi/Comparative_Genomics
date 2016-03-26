@@ -88,7 +88,7 @@ Illumina sequencing involves PCR amplification of adapter ligated DNA fragments 
 
 For an in-depth explanation about how PCR duplicates arise in sequencing, please refer to this interesting [blog](http://www.cureffi.org/2012/12/11/how-pcr-duplicates-arise-in-next-generation-sequencing/)
 
-Picard identifies duplicates by search for reads that have same start position on reference or in PE reads same start for both ends. It will choose a representative from the based on base quality scores and other criteria and retain it while removing other duplicates. This step is plays a significant role in removing false positive variant calls represented by PCR duplicate reads.
+Picard identifies duplicates by search for reads that have same start position on reference or in PE reads same start for both ends. It will choose a representative from each group of duplicate reads based on best base quality scores and other criteria and retain it while removing other duplicates. This step plays a significant role in removing false positive variant calls during variant calling that are represented by PCR duplicate reads.
 
 ![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_after/picard.png)
 
@@ -98,26 +98,28 @@ Picard identifies duplicates by search for reads that have same start position o
 java -jar /scratch/micro612w16_fluxod/shared/bin/picard-tools-1.130/picard.jar CreateSequenceDictionary REFERENCE=/path-to-reference/KPNIH1.fasta OUTPUT=/path-to-reference/KPNIH1.dict
 ```
 
-> Note: Dont forget to put the actual path to the refeerence sequence in place of /path-to-reference/ and also keep KPNIH1.dict as output filename in above command.
+> Note: Dont forget to put the actual path to the refeerence sequence in place of /path-to-reference/ and also keep KPNIH1.dict as output filename in above command. /path-to-reference/ here is your day1_after directory
 
 >ii. Run PICARD for removing duplicates.
 
+Make sure you copy this command appropriately.
 ```
-java -jar /scratch/micro612w16_fluxod/shared/bin/picard-tools-1.130/picard.jar MarkDuplicates REMOVE_DUPLICATES=true INPUT=Rush_KPC_266__aln_sort.bam OUTPUT= Rush_KPC_266__aln_marked.bam METRICS_FILE=Rush_KPC_266__markduplicates_metrics
-CREATE_INDEX=true VALIDATION_STRINGENCY=LENIENT
+java -jar /scratch/micro612w16_fluxod/shared/bin/picard-tools-1.130/picard.jar MarkDuplicates REMOVE_DUPLICATES=true INPUT=Rush_KPC_266__aln_sort.bam OUTPUT= Rush_KPC_266__aln_marked.bam METRICS_FILE=Rush_KPC_266__markduplicates_metrics CREATE_INDEX=true VALIDATION_STRINGENCY=LENIENT
 ```
-Open the markduplicates metrics file and glance through the number and percentage of PCR duplicates removed. For more details about each metrics in a metrics file, please refer [this](https://broadinstitute.github.io/picard/picard-metric-definitions.html#DuplicationMetrics)
 
-```
-nano Rush_KPC_266__markduplicates_metrics
-```
->iii. Sort these marked BAM file again (Just to make sure, it doesn't throw error in downstream steps)
+>iii. Sort these marked BAM file again (Just to make sure, it doesn't throw error in downstream steps. Also we will be using this final marked BAM file in downstream steps)
 
 ```
 samtools sort Rush_KPC_266__aln_marked.bam Rush_KPC_266__aln_sort
 ```
 
->iv. Index these marked bam file again using SAMTOOLS (Just to make sure, it doesn't throw error in downstream steps)
+Open the markduplicates metrics file and glance through the number and percentage of PCR duplicates removed. For more details about each metrics in a metrics file, please refer [this](https://broadinstitute.github.io/picard/picard-metric-definitions.html#DuplicationMetrics)
+
+```
+nano Rush_KPC_266__markduplicates_metrics
+```
+
+>iv. Index these marked bam file again using SAMTOOLS
 
 ```
 samtools index Rush_KPC_266__aln_marked.bam
