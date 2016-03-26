@@ -149,7 +149,7 @@ samtools mpileup generate pileup format from alignments stored in BAM, computes 
 Lets go through an example vcf file and try to understand a few vcf specifications and criteria that we can use for filtering low confidence snps. 
 
 ```
-less Rush_KPC_266__aln_mpileup_raw.vcf
+less example.vcf
 ```
 
 VCF format stores a large variety of information and you can find more details about each nomenclature in this [pdf](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0ahUKEwit35bvktzLAhVHkoMKHe3hAhYQFggdMAA&url=https%3A%2F%2Fsamtools.github.io%2Fhts-specs%2FVCFv4.2.pdf&usg=AFQjCNGFka33WgRmvOfOfp4nSaCzkV95HA&sig2=tPLD6jW5ALombN3ALRiCZg&cad=rja)
@@ -158,13 +158,14 @@ VCF format stores a large variety of information and you can find more details a
 
 >i. Variant filtering using [GATK](https://www.broadinstitute.org/gatk/guide/tooldocs/org_broadinstitute_gatk_tools_walkers_filters_VariantFiltration.php "GATK Variant Filteration"):
 
-There are various tools that can you can try for variant filteration such as vcftools, GATK, vcfutils. Here we will use GATK VariantFiltration utility to filter out low confidence variants.
+There are various tools that can you can try for variant filteration such as vcftools, GATK, vcfutils etc. Here we will use GATK VariantFiltration utility to filter out low confidence variants.
 
-Here, the below command will add a 'pass_filter' text in the 7th FILTER column for those variant positions that passed our filtered criteria:
+The command below will add a 'pass_filter' text in the 7th FILTER column for those variant positions that passed our filtered criteria:
+
 1. DP: Depth of reads. More than 15 reads supporting a variant call at these position.
 2. MQ: Root Mean Square Mapping Quality. This provides an estimation of the overall mapping quality of reads supporting a variant call. The root mean square is equivalent to the mean of the mapping qualities plus the standard deviation of the mapping qualities.
 3. QUAL stands for phred-scaled quality score for the assertion made in ALT. High QUAL scores indicate high confidence calls.
-4. FQ stands for consensus quality. A positive value indicates heterozygote and a negative value indicates homozygous. In bacterial analysis, this plays an important role in defining if a genes was duplicated in a particular sample. We will more about later while visualizing our BAM files in IGV.
+4. FQ stands for consensus quality. A positive value indicates heterozygote and a negative value indicates homozygous. In bacterial analysis, this plays an important role in defining if a gene was duplicated in a particular sample. We will learn more about this later while visualizing our BAM files in Artemis.
 
 Run this command on raw vcf file Rush_KPC_266__aln_mpileup_raw.vcf.
 
