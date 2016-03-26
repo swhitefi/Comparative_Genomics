@@ -10,7 +10,7 @@
 ***
 	- [Read Mapping](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_afternoon/README.md#read-mapping)
 	- [Variant Calling](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_afternoon/README.md#variant-calling-and-filteration)
-	- [Visualize BAM/VCF files in IGV/ACT](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_afternoon/README.md#visualize-bam-and-vcf-files-in-igv-or-act)
+	- [Visualize BAM/VCF files in Artemis](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_afternoon/README.md#visualize-bam-and-vcf-files-in-artemis)
 
 - [Day 2 Morning](https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_morning/README.md#day-2-morning)
 ***
