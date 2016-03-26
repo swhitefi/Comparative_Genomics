@@ -14,7 +14,7 @@ Read Mapping is one of the most common Bioinformatics operations that needs to b
 cp -r /scratch/micro612w16_fluxod/shared/data/day1_after ./
 ```
 
-We will be using the trimmed clean reads that were obtained after running Trimmmatic on raw reads.
+We will be using the trimmed clean reads that were obtained after running Trimmomatic on raw reads.
 
 **2. Map your reads against a finished reference genome using [BWA](http://bio-bwa.sourceforge.net/bwa.shtml "BWA manual")**
 
