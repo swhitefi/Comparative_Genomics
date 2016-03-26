@@ -356,7 +356,7 @@ Now Go to the top left File options and select Open File Manager. You should see
 
 Now open BAM file by selecting File -> Read BAM/VCF file -> Select -> Rush_KPC_266__aln_marked.bam -> OK
 
-Reads aligned your reference are displayed as stacked at the top panel of Artemis. Now right click on any of this stacked reads and Go to Graph and select Coverage(screenshot below). 
+Reads aligned to your reference are displayed as stacked at the top panel of Artemis. Now right click on any of this stacked reads and Go to Graph and select Coverage(screenshot below). 
 
 ![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_after/artemis/select_graph.png)
 
@@ -380,10 +380,10 @@ You will Notice a spike in the middle of the SNP graph window. This is one of th
 
 ![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_after/artemis/spike_true.png)
 
-Let try to see an example of HET variant. Variant positions where more than one allele with suffficiently high read depth are observed are considered as HRT type variant. 
+Let try to see an example of HET variant. Variant positions where more than one allele with suffficiently high read depth are observed are considered as HET type variant. 
 For this, click on Goto option at the top and select navigator. Type 321818 in Goto Base box and click Goto.
 
-You will see a thick spike in the SNP graph as well as thick red vertical line in BAM panel. Also notice the a sudden spike in the coverage for this particular region compare to its flanking region(Region before and after a selected region). The coverage here is more than 300 which is unusually high compare to the entire genome coverage. This means that more than one allele with high quality and depth were observed at these positions so we cannot decide which one of these is a true variant. We removed these type of variants during our Variant Filteration step using the criteria FQ. (If the FQ is unusually high, it is suggestive of HET variant and negative FQ value is a suggestive of true variant as observed in the mapped reads) 
+You will see a thick spike in the SNP graph as well as thick red vertical line in BAM panel. Also notice the sudden spike in the coverage for this particular region compare to its flanking region(Region before and after a selected region). The coverage here is more than 300 which is unusually high compare to the entire genome coverage. This means that more than one allele with high quality and depth were observed at these positions so we cannot decide which one of these is a true variant. We removed these type of variants during our Variant Filteration step using the criteria FQ. (If the FQ is unusually high, it is suggestive of HET variant and negative FQ value is a suggestive of true variant as observed in the mapped reads) 
 
 ![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_after/artemis/HET_variant.png)
 
@@ -391,10 +391,9 @@ Now select the gene right below this spiked region. Right click on this gene(KPN
 
 ![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_after/artemis/HET_variant_gene_selected.png)
 
-Check the gene features in the bottom feature decription panel to know more about the gene and its function. Here the gene that was selected is hmsH and is known to be involved in Biofilm formation.
+Check the details about gene by selecting View -> Selected Features
 
 You can inspect these type of HET variants later for any gene duplication or copy number analysis. Addition of these details will give a better resolution while inferring Phylogenetic trees.
-
 
 Play around with Artemis to look at what other kind of information you can find from these BAM and vcf files. Also refer to [this](ftp://ftp.sanger.ac.uk/pub/resources/software/artemis/artemis.pdf) Artemis manual for full information about its usage. 
 
