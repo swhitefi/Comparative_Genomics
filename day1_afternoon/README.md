@@ -298,7 +298,7 @@ scp username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day1
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
 A visual visualization of all these various output helps in making some significant decisions and inferences about your entire analysis. There are wide a wide variety of visualization tools out there that you can choose for this purpose.
-Lets go ahead and use IGV- Integrative Genomics Viewer(developed by Broad Institute) for viewing BAM and vcf files.
+Lets go ahead and use Artemis for viewing BAM and vcf files for inspect some of the variants visually.
 
 
 > Required Input files: KPNIH1 reference fasta and genbank file, Rush_KPC_266__aln_marked.bam and Rush_KPC_266__aln_marked.bai, Rush_KPC_266__aln_mpileup_raw.vcf/Rush_KPC_266__filter_onlysnp.recode.vcf/Rush_KPC_266__filter_gatk_ann.vcf
@@ -306,23 +306,60 @@ Lets go ahead and use IGV- Integrative Genomics Viewer(developed by Broad Instit
 Lets make a seperate folder for the files that we need for visualization and copy it to that folder
 
 ```
-mkdir IGV_files
+mkdir Artemis_files
 bgzip -d Rush_KPC_266__aln_mpileup_raw.vcf.gz
-cp /path-to-reference/KPNIH1.fasta Rush_KPC_266__aln_marked.bam Rush_KPC_266__aln_marked.bai Rush_KPC_266__aln_mpileup_raw.vcf Rush_KPC_266__filter_onlysnp.recode.vcf Rush_KPC_266__filter_gatk_ann.vcf IGV_files/
+cp /path-to-reference/KPNIH1.fasta Rush_KPC_266__aln_marked.bam Rush_KPC_266__aln_marked.bai Rush_KPC_266__aln_mpileup_raw.vcf Rush_KPC_266__filter_onlysnp.recode.vcf Rush_KPC_266__filter_gatk_ann.vcf Artemis_files/
 ```
 
-We need to replace the genome name we changed earlier for snpEff compatibility.
+We need to replace the genome name that we changed earlier for snpEff.
 
 ```
-cd IGV_files
+cd Artemis_files
 sed -i 's/Chromosome/gi|661922017|gb|CP008827.1|/g' *.vcf
 ```
 
-Get these file to your local system and start IGV.
+Get these file to your local system and start Artemis.
 
 ```
-scp -r username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day1_after/Rush_KPC_266_varcall_result/IGV_files/ /path-to-local-directory/
+scp -r username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day1_after/Rush_KPC_266_varcall_result/Artemis_files/ /path-to-local-directory/
 ```
+
+Set your working directory to Artemis_files and click OK.
+
+Now Go to the top left File optiona and select Open File Manager. You should see the folder Artemis_files. Expand it and double click on KPNIH.gb. A new window should open displaying your features stored in a genbank file.
+Now open BAM file by selecting File -> Read BAM/VCF file -> Select -> Rush_KPC_266__aln_marked.bam -> OK
+
+Reads are displayed as stacked at the top panel of Artemis. Now right click on this stacked reads panel as displayed in the screenshot and Go to Graph and select Coverage. Follow the same procedure and select SNP graph.
+What does it says? Play around by moving the genbank panel cursor to look at coverage for coverage and SNP density across the genome.
+
+
+
+Let try to see an example of HET variant. HET variant type can be described as: If more than one Variant with high quality and depth were observed at a particular position.
+For this, click on Goto option at the top and select navigator. Type 321818 in Goto Base box and click Goto.
+
+Can you see the spike in coverage and SNP density graph compare to its flanking region.(Region before and after a selected region). The coverage here is as high as 386. 
+
+Now select the gene right below this spiked region. Right click on this gene(KPNIH1_RS01560) and select Zoom to Selection.
+
+Go to the stacked reads panel at the top and right click any where on the reads and select Show -> SNP marks
+
+This will show you the variants observed in reads and displayed as Red marks.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Lets first load our reference genome by selecting Genome -> Load Genome from File
 Now load raw vcf, annotated vcf and BAM file by selecting File -> Load From File seperately for each file.
