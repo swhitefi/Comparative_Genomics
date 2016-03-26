@@ -65,7 +65,7 @@ source ~/.bashrc
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
->i. Execute the following commands to copy files for this morning’s exercises to your scratch directory: 
+>i. Execute the following commands to copy files for this morning’s exercises to your home directory: 
 
 ```
 cd /scratch/micro612w16_fluxod/username
