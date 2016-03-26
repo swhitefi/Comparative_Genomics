@@ -67,7 +67,7 @@ cd Rush_KPC_266_varcall_result
 
 SAM stands for sequence alignment/map format and is a TAB-delimited text format that describes how each reads were aligned to the reference sequence. For detailed specifications of SAM format fields, Please  read this [pdf](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0ahUKEwizkvfAk9rLAhXrm4MKHVXxC9kQFggdMAA&url=https%3A%2F%2Fsamtools.github.io%2Fhts-specs%2FSAMv1.pdf&usg=AFQjCNHFmjxTXKnxYqN0WpIFjZNylwPm0Q) document.
 
-BAM is the compressed binary equivalent of SAM but are usually quite smaller in size than SAM format. Since, parsing through a SAM format is slow, Most of the downstream tools requires SAM to be converted to BAM so that it can be easily sorted and indexed.
+BAM is the compressed binary equivalent of SAM but are usually quite smaller in size than SAM format. Since, parsing through a SAM format is slow, Most of the downstream tools require SAM file to be converted to BAM so that it can be easily sorted and indexed.
 
 The below command will ask samtools to convert SAM format(-S) to BAM format(-b)
 ```
