@@ -198,16 +198,15 @@ More Info on VCF format and parameter specifications can be found [here](https:/
 >ii. Remove indels and keep only SNPS that passed our filter criteria using [vcftools](http://vcftools.sourceforge.net/man_latest.html vcftools manual):
 
 In most of the phylogenetic analysis, we are trying to find how these samples differ and evolve from the reference/index genome. Many tools that carry out such type of phylogenetic analysis requires a consensus sequences containing only variant calls(SNPs). Though there are few tools that take into consideration both SNPs and Indels and give a greater resolution.
-Now we will try to construct a consensus sequence using only SNP calls.
+Here we will try to construct a consensus sequence using only SNP calls.
 
-vcftools is a program package that is especially written to work with vcf file formats. It thus saves your precious time by making available all the common operations that you would like to perfome on vcf file using a single command.
+vcftools is a program package that is especially written to work with vcf file formats. It thus saves your precious time by making available all the common operations that you would like to perform on vcf file using a single command.
 
 Now, Lets remove indels from our final vcf file and keep only variants that passed our filter criteria(positions with pass_filter in their FILTER column).
 
 ```
 
-vcftools --vcf Rush_KPC_266__filter_gatk.vcf --keep-filtered pass_filter --remove-indels --recode --recode-INFO-all --out
-Rush_KPC_266__filter_onlysnp 
+vcftools --vcf Rush_KPC_266__filter_gatk.vcf --keep-filtered pass_filter --remove-indels --recode --recode-INFO-all --out Rush_KPC_266__filter_onlysnp
 
 ```
 
