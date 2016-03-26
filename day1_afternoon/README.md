@@ -395,7 +395,7 @@ Check the details about gene by selecting View -> Selected Features
 
 You can inspect these type of HET variants later for any gene duplication or copy number analysis. Addition of these details will give a better resolution while inferring Phylogenetic trees.
 
-Play around with Artemis to look at what other kind of information you can find from these BAM and vcf files. Also refer to [this](ftp://ftp.sanger.ac.uk/pub/resources/software/artemis/artemis.pdf) Artemis manual for full information about its usage. 
+Play around with Artemis to look at what other kind of information you can find from these BAM and vcf files. Also refer to the manual at Artemis [Homepage](http://www.sanger.ac.uk/science/tools/artemis) for full information about its usage. 
 
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
