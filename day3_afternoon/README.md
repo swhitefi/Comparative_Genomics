@@ -55,11 +55,13 @@ Rather than copying these to your directory, analyze the files directly in that 
 
 >ii. Examine output of FastQC to verify that all samples are OK
 
-## Examine results of SPANDx pipeline
+## Examine results of [SPANDx](http://www.ncbi.nlm.nih.gov/pubmed/25201145) pipeline
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_afternoon/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
 On the afternoon of day 1 we saw how many steps are involved in calling variants relative to a reference genome. However, the same steps are applied to every sample, which makes this very pipeline friendly!  So, you could write your own shell script to string together these commands, or take advantage of one of several published pipelines. Here, we will use the output of the SPANDx pipeline, which takes as input a directory of fastq files and produces core variant and indel calls.
+
+More information on SPANDx pipeline can be obtained from [this](https://sourceforge.net/projects/spandx/files/SPANDx%20Manual_v3.1.pdf/download) manual.
 
 Because it takes a while to run, we have pre-run it for you. Your task will be to sort through the outputs of SPANDx.
 
