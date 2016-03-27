@@ -100,8 +100,8 @@ Create new BLAST database with formatdb
 formatdb -i ardb_ROI_genes.pfasta -p T
 ```
 
-BLAST!
-<<<<<<< HEAD
+**BLAST!**
+
 
 ```
 blastall -p blastp -i Abau_all.pfasta -d ardb_ROI_genes.pfasta -o bl_blastp_results -m 8 -e 1e-20 -v 1 -b 1
