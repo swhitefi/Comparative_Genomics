@@ -354,9 +354,6 @@ menu.(screenshot below) This will open up a new window giving you some useful de
 
 ![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_after/artemis/read_details.png)
 
-Let look at some of the ways by which you can manually inspect the variants that were called against this reference. open VCF file by selecting File -> Read BAM/VCF file -> Select -> Rush_KPC_266__filter_gatk_ann.vcf.gz -> OK
-Right click anywhere inside the BAM window and select Show -> SNP marks
-
 The snps are denoted by red marks as observed inside the reads. Go to one of the SNPs in VCF file(Position: 50195) by directly navigating to the position. For this, select Goto at the top -> select Navigator -> Type the position in Goto Base box
 
 You will Notice a spike in the middle of the SNP graph window. This is one of the SNPs that passed all our filter criteria. (Screenshot)
