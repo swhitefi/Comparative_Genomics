@@ -1,5 +1,8 @@
 # Bacterial Comparative Genomics Workshop
 
+A 3 day microbial bioinformatics workshop conducted by Prof. Evan Snitkin at University of Michigan
+Date: 28 - 30 March
+
 - [Day 1 Morning](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md)
 ***
 	- [Getting your data onto Flux and setting up Environment variable](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md#getting-your-data-onto-glux-and-setting-up-environment-variable)
