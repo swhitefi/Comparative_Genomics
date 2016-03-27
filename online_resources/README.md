@@ -55,8 +55,12 @@
 	- Recombination detection 
 		- [Gubbins](http://www.sanger.ac.uk/science/tools/gubbins)
 		- [ClonalFrame](http://www.xavierdidelot.xtreemhost.com/clonalframe.htm?ckattempt=1)
+8. Databases
+	- [ARDB](http://ardb.cbcb.umd.edu/)
+	- [PATRIC](https://www.patricbrc.org/portal/portal/patric/Home)
+	
 
-8. Video Resources you should watch and follow
+9. Video Resources you should watch and follow
 	- [FastQC](https://www.youtube.com/watch?v=bz93ReOv87Y) 
 	- [NHGRI](https://www.youtube.com/user/GenomeTV) 
 	- [Broad Institute](https://www.youtube.com/channel/UCv4IbnP9j9RC_aZAs8wqdeQ)
