@@ -15,19 +15,23 @@ The goal of this exercise is to:
 
 3) overlay our meta-data. 
 
-To make this more difficult, the instructions will be much more vague than in previous sessions, and you will be challenged to use what you have learned, both in the past three days and in the prior workshop, to complete this analysis. Hopefully we’ve prepared you to take on the challenge, but remember this is an open book test! 
+To make this more difficult, the instructions will be much more vague than in previous sessions, and you will be challenged to use what you have learned, both in the past three days and in the prior workshop, to complete this analysis. 
+
+Hopefully we’ve prepared you to take on the challenge, but remember this is an open book test! 
 
 Feel free to lean on materials from the workshops, manuals of tools and Google (and of course instructors and neighbors). 
 
 Execute the following command to copy files for this afternoon’s exercises to your scratch directory:
 
 ```
+
 cd /scratch/micro612w16_fluxod/username
 cp –r  /scratch/micro612w16_fluxod/shared/data/day3_after .
+
 ```
 
 ## Perform QC on fastq files
-[[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
+[[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_afternoon/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
 On the first morning you ran FastQC to evaluate the quality of a single genome. However, a typical project will include many genomes and you will want to check the quality of all of your samples. From the bash workshop, I hope you can appreciate that you do not want to process 100 genomes by typing 100 commands – rather you want to write a short shell script to do the work for you!
@@ -41,9 +45,10 @@ The fastq files are located in:
 /scratch/micro612w16_fluxod/shared/data/day3_after_fastq/
 ```
 
-Rather than copying these to your directory, analyze the files in that directory directly, so everyone doesn’t have to copy 25G to their home directories. 
+Rather than copying these to your directory, analyze the files directly in that directory, so everyone doesn’t have to copy 25G to their home directories. 
 
 **HINTS** 
+
 - Your shell script will include a for loop that loops over all of the genomes in the target directory
 - The tricky part of this exercise is that each fastq command contains two files (forward and reverse reads). So, you need to take advantage of the fact that the forward and reverse read files both have the same prefix, and you can loop over these prefixes. 
 - You should be able to get prefixes by piping the following unix commands: ls, cut, sort, uniq
@@ -51,7 +56,7 @@ Rather than copying these to your directory, analyze the files in that directory
 >ii. Examine output of FastQC to verify that all samples are OK
 
 ## Examine results of SPANDx pipeline
-[[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
+[[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_afternoon/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
 On the afternoon of day 1 we saw how many steps are involved in calling variants relative to a reference genome. However, the same steps are applied to every sample, which makes this very pipeline friendly!  So, you could write your own shell script to string together these commands, or take advantage of one of several published pipelines. Here, we will use the output of the SPANDx pipeline, which takes as input a directory of fastq files and produces core variant and indel calls.
@@ -61,8 +66,11 @@ Because it takes a while to run, we have pre-run it for you. Your task will be t
 >i. Look at overall statistics for variant calling in excel
 
 SPANDx produces an overall summary file of its run that includes:
-1) numbers of SNPs/indels, 
+
+1) numbers of SNPs/indels,
+
 2) numbers of filtered SNPs/indels and 
+
 3) average coverage across the reference genome. 
 
 This summary file is in:  Outputs/Single_sample_summary.txt
@@ -86,7 +94,7 @@ Use sftp to download this file and view in excel
 - How many genomes do these HIGH impact mutations tend to be present in? How do you interpret this?
 
 ## Recombination detection and tree generation
-[[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
+[[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_afternoon/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
 >i. Plot the distribution of variants across the genome in R
@@ -94,6 +102,7 @@ Use sftp to download this file and view in excel
 The positions of variants are embedded in the first column of Outputs/Comparative/All_SNPs_annotated.txt, but you have to do some work to isolate them! 
 
 **HINTS**  
+
 - You will need to pipe together two “cut” commands: the first command will use tab as a delimiter and the second will use _. 
 - Note that for cut you can specify tab as the delimiter as follows: cut –d$’\t’ and _ as: cut -d ‘_’
 - You should redirect the output of your cut commands (a list of SNP positions) to a file called ‘snp_positions.txt’.
@@ -116,39 +125,50 @@ This file Outputs/Comparative/Ortho_SNP_matrix.fasta should now exist
 >iii. Create maximum likelihood tree in Seaview
 
 ```
+
 Download Ortho_SNP_matrix.fasta to your home computer
 Import the file into Seaview and construct a tree using PhyML (100 bootstraps)
 Save tree for later analysis
+
 ```
 
 ## Phylogenetic tree annotation and visualization
-[[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
+[[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_afternoon/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
 >i. Load the maximum likelihood tree into iTOL
 
-Note that because the out-group is so distantly related it is difficult to make out the structure of the rest of the tree. To remedy this: 
+Note that because the out-group is so distantly related it is difficult to make out the structure of the rest of the tree. 
+
+**To remedy this:**
+
 - Click on the KPNIH1 leaf, go to the “tree structure” menu and “delete leaf” 
 - Click on the extended branch leading to where KPNIH1 was, go to the “tree structure” menu and click “collapse branch”
 
->ii. Load the annotation file ‘Rush_KPC_facility_codes_iTOL.txt’ to view the facility of isolation  Play with tree visualization properties to understand how isolates group by facility o Circular vs. normal tree layout o Bootstrap values o Ignoring branch lengths
+>ii. Load the annotation file ‘Rush_KPC_facility_codes_iTOL.txt’ to view the facility of isolation, play with tree visualization properties to understand how isolates group by facility, Circular vs. normal tree layout, Bootstrap values, Ignoring branch lengths
 
 ```
+
 Which facilities appear to have a lot of intra-facility transmission based on grouping of isolates from the same facility? 
 Which patient’s infections might have originated from the blue facility?
+
 ```
 
 ## Assessment of genomic deletions
-[[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
+[[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_afternoon/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
 >i. Download genome coverage bed file and load into R
 
 This file is located in: Outputs/Comparative/Bedcov_merge.txt
 This file contains information regarding locations in the reference genome that each sequenced genome does and does not map to.
+
 The first 3 columns of the file are:
+
 1) the name of the reference, 
+
 2) the start coordinate of the window and 
+
 3) the end coordinate of the window
 
 The remaining columns are your analyzed genomes, with the values indicating the fraction of the window covered by reads in that genome.
@@ -163,10 +183,11 @@ After you download this file, read it into R
 >ii. Plot heatmap of genome coverage bed file
 
 **HINTS**
+
 - The first 3 columns of the bed file specify the name of the chromosome and the genome coordinates – therefore you want to subset your matrix to not include these columns 
 - Use the heatmap3 function to make your heatmap with the following parameters: scale = “none” (keeps original values), Rowv = NA (suppress clustering by rows – why might we not want to cluster by rows for this analysis?)
 
-Note a large genomic deletion among a subset of isolates. Does this deletion fit with the phylogeny from above?
+> Note a large genomic deletion among a subset of isolates. Does this deletion fit with the phylogeny from above?
 
 iii. Explore genomic deletion in more detail with ACT
 
@@ -174,5 +195,7 @@ iii. Explore genomic deletion in more detail with ACT
 - Load KPNIH.gb, Rush_KPC_298_ordered and the .crunch alignment into ACT
 
 ```
+
 What genes appear to have been lost?
+
 ```
