@@ -45,7 +45,9 @@ perl filter_fasta_file.pl resisGenes.pfasta fasta_file_keys ardb_beta_lactam_gen
 
 Run formatdb on the file of beta-lactamases to create a BLAST database. 
 formatdb takes as input: 
+
 1) a fasta file of protein or nucleotide sequences (ardb_beta_lactam_genes.pfasta) and 
+
 2) a flag indicating whether to construct a protein or nucleotide database (in this case protein/ -p T).
 
 ```
