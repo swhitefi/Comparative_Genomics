@@ -265,7 +265,7 @@ The STDOUT  will print out some useful details such as genome name and version b
 Lets go through the ANN field added after annotation step.
 
 ```
-grep '^Chromosome' Rush_KPC_266__filter_gatk_ann.vcf | head -n1
+grep 'ANN=' Rush_KPC_266__filter_gatk_ann.vcf | head -n1
 ```
 
 ANN field will provide information such as the impact of variants (HIGH/LOW/MODERATE/MODIFIER) on genes and transcripts along with other useful annotations.
