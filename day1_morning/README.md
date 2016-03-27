@@ -48,7 +48,6 @@ export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/GenomeAnalysisTK-3.3-0/
 export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/picard-tools-1.130/
 export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/qualimap_v2.1/
 export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/vcftools_0.1.12b/bin/
-export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/sratoolkit/bin/
 export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/snpEff/
 export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/PAGIT/ABACAS/
 export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/blast-2.2.26/bin/
