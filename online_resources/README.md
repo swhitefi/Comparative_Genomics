@@ -51,7 +51,8 @@
 		- [RaxML](http://sco.h-its.org/exelixis/software.html) 
 		- [PhyML](http://www.atgc-montpellier.fr/phyml/)
 		- [BEAST](http://beast.bio.ed.ac.uk/)
-		- [PHYLIP](http://evolution.genetics.washington.edu/phylip.html) 
+		- [PHYLIP](http://evolution.genetics.washington.edu/phylip.html)
+		- [APE](http://ape-package.ird.fr/)
 	- Recombination detection 
 		- [Gubbins](http://www.sanger.ac.uk/science/tools/gubbins)
 		- [ClonalFrame](http://www.xavierdidelot.xtreemhost.com/clonalframe.htm?ckattempt=1)
