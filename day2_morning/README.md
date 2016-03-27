@@ -41,10 +41,14 @@ python spades.py –h
 
 >iii. Submit a cluster job to assemble 
 
-Open the spades.PBS with nano and add the following spades command to the bottom of the file. Dont forget to change 'username' with your unique id. Also Change JOBNAME and EMAIL_ADDRESS in pbs script accordingly.
+Open the spades.pbs residing in day2_morning folder with nano and add the following spades command to the bottom of the file. Dont forget to change 'username' with your unique id, a JOBNAME(e.g: username_assembly_266) and your EMAIL_ADDRESS in pbs script accordingly.
+
+Change the username in below command with your unique id or whatever the name of your home directory.
 
 ```
-python /scratch/micro612w16_fluxod/shared/bin/Spades/bin/spades.py --pe1-1 /scratch/micro612w16_fluxod/apirani/day2_morn/forward_paired.fq.gz --pe1-2 /scratch/micro612w16_fluxod/apirani/day2_morn/reverse_paired.fq.gz --pe1-s /scratch/micro612w16_fluxod/apirani/day2_morn/forward_unpaired.fq.gz --pe1-s /scratch/micro612w16_fluxod/apirani/day2_morn/reverse_unpaired.fq.gz -o /scratch/micro612w16_fluxod/apirani/day2_morn/Rush_KPC_266_assembly_result/ --careful
+
+python /scratch/micro612w16_fluxod/shared/bin/Spades/bin/spades.py --pe1-1 /scratch/micro612w16_fluxod/username/day2_morn/forward_paired.fq.gz --pe1-2 /scratch/micro612w16_fluxod/username/day2_morn/reverse_paired.fq.gz --pe1-s /scratch/micro612w16_fluxod/username/day2_morn/forward_unpaired.fq.gz --pe1-s /scratch/micro612w16_fluxod/username/day2_morn/reverse_unpaired.fq.gz -o /scratch/micro612w16_fluxod/username/day2_morn/Rush_KPC_266_assembly_result/ --careful
+
 ```
 
 >iv. Submit your job to the cluster with qsub
@@ -75,7 +79,7 @@ quast.py -o quast sample_264_contigs.fasta sample_266_contigs.fasta
 
 >ii. Explore quast output
 
-QUAST creates output in various format. Now lets check the report.txt for assembly statistics. Open report.txt using nano.
+QUAST creates output in various format. Now lets check the report.txt file created in quast folder for assembly statistics. Open report.txt using nano.
 
 ```
 nano quast/report.txt
@@ -86,7 +90,9 @@ Check the difference between each assembly statistics.
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_morning/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
-Now that we feel confident in our assembly, lets compare it to our reference to see if we can identify any large insertions/deletions. To do this we will use a graphical to call Artemis Comparison Tool (ACT). To do this we need to first align our genome assembly to our reference. We will accomplish this using command-line BLAST.
+Now that we feel confident in our assembly, lets compare it to our reference to see if we can identify any large insertions/deletions and  will use a graphical user interface called Artemis Comparison Tool (ACT) for visualization. 
+
+To do this we need to first align our genome assembly to our reference. We will accomplish this using command-line BLAST.
 
 >i. Align unordered contigs to reference
 
@@ -103,37 +109,55 @@ echo ">sample_266_contigs_concat" > sample_266_contigs_concat.fasta
 grep -v ">" sample_266_contigs.fasta >> sample_266_contigs_concat.fasta 
 ```
 
-BLAST your stitched together contigs against your reference. The input parameters are: 1) query sequences (-query sample_266_contigs_concat.fasta), 2) the database to search against (-db KPNIH1.fasta), 3) the name of a file to store your results (-out blastn_results), 4) output format (-outfmt 6), 6) e-value cutoff (-evalue 1e-20)
+BLAST your stitched together contigs against your reference. 
+The input parameters are: 
+1) query sequences (-query sample_266_contigs_concat.fasta), 
+2) the database to search against (-db KPNIH1.fasta), 
+3) the name of a file to store your results (-out blastn_results), 
+4) output format (-outfmt 6), 
+5) e-value cutoff (-evalue 1e-20)
 
 ```
 blastn -outfmt 6 -evalue 1e-20 -db KPNIH1.fasta -query sample_266_contigs_concat.fasta -out concat_comp.blast
 ```
 
->ii. Use ACT to compare stitched together contigs to reference
+>ii. Use ACT to compare stitched together contigs to reference.
 
 ```
+
 cd /scratch/micro612w16_fluxod/username/day2_morn
 mkdir ACT_contig_comparison 
-cp KPNIH.gb KPNIH1.fasta concat_comp.blast ACT_contig_comparison/
+cp KPNIH.gb KPNIH1.fasta concat_comp.blast sample_266_contigs_concat.fasta ACT_contig_comparison/
+
+```
 
 Use scp to get sequences and BLAST alignments onto your laptop 
+
+```
+
 scp -r username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day2_morn/ACT_contig_comparison/ /path-to-local-directory/
-```
-
->iii. Read these Input files in ACT_contig_comparison into ACT
 
 ```
+
+>iii. Read these Input files in ACT_contig_comparison folder into ACT
+
+```
+Start ACT
 Go to File -> open 
+
 Sequence file 1 = KPNIH.gb
 Comparison file 1  = concat_comp_blast 
 Sequence file 2  = sample_266_contigs_concat.fasta
+
 ```
 
 > Notice that it a complete mess!!!! The reason is that the contigs are in random order, so it is very difficult to visually compare to the reference. 
 
+mess_screenshot
+
 iv. Run abacas to orient contigs to reference
 
-To orient our contigs relative to the reference we will use a tool called abacas. Abacas aligns contigs to a reference genome and then stitches them together to form a “pseudo-chromosome”. Go back to flux and into the directory where the assembly are located.
+To orient our contigs relative to the reference we will use a tool called abacas. Abacas aligns contigs to a reference genome and then stitches them together to form a “pseudo-chromosome”. Go back to flux and into the directory where the assembly is located.
 
 ```
 cd /scratch/micro612w16_fluxod/username/day2_morn/
@@ -155,7 +179,11 @@ perl abacas.1.3.1.pl -r KPNIH1.fasta -q sample_266_contigs.fasta -p nucmer -b -d
 v. Use ACT to view contig alignment to reference genome
 
 > Use scp to get ordered fasta sequence and .cruch file onto your laptop 
+
+```
+
 scp username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day2_morn/sample_266_contigs_ordered* /path-to-local-ACT_contig_comparison-directory/
+
 ```
 
 > Read files into ACT
