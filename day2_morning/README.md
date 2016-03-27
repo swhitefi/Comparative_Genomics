@@ -195,11 +195,48 @@ Comparison file 1  = sample_266_contigs_ordered.crunch
 Sequence file 2  = sample_266_contigs_ordered.fasta
 ```
 
-> Notice that the alignment is totally beautiful now!!! Scan through the alignment and play with ACT features to look at genes present in reference but not in assembly 
+> Notice that the alignment is totally beautiful now!!! Scan through the alignment and play with ACT features to look at genes present in reference but not in assembly. Keep the ACT window open for further visualizations.
 
-## Map reads to the final ordered assembly(To do or not to do!)
+beautiful_screenshot
+
+## Map reads to the final ordered assembly
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_morning/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
+
+You already know the drill/steps involved in reads mapping. Here, we will map the reads to the final ordered assembly genome instead of KPNIH1.fasta.
+
+First create bwa index of ordered fasta file.
+
+```
+cd /scratch/micro612w16_fluxod/username/day2_morn/
+bwa index sample_266_contigs_ordered.fasta
+samtools faidx sample_266_contigs_ordered.fasta
+```
+Align the clean trimmed reads to this ordered assembly using BWA mem. Convert SAM to BAM. Sort and index it.
+
+```
+
+bwa mem -M -R "@RG\tID:96\tSM:Rush_KPC_266_1_combine.fastq.gz\tLB:1\tPL:Illumina" -t 8 sample_266_contigs_ordered.fasta forward_paired.fq.gz reverse_paired.fq.gz > sample_266_contigs_ordered.sam
+
+samtools view -Sb sample_266_contigs_ordered.sam > sample_266_contigs_ordered.bam
+
+samtools sort sample_266_contigs_ordered.bam sample_266_contigs_ordered_sort
+
+samtools index sample_266_contigs_ordered_sort.bam
+
+```
+
+Lets visualize the alignments against out ordered assembly.
+Copy this sorted and indexed BAM files to local ACT_contig_comparison directory.
+
+```
+
+scp username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day2_morn/sample_266_contigs_ordered_sort* /path-to-local-ACT_contig_comparison-directory/
+
+```
+
+**
+
 
 ## Genome Annotation
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_morning/README.md)
