@@ -4,11 +4,15 @@
 ## Klebsiella pneumoniae comparative genomic analysis 
 
 To finish up the workshop we are going to go through the process of working up a complete dataset, from start to finish.  This set of genomes originated from a regional outbreak of bla-KPC carrying Klebsiella pneumoniae – one of the most concerning healthcare associated pathogens. 
-The goal is to follow up on a previously [published](http://cid.oxfordjournals.org/content/53/6/532.abstract) epidemiologic analysis, and see if genomics supports prior epidemiologic conclusions and can provide additional insights. We have our genomes, and we know in which regional facility each isolate originated. 
+The goal is to follow up on a previously [published](http://cid.oxfordjournals.org/content/53/6/532.abstract) epidemiologic analysis, and see if genomics supports prior epidemiologic conclusions and can provide additional insights. 
+We have our genomes, and we know in which regional facility each isolate originated. 
 
 The goal of this exercise is to:
+
 1) process our genomes (QC, variant calling), 
+
 2) perform a phylogenetic analysis and 
+
 3) overlay our meta-data. 
 
 To make this more difficult, the instructions will be much more vague than in previous sessions, and you will be challenged to use what you have learned, both in the past three days and in the prior workshop, to complete this analysis. Hopefully we’ve prepared you to take on the challenge, but remember this is an open book test! 
