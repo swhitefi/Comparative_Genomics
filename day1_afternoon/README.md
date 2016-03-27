@@ -302,15 +302,17 @@ A visual visualization of all these various output files helps in making some si
 We will be using [Artemis](http://www.sanger.ac.uk/science/tools/artemis) here, developed by Sanger Institute for viewing BAM and vcf files for manual inspection of some of the variants.
 
 
-> Required Input files: KPNIH1 reference fasta and genbank file, Rush_KPC_266__aln_marked.bam and Rush_KPC_266__aln_marked.bai, Rush_KPC_266__aln_mpileup_raw.vcf/Rush_KPC_266__filter_onlysnp.recode.vcf/Rush_KPC_266__filter_gatk_ann.vcf
+> Required Input files: 
+KPNIH1 reference fasta and genbank file, 
+Rush_KPC_266__aln_marked.bam and Rush_KPC_266__aln_marked.bam.bai, 
+Rush_KPC_266__filter_gatk_ann.vcf.gz and Rush_KPC_266__filter_gatk_ann.vcf.gz.tbi
 
 Lets make a seperate folder for the files that we need for visualization and copy it to that folder
 
 ```
 
 mkdir Artemis_files
-bgzip -d Rush_KPC_266__aln_mpileup_raw.vcf.gz
-cp /path-to-reference/KPNIH1.fasta ../KPNIH.gb Rush_KPC_266__aln_marked.bam Rush_KPC_266__aln_marked.bai Rush_KPC_266__aln_mpileup_raw.vcf Rush_KPC_266__filter_gatk_ann.vcf Artemis_files/
+cp /path-to-reference/KPNIH1.fasta ../KPNIH.gb Rush_KPC_266__aln_marked.bam Rush_KPC_266__aln_marked.bam.bai Rush_KPC_266__filter_gatk_ann.vcf Artemis_files/
 
 ```
 
@@ -318,7 +320,9 @@ We need to replace the genome name that we changed earlier for snpEff.
 
 ```
 cd Artemis_files
-sed -i 's/Chromosome/gi|661922017|gb|CP008827.1|/g' *.vcf
+sed -i 's/Chromosome/gi|661922017|gb|CP008827.1|/g' Rush_KPC_266__filter_gatk_ann.vcf 
+bgzip Rush_KPC_266__filter_gatk_ann.vcf
+tabix Rush_KPC_266__filter_gatk_ann.vcf.gz
 ```
 
 Get these file to your local system and start Artemis.
@@ -350,7 +354,7 @@ menu.(screenshot below) This will open up a new window giving you some useful de
 
 ![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_after/artemis/read_details.png)
 
-Let look at some of the ways by which you can manually inspect the variants that were called against this reference. open VCF file by selecting File -> Read BAM/VCF file -> Select -> Rush_KPC_266__filter_gatk_ann.vcf -> OK
+Let look at some of the ways by which you can manually inspect the variants that were called against this reference. open VCF file by selecting File -> Read BAM/VCF file -> Select -> Rush_KPC_266__filter_gatk_ann.vcf.gz -> OK
 Right click anywhere inside the BAM window and select Show -> SNP marks
 
 The snps are denoted by red marks as observed inside the reads. Go to one of the SNPs in VCF file(Position: 50195) by directly navigating to the position. For this, select Goto at the top -> select Navigator -> Type the position in Goto Base box
