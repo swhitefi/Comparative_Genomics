@@ -10,13 +10,13 @@ cd /scratch/micro612w16_fluxod/username
 cp -r /scratch/micro612w16_fluxod/shared/data/day2_morn ./
 ```
 
-## Genome Assembly using Spades Pipeline
+## Genome Assembly using [Spades](http://bioinf.spbau.ru/spades) Pipeline
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_morning/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
 ![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day2_morning/intro.png)
 
-There is a wide range of tools available for assembly of microbial genomes. These assemblers fall in to two general algorithmic categories, which you can learn more about [here](Ask Evan for the link?). In the end, most assemblers will perform well on microbial genomes, unless there is unusually high GC-content or an over-abundance of repetitive sequences, both of which make accurate assembly difficult. 
+There is a wide range of tools available for assembly of microbial genomes. These assemblers fall in to two general algorithmic categories, which you can learn more about [here](?). In the end, most assemblers will perform well on microbial genomes, unless there is unusually high GC-content or an over-abundance of repetitive sequences, both of which make accurate assembly difficult. 
 
 Here we will use the Spades assembler with default parameters. Because genome assembly is a computationally intensive process, we will submit our assembly jobs to the cluster, and move ahead with some pre-assembled genomes, while your assemblies are running. 
 
@@ -63,7 +63,7 @@ qsub spades.PBS
 qstat –u username 
 ```
 
-## Assembly evaluation using QUAST
+## Assembly evaluation using [QUAST](http://bioinf.spbau.ru/quast)
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_morning/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
@@ -157,7 +157,7 @@ Sequence file 2  = sample_266_contigs_concat.fasta
 
 iv. Run abacas to orient contigs to reference
 
-To orient our contigs relative to the reference we will use a tool called abacas. Abacas aligns contigs to a reference genome and then stitches them together to form a “pseudo-chromosome”. Go back to flux and into the directory where the assembly is located.
+To orient our contigs relative to the reference we will use a tool called abacas. [ABACAS](http://www.sanger.ac.uk/science/tools/pagit) aligns contigs to a reference genome and then stitches them together to form a “pseudo-chromosome”. Go back to flux and into the directory where the assembly is located.
 
 ```
 cd /scratch/micro612w16_fluxod/username/day2_morn/
@@ -244,7 +244,7 @@ Select File -> sample_266_contigs_ordered.fasta -> Read BAM/VCF > select sorted 
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_morning/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
-**Identify protein-coding genes with Prokka**
+**Identify protein-coding genes with [Prokka](http://www.vicbioinformatics.com/software.prokka.shtml)**
 
 From our ACT comparison of our assembly and the reference we can clearly see that there is unique sequence in our assembly. However, we still don’t know what that sequence encodes! To try to get some insight into the sorts of genes unique to our assembly we will run a genome annotation pipeline called Prokka. Prokka works by first running denovo gene prediction algorithms to identify protein coding genes and tRNA genes. Next, for protein coding genes Prokka runs a series of comparisons against databases of annotated genes to generate putative annotations for your genome. 
 
