@@ -7,7 +7,9 @@ For the first several exercises, we will use the A. baumannii genomes that we wo
 The backstory on these genomes is that Abau_A, Abau_B and Abau_C are representatives of three clones (as defined by pulsed-field gel electrophoresis - a low-resolution typing method) that were circulating in our hospital. 
 
 One of the goals of our published study was to understand the relationship among these clones to discern whether: 
+
 1) the three clones represent three independent introductions into the hospital or 
+
 2) the three clones originated from a single introduction into the hospital, with subsequent genomic rearrangement leading to the appearance of unique clones. 
 
 The types of phylogenetic analyses you will be performing here are the same types that we used to decipher this mystery.
@@ -20,7 +22,7 @@ cd /scratch/micro612w16_fluxod/username
 cp -r /scratch/micro612w16_fluxod/shared/data/day3_morn ./
 ```
 
-## Perform whole genome alignment with Mauve and convert alignment to other useful formats
+## Perform whole genome alignment with [Mauve](http://darlinglab.org/mauve/mauve.html) and convert alignment to other useful formats
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
@@ -65,7 +67,7 @@ Mauve produces alignments in .xmfa format (use less to see what this looks like)
 perl convert_msa_format.pl -i mauve_ECII_outgroup -o mauve_ECII_outgroup.fasta -f fasta -c
 ```
 
-## Perform some DNA sequence comparisons and phylogenetic analysis in ape
+## Perform some DNA sequence comparisons and phylogenetic analysis in [APE](http://ape-package.ird.fr/), an R package
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
@@ -180,7 +182,7 @@ Finally, create a histogram of SNP density across the genome. Does the density l
 hist(which(abau_no_outgroup_var_pos & abau_no_outgroup_non_gap_pos), 10000)
 ```
 
-## Perform recombination filtering with gubbins
+## Perform recombination filtering with [Gubbins](https://www.google.com/search?q=gubbins+sanger&ie=utf-8&oe=utf-8)
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
@@ -204,9 +206,13 @@ run_gubbins.py -v -f 50 -o Abau_AB0057 mauve_ECII_outgroup.fasta
 >ii. Create gubbins output figure
 
 Gubbins produces a series of output files, some of which can be run through another program to produce a visual display of filtered recombinant regions. Run the gubbins_drawer.py script to create a pdf visualization of recombinant regions. 
+
 The inputs are: 
+
 1) the recombination filtered tree created by gubbins (mauve_ECII_outgroup.final_tree.tre),
+
 2) the pdf file to create (mauve_ECII_outgroup.recombination.pdf) and 
+
 3) a .embl representation of recombinant regions (mauve_ECII_outgroup.recombination_predictions.embl).
 
 ```
@@ -227,15 +233,22 @@ get mauve_ECII_outgroup.final_tree.tre
 Open up the pdf and observe the recombinant regions filtered out by gubbins. Does it roughly match your expectations based upon your SNP density plots?
 
 Finally, lets look at the recombination-filtered tree to see if this alters our conclusions. 
-To view the tree we will use Seaview, which is a multi-purpose tool for: 
+
+To view the tree we will use [Seaview](http://doua.prabi.fr/software/seaview), which is a multi-purpose tool for: 
+
 1) visualization/construction of multiple alignments and 
+
 2) phylogenetic tree construction. 
+
 Here, we will just use Seaview to view our gubbins tree.
 
 ```
+
 In seaview: 
+
 Go to Trees -> import tree (mauve_ECII_outgroup.final_tree.tre) 
 To view sub-tree of interest click on “sub-tree” and select the sub-tree excluding the out-group
+
 ```
 
 
@@ -243,7 +256,7 @@ How does the structure look different than the unfiltered tree?
 
 >Note that turning back to the backstory of these isolates, Abau_B and Abau_C were both isolated first from the same patient. So this analysis supports that patient having imported both strains, which likely diverged at a prior hospital at which they resided.
 
-## Create annotated publication quality trees with iTOL
+## Create annotated publication quality trees with [iTOL](http://itol.embl.de/)
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics#bacterial-comparative-genomics-workshop)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
@@ -254,6 +267,7 @@ For the final exercise we will use a different dataset, composed of USA300 methi
 Use sftp to get genomes onto your laptop
 
 ```
+
 cd ~/Desktop (or wherever your desktop is) 
 mkdir MRSA_genomes 
 cd MRSA_genomes
@@ -261,6 +275,7 @@ sftp –r username@flux-login.engin.umich.edu
 cd /scratch/micro612w16_fluxod/username/day3_morn 
 get 2016-3-9_KP_BSI_USA300.fa 
 get 2016-3-9_KP_BSI_USA300_iTOL_HA_vs_CA.txt
+
 ```
 
 >ii. Look at SNP density for MRSA alignment in R
@@ -268,10 +283,12 @@ get 2016-3-9_KP_BSI_USA300_iTOL_HA_vs_CA.txt
 Before we embark on our phylogenetic analysis, lets look at the SNP density to verify that there is no recombination
 
 ```
+
 mrsa_msa = read.dna('2016-3-9_KP_BSI_USA300.fa', format = 'fasta') 
 mrsa_msa_bin = apply(mrsa_msa, 2, FUN = function(x){x == x[1]}) 
 mrsa_var_pos = colSums(mrsa_msa_bin) < nrow(mrsa_msa_bin) 
 hist(which(mrsa_var_pos), 10000)
+
 ```
 
 Does it look like there is evidence of recombination?
