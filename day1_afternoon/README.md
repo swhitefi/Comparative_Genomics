@@ -279,31 +279,12 @@ ANN field will provide information such as the impact of variants (HIGH/LOW/MODE
 Detailed information of ANN field and sequence ontology terms that it uses can be found [here](http://snpeff.sourceforge.net/SnpEff_manual.html#input)
 
 
-**4. Generate Statistics report using samtools, vcftools and qualimap**
+**4. Generate Statistics report using qualimap**
 
 Often, While analyzing sequencing data, we are required to make sure that our analysis steps are correct. Some statistics about our analysis will help us in making that decision. So Lets try to get some statistics about various outputs that were created using the above steps and check if everything makes sense.
 
->i. Reads Alignment statistics:
- 
-```
-samtools flagstat Rush_KPC_266__aln.bam > Rush_KPC_266__alignment_stats
-```
 
-These statistics will give you an idea about how well your reads aligned to the reference genome in terms of what percentage of reads that you supplied actually mapped. If there is very low percentage of reads that are being mapped, then you need to reconsider the reference genome being used for reads alignment.
-
-ii. VCF statistics:  
-
-```
-
-bgzip Rush_KPC_266__aln_mpileup_raw.vcf   
-tabix Rush_KPC_266__aln_mpileup_raw.vcf.gz  
-vcf-stats Rush_KPC_266__aln_mpileup_raw.vcf.gz > Rush_KPC_266__raw_vcf_stats
-
-```
-
-Open Rush_KPC_266__raw_vcf_stats and check the number of snps and indels called for this sample. You can get the same kind of statistics for your final filtered vcf.
-
-iii. Qualimap report of BAM coverage:
+**Qualimap report of BAM coverage:**
 
 Qualimap outputs a very imformative reports about the alignments and coverage across the entire genome. Let create one for our sample. The below command calls bamqc utility of qualimap and generates a report in pdf format.
 
