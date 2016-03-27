@@ -51,6 +51,7 @@ export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/vcftools_0.1.12b/bin/
 export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/snpEff/
 export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/PAGIT/ABACAS/
 export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/blast-2.2.26/bin/
+export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/PAGIT/bin/:/scratch/micro612w16_fluxod/shared/bin/PAGIT/bin/pileup_v0.5/:/scratch/micro612w16_fluxod/shared/bin/PAGIT/bin/pileup_v0.5/ssaha2:/scratch/micro612w16_fluxod/shared/bin/PAGIT/bin/pileup_v0.5/:/scratch/micro612w16_fluxod/shared/bin/PAGIT/IMAGE/:/scratch/micro612w16_fluxod/shared/bin/PAGIT/ABACAS:/scratch/micro612w16_fluxod/shared/bin/PAGIT/ICORN/:/scratch/micro612w16_fluxod/shared/bin/PAGIT/RATT/:/scratch/micro612w16_fluxod/shared/bin/PAGIT
 ```
 
 >iv. Source your .bashrc file
