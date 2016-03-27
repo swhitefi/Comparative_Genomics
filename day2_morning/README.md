@@ -153,7 +153,7 @@ Sequence file 2  = sample_266_contigs_concat.fasta
 
 > Notice that it a complete mess!!!! The reason is that the contigs are in random order, so it is very difficult to visually compare to the reference. 
 
-mess_screenshot
+![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day2_morning/mess.png)
 
 iv. Run abacas to orient contigs to reference
 
@@ -197,7 +197,7 @@ Sequence file 2  = sample_266_contigs_ordered.fasta
 
 > Notice that the alignment is totally beautiful now!!! Scan through the alignment and play with ACT features to look at genes present in reference but not in assembly. Keep the ACT window open for further visualizations.
 
-beautiful_screenshot
+![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day2_morning/beautiful.png)
 
 ## Map reads to the final ordered assembly
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_morning/README.md)
@@ -235,7 +235,9 @@ scp username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day2
 
 ```
 
-**
+Select File -> sample_266_contigs_ordered.fasta -> Read BAM/VCF > select sorted bam file
+
+![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day2_morning/aligned_reads_deletion.png)
 
 
 ## Genome Annotation
