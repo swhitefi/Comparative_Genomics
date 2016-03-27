@@ -24,7 +24,7 @@ cp -r /scratch/micro612w16_fluxod/shared/data/day2_after/ ./
 
 Before comparing full genomic content, lets start by looking for the presence of particular genes of interest. A. baumannii harbors an arsenal of resistance genes, and it would be interesting to know how particular resistance families vary among our 4 genomes. To accomplish this we will use the antibiotic resistance database (ARDB). In particular, we are going to extract a set of genes from ARDB that we are interested in probing our genomes for, and create a custom BLAST database to compare against. 
 
-*** Get beta-lactamase genes from ARDB database***
+**Get beta-lactamase genes from ARDB database**
 
 >i. Run the custom perl script filter_fasta_file.pl to extract genes annotated as beta-lactamases from the full ARDB fasta file. 
 
