@@ -204,7 +204,7 @@ grep '^Chromosome.*pass_filter' Rush_KPC_266__filter_gatk_ann.vcf | wc -l
 No. of SNPs that passed the filter:
 grep '^Chromosome.*pass_filter' Rush_KPC_266__filter_gatk_ann.vcf | grep -v 'INDEL' | wc -l
 
-No. of Indels that passed the filter
+No. of Indels that passed the filter:
 grep '^Chromosome.*pass_filter' Rush_KPC_266__filter_gatk_ann.vcf | grep 'INDEL' | wc -l
 
 
