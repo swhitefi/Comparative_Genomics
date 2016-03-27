@@ -10,26 +10,26 @@
 2. Short read processing 
 	- [FastQC](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
 	- Trimmomatic: [Home](http://www.usadellab.org/cms/?page=trimmomatic) [Manual](http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/TrimmomaticManual_V0.32.pdf)
-	- [bwa]()
-	- [bowtie]()
-	- [samtools]()
-	- [vcftools]()
-	- [bcftools]()
-	- [gatk]() 
-	- [picard]() 
-	- [SPANDx]() 
-	- [Snippy]() 
+	- [bwa](http://bio-bwa.sourceforge.net/)
+	- [bowtie](http://bowtie-bio.sourceforge.net/index.shtml)
+	- [samtools](http://samtools.sourceforge.net/)
+	- [vcftools](http://vcftools.sourceforge.net/)
+	- [bcftools](https://samtools.github.io/bcftools/bcftools.html)
+	- [gatk](https://www.broadinstitute.org/gatk/) 
+	- [picard](http://broadinstitute.github.io/picard/) 
+	- [SPANDx](https://github.com/dsarov/SPANDx) 
+	- [Snippy](https://github.com/tseemann/snippy) 
 	
 3. Genome assembly 
-	- [Spades]()
-	- [Velvet]() 
-	- [Mira]() 
-	- [A5]()
+	- [Spades](http://bioinf.spbau.ru/spades)
+	- [Velvet](https://www.ebi.ac.uk/~zerbino/velvet/) 
+	- [Mira](https://sourceforge.net/p/mira-assembler/wiki/Home/) 
+	- [A5](https://sourceforge.net/p/ngopt/wiki/browse_pages/)
 	
 4. Genome alignment 
-	- [Mauve]()
-	- [MUMmer]()
-	- [Mugsy]() 
+	- [Mauve](http://darlinglab.org/mauve/download.html)
+	- [MUMmer](http://mummer.sourceforge.net/)
+	- [Mugsy](http://mugsy.sourceforge.net/) 
 	
 5. Visualization of genomic data
 	- [Artemis]() 
