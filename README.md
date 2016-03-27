@@ -1,6 +1,6 @@
 # Bacterial Comparative Genomics Workshop
 
-A 3 day microbial bioinformatics workshop conducted by [Dr. Evan Snitkin]([Evan Snitkin Lab](http://thesnitkinlab.com/index.php)) at [University of Michigan](https://www.umich.edu/)
+A 3 day microbial bioinformatics workshop conducted by [Evan Snitkin]([Evan Snitkin Lab](http://thesnitkinlab.com/index.php)) at [University of Michigan](https://www.umich.edu/)
 
 Date: 28 - 30 March
 
