@@ -29,8 +29,11 @@ Before comparing full genomic content, lets start by looking for the presence of
 >i. Run the custom perl script filter_fasta_file.pl to extract genes annotated as beta-lactamases from the full ARDB fasta file. 
 
 The script takes as input: 
+
 1) the ARDB database (resisGenes.pfasta), 
+
 2) a file containing terms to search the database for (fasta_file_keys) and 
+
 3) an output file to contain the subset of sequences that match the text your searching for (ardb_beta_lactam_genes.pfasta).
 
 ```
