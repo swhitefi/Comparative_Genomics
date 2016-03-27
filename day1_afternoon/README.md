@@ -117,19 +117,13 @@ java -jar /scratch/micro612w16_fluxod/shared/bin/picard-tools-1.130/picard.jar M
 
 ```
 
->iii. Sort these marked BAM file again (Just to make sure, it doesn't throw error in downstream steps. Also we will be using this final marked BAM file in downstream steps)
-
-```
-samtools sort Rush_KPC_266__aln_marked.bam Rush_KPC_266__aln_sort
-```
-
-In the mean time, open the markduplicates metrics file and glance through the number and percentage of PCR duplicates removed. For more details about each metrics in a metrics file, please refer [this](https://broadinstitute.github.io/picard/picard-metric-definitions.html#DuplicationMetrics)
+Open the markduplicates metrics file and glance through the number and percentage of PCR duplicates removed. For more details about each metrics in a metrics file, please refer [this](https://broadinstitute.github.io/picard/picard-metric-definitions.html#DuplicationMetrics)
 
 ```
 nano Rush_KPC_266__markduplicates_metrics
 ```
 
->iv. Index these marked bam file again using SAMTOOLS
+>iii. Index these marked bam file again using SAMTOOLS(For input in Artemis later)
 
 ```
 samtools index Rush_KPC_266__aln_marked.bam
