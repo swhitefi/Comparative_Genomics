@@ -60,13 +60,20 @@ Run BLAST!
 
 The input parameters are: 
 
-1) the type of blast to use (-p blastp), 
+1) the type of blast to use (-p blastp),
+
 2) query sequences (-i Abau_all.pfasta), 
-3) the database to search against (-d ardb_beta_lactam_genes.pfasta), 
+
+3) the database to search against (-d ardb_beta_lactam_genes.pfasta),
+
 4) the name of a file to store your results (-o bl_blastp_results), 
+
 5) output format (-m 8), 
+
 6) e-value cutoff (-e 1e-20), 
+
 7) number of database sequences to return (-v 1) and 
+
 8) number of database sequences to show alignment for (-b 1).
 
 ```
