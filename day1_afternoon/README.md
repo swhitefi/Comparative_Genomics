@@ -1,6 +1,8 @@
 # Day 1 Afternoon
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
+Earlier this morning, We performed some quality control steps on our sequencing data to make it clean and usable for various downstream analysis. Now we will map these reads to a reference genome and try to find out the differences between them.
+
 Read Mapping is one of the most common Bioinformatics operations that needs to be carried out on NGS data. Reads are generally mapped to a reference genome sequence or closely related genome if a reference is not available. There are number of tools that can map reads to a reference genome and they differ from each other in algorithm, speed and accuracy. Most of these tools work by first building an index of reference sequence which works like a dictionary for fast search/lookup and then calling an alignment algorithm that uses these index to align short read sequences against the reference. These alignment has a vast number of uses ranging from Variant/SNP calling, Coverage estimation and gene expression analysis.
 
 ## Read Mapping
