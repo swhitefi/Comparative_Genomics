@@ -164,6 +164,7 @@ cd /scratch/micro612w16_fluxod/username/day2_morn/
 ```
 
 Run abacas using the input parameters: 
+
 1) your reference sequence (-r KPNIH.fasta), 
 2) your contig file (-q sample_266_contigs.fasta), 
 3) the program to use to align contigs to reference (-p nucmer), 
