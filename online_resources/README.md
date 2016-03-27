@@ -32,34 +32,39 @@
 	- [Mugsy](http://mugsy.sourceforge.net/) 
 	
 5. Visualization of genomic data
-	- [Artemis]() 
-	- [Artemis Comparison Tool]()
-	- [IGV]()
+	- [Artemis](http://www.sanger.ac.uk/science/tools/artemis) 
+	- [Artemis Comparison Tool](http://www.sanger.ac.uk/science/tools/artemis-comparison-tool-act)
+	- [IGV](https://www.broadinstitute.org/igv/)
 	
 6. Genome annotation 
-	- [Prokka]() 
-	- [Blastall]()
-	- [LS-BSR]() 
+	- [Prokka](http://www.vicbioinformatics.com/software.prokka.shtml) 
+	- [Blastall](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastDocs&DOC_TYPE=Download)
+	- [LS-BSR](https://github.com/jasonsahl/LS-BSR) 
 	
 7. Phylogenetic tools and resources
 	- Visualization 
-		- [Seaview]() 
-		- [iTOL]() 
-		- [Figtree]() 
+		- [Seaview](http://doua.prabi.fr/software/seaview) 
+		- [iTOL](http://itol.embl.de/) 
+		- [Figtree](http://tree.bio.ed.ac.uk/software/figtree/) 
 	- Phylogenetic software 
-		- [PAUP]()
-		- [RaxML]() 
-		- [PhyML]()
-		- [BEAST]()
-		- [PHYLIP]() 
+		- [PAUP](http://paup.csit.fsu.edu/)
+		- [RaxML](http://sco.h-its.org/exelixis/software.html) 
+		- [PhyML](http://www.atgc-montpellier.fr/phyml/)
+		- [BEAST](http://beast.bio.ed.ac.uk/)
+		- [PHYLIP](http://evolution.genetics.washington.edu/phylip.html) 
 	- Recombination detection 
-		- [Gubbins]()
-		- [ClonalFrame]()
-		- [RDP]()
+		- [Gubbins](http://www.sanger.ac.uk/science/tools/gubbins)
+		- [ClonalFrame](http://www.xavierdidelot.xtreemhost.com/clonalframe.htm?ckattempt=1)
 
-8. Video Resources
+8. Video Resources you should watch and follow
 	- [FastQC](https://www.youtube.com/watch?v=bz93ReOv87Y) 
-	- 
+	- [NHGRI](https://www.youtube.com/user/GenomeTV) 
+	- [Broad Institute](https://www.youtube.com/channel/UCv4IbnP9j9RC_aZAs8wqdeQ)
+	- [Cold Spring Harbor Lab](https://www.youtube.com/channel/UCVqWctrxf5-oBIM1lqOIt-A)
+	- [NCBI](https://www.youtube.com/user/NCBINLM/videos)
+	- [Bioinformatics courses from MIT](https://www.youtube.com/channel/UCEBb1b_L6zDS3xTUrIALZOw)
+	- Youtube [Channel](https://www.youtube.com/channel/UC1lb9cYp9wt8xjF3APM9bMw) of [Rafael Irizarry](http://rafalab.dfci.harvard.edu/) covering various topics on NGS analysis and statistics involved in it.
+	
 	
 
 
