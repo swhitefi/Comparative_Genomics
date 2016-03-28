@@ -33,10 +33,10 @@ mkdir Rush_KPC_266_assembly_result
 To make sure that your paths are set up correctly, try running Spades with the –h (help) flag, which should produce usage instruction.
 
 ```
+
+module load python
 spades.py -h     
-OR    
-python /scratch/micro612w16_fluxod/shared/bin/Spades/bin/spades.py -h	
-(In case, Invoke doesn’t work, check python path supplied in spades.py script or invoke using python interpreter and full path)
+
 ```
 
 >iii. Submit a cluster job to assemble 
